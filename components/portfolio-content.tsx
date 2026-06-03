@@ -1808,6 +1808,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
     family: study.platform,
     question: study.headline,
   };
+  const whySection = caseStudyWhySections[study.id];
   const primaryImpact = study.impact.slice(0, 3);
 
   useEffect(() => {
@@ -1863,6 +1864,24 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
           style={{ "--case-meta-offset": isMetaStuck ? `${metaHeight + 24}px` : "0px" } as CSSProperties}
         >
           <div className="grid gap-14">
+            {whySection ? (
+              <section className="grid gap-7 border-b border-black/12 pb-12">
+                <StorySectionLabel
+                  eyebrow="Why"
+                  title={whySection.title}
+                  body={whySection.body}
+                />
+                <div className="grid gap-5 sm:grid-cols-3">
+                  {whySection.points.map((point) => (
+                    <div key={point.title} className="border-l border-black/18 pl-4">
+                      <h3 className="text-base font-semibold leading-6 text-black/84">{point.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-black/64">{point.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             <section className="grid gap-7 border-b border-black/12 pb-12">
               <StorySectionLabel
                 eyebrow="Problem frame"
@@ -2171,6 +2190,31 @@ const caseStudyBriefs: Record<string, { family: string; question: string }> = {
   "seller-agent": {
     family: "LinkedIn AI Agent exploration",
     question: "How can Sales Navigator value meet sellers inside the LinkedIn workflow?",
+  },
+};
+
+const caseStudyWhySections: Record<string, { title: string; body: string; points: DetailItem[] }> = {
+  campglint: {
+    title: "The opportunity",
+    body:
+      "Campground availability is scarce, fragmented, and time-sensitive. CampGlint could turn the repeated manual checking campers already do into a native monitoring loop that watches availability, clarifies next action, and keeps the trip moving after booking.",
+    points: [
+      {
+        title: "Manual checking is the hidden workflow",
+        detail:
+          "Campers already revisit booking sites, compare dates, and watch for cancellations. The product opportunity was to make that behavior explicit and easier to trust.",
+      },
+      {
+        title: "Availability needs a clear handoff",
+        detail:
+          "CampGlint can surface signals and urgency, but the official provider remains the source of truth for booking, payment, and reservation details.",
+      },
+      {
+        title: "The trip does not end at the alert",
+        detail:
+          "Once a camper finds and books a site, the same product can shift into lightweight readiness: dates, site details, packing, tasks, and trip memory.",
+      },
+    ],
   },
 };
 
