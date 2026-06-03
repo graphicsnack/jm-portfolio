@@ -1641,6 +1641,14 @@ const experienceHighlights = [
   },
 ];
 
+const currentBuilderExperience = {
+  title: "Product Designer & Builder",
+  company: "Self-employed",
+  period: "Jan 2026 - Present",
+  body:
+    "Designing and building web and iOS applications that turn AI-driven product ideas into working experiences. Developing AI-powered product workflows, integrating LLMs into real-world flows, and shaping human-AI interaction patterns across intelligent interfaces.",
+};
+
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="text-xs font-semibold uppercase text-black/55">{children}</p>;
 }
@@ -2572,8 +2580,8 @@ function HomepageStoryExperience() {
 function ResumeDocumentHeader() {
   return (
     <section className="overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/86" aria-label="Resume contact summary">
-      <div className="grid min-h-[18rem] grid-cols-[6.75rem_minmax(0,1fr)] sm:grid-cols-[14rem_minmax(0,1fr)]">
-        <div className="border-r border-black/12 bg-[#e9e4d8]">
+      <div className="grid sm:min-h-[18rem] sm:grid-cols-[14rem_minmax(0,1fr)]">
+        <div className="hidden bg-[#e9e4d8] sm:block sm:border-r sm:border-black/12">
           <img
             src="/avatars/juan.png"
             alt="Juan Mondragon"
@@ -2581,14 +2589,21 @@ function ResumeDocumentHeader() {
           />
         </div>
         <div className="p-4 sm:p-5">
-          <div className="grid gap-3 border-b border-black/12 pb-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
-            <div>
-              <h2 className="text-3xl font-semibold leading-tight text-black/88 sm:text-4xl">
-                Juan Mondragon
-              </h2>
-              <p className="mt-2 text-sm font-semibold leading-6 text-black/70">Product Designer and Builder</p>
+          <div className="border-b border-black/12 pb-4">
+            <div className="flex items-start gap-3 sm:block">
+              <img
+                src="/avatars/juan.png"
+                alt="Juan Mondragon"
+                className="h-24 w-24 shrink-0 rounded-md bg-[#e9e4d8] object-cover object-[50%_36%] sm:hidden"
+              />
+              <div className="min-w-0">
+                <h2 className="text-2xl font-semibold leading-7 text-black/88 sm:text-4xl sm:leading-tight">
+                  Juan Mondragon
+                </h2>
+                <p className="mt-1 text-sm font-semibold leading-5 text-black/70">Product Designer and Builder</p>
+                <p className="mt-0.5 text-sm leading-5 text-black/66">San Francisco Bay Area</p>
+              </div>
             </div>
-            <p className="text-sm leading-6 text-black/66 sm:pt-1 sm:text-right">San Francisco Bay Area</p>
           </div>
           <p className="pt-4 text-sm leading-6 text-black/66">
             Senior Product Designer with 11+ years at LinkedIn, leading design across sales, talent, and content platforms. I've shaped
@@ -2612,6 +2627,37 @@ function LinkedInTimelineLogo() {
   );
 }
 
+function BuilderExperienceLogo() {
+  return (
+    <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-[0.38rem] shadow-[0_12px_30px_-18px_rgb(var(--accent-rgb)/0.85)]">
+      <img
+        src="/brand/JM_logo_icon_transparent.png"
+        alt="Juan Mondragon"
+        className="h-full w-full translate-y-[1px] scale-[1.16] object-contain"
+        loading="lazy"
+      />
+    </span>
+  );
+}
+
+function ResumeCurrentBuilderExperience() {
+  return (
+    <article className="grid grid-cols-[6.75rem_minmax(0,1fr)] rounded-lg border border-black/12 bg-[#fffefb]/86 sm:grid-cols-[14rem_minmax(0,1fr)]">
+      <div className="flex justify-center px-3 py-5 sm:px-5">
+        <BuilderExperienceLogo />
+      </div>
+      <div className="px-3 py-5 sm:px-5">
+        <div className="mb-2">
+          <p className="text-xs font-semibold uppercase leading-5 text-black/48">{currentBuilderExperience.period}</p>
+          <p className="mt-0.5 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">{currentBuilderExperience.company}</p>
+        </div>
+        <h3 className="text-sm font-semibold leading-6">{currentBuilderExperience.title}</h3>
+        <p className="mt-1 text-sm leading-6 text-black/66">{currentBuilderExperience.body}</p>
+      </div>
+    </article>
+  );
+}
+
 function ResumeExperienceList() {
   return (
     <div className="overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/86" aria-label="LinkedIn experience timeline">
@@ -2620,13 +2666,13 @@ function ResumeExperienceList() {
         const isLast = index === experienceHighlights.length - 1;
 
         return (
-          <article key={item.title} className="grid grid-cols-[6.75rem_minmax(0,1fr)] border-b border-black/12 last:border-b-0 sm:grid-cols-[14rem_minmax(0,1fr)]">
+          <article key={item.title} className="grid grid-cols-[6.75rem_minmax(0,1fr)] sm:grid-cols-[14rem_minmax(0,1fr)]">
             <div className="relative flex justify-center px-3 py-5 sm:px-5">
               <span
                 aria-hidden="true"
                 className={[
-                  "absolute left-1/2 w-px -translate-x-1/2 bg-[rgb(var(--accent-rgb)/0.30)]",
-                  isFirst ? "top-10" : "top-0",
+                  "absolute left-1/2 w-px -translate-x-1/2 bg-[#182070]/35",
+                  isFirst ? "top-16" : "top-0",
                   isLast ? "h-[2.375rem]" : "bottom-0",
                 ].join(" ")}
               />
@@ -2634,19 +2680,21 @@ function ResumeExperienceList() {
                 {isFirst ? (
                   <LinkedInTimelineLogo />
                 ) : (
-                  <span className="h-3 w-3 rounded-full border-2 border-[var(--accent)] bg-[#fffefb] shadow-[0_0_0_5px_#fffefb]" />
+                  <span className="h-3 w-3 rounded-full bg-[var(--accent)] shadow-[0_0_0_5px_#fffefb]" />
                 )}
               </span>
             </div>
-            <div className="px-3 py-5 sm:px-5">
-              <div className="mb-2">
-                <p className="text-xs font-semibold uppercase leading-5 text-black/48">{item.period}</p>
-                {isFirst ? (
-                  <p className="mt-0.5 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">LinkedIn</p>
-                ) : null}
+            <div className="px-3 pt-5 sm:px-5">
+              <div className={["pb-5", isLast ? "" : "border-b border-black/12"].join(" ")}>
+                <div className="mb-2">
+                  <p className="text-xs font-semibold uppercase leading-5 text-black/48">{item.period}</p>
+                  {isFirst ? (
+                    <p className="mt-0.5 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">LinkedIn</p>
+                  ) : null}
+                </div>
+                <h3 className="text-sm font-semibold leading-6">{item.title}</h3>
+                <p className="mt-1 text-sm leading-6 text-black/66">{item.body}</p>
               </div>
-              <h3 className="text-sm font-semibold leading-6">{item.title}</h3>
-              <p className="mt-1 text-sm leading-6 text-black/66">{item.body}</p>
             </div>
           </article>
         );
@@ -2661,6 +2709,7 @@ function ResumeSnapshot({ standalone = false }: { standalone?: boolean }) {
       <section id="resume" className="border-t border-black/15 bg-[#f2efe7] px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-6xl gap-5">
           <ResumeDocumentHeader />
+          <ResumeCurrentBuilderExperience />
           <ResumeExperienceList />
         </div>
       </section>
