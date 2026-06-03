@@ -1572,6 +1572,7 @@ const caseStudyPasscodeLength = caseStudyPasscode.length;
 
 const featuredCaseStudyIds = ["campglint", "sales-insights", "seller-agent"];
 const compactCaseStudyIds = ["company-pages", "career-pages", "sales-navigator-multiseat"];
+const routedCaseStudyIds = ["campglint", "sales-insights", "seller-agent", "company-pages", "career-pages", "sales-navigator-multiseat"];
 
 const resumeSignals = [
   "11+ years at LinkedIn across Sales, Talent, Company Pages, content systems, and AI agent workflows.",
@@ -2257,6 +2258,74 @@ function CompactCaseStudyRow() {
   );
 }
 
+function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
+  const isPhoneCase = phoneCaseIds.has(study.id);
+  const isPublic = publicCaseStudyIds.has(study.id);
+
+  return (
+    <Link
+      href={"/case-studies/" + study.id}
+      className="group flex h-[20.5rem] min-w-0 flex-col overflow-hidden rounded-lg border border-black/15 bg-[#fffefb]/94 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_54px_-48px_rgb(0_0_0/0.58)]"
+    >
+      <div className="grid h-28 shrink-0 place-items-center overflow-hidden border-b border-black/12 bg-[#eee9df]">
+        {isPhoneCase ? (
+          <img src={study.heroImage} alt={study.heroAlt} className="max-h-full w-auto max-w-full object-contain object-top p-2" loading="lazy" />
+        ) : (
+          <img src={study.heroImage} alt={study.heroAlt} className="h-full w-full object-cover object-top" loading="lazy" />
+        )}
+      </div>
+      <div className="flex min-h-0 flex-1 flex-col p-3.5">
+        <p className="text-[0.66rem] font-semibold uppercase text-black/42">{study.platform}</p>
+        <h3 className="text-clamp-2 mt-1.5 text-sm font-semibold leading-5 text-black/88">{study.product}</h3>
+        <p className="text-clamp-3 mt-2 text-xs leading-5 text-black/62">{study.headline}</p>
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-xs font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
+          {isPublic ? (
+            <>
+              Open case
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </>
+          ) : (
+            <>
+              Passcode
+              <LockKeyhole className="h-3.5 w-3.5" />
+            </>
+          )}
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+function OtherCaseStudiesSection({ currentStudyId }: { currentStudyId: string }) {
+  const otherStudies = routedCaseStudyIds
+    .filter((id) => id !== currentStudyId)
+    .map((id) => caseStudies.find((study) => study.id === id))
+    .filter((study): study is CaseStudy => Boolean(study));
+
+  if (otherStudies.length === 0) return null;
+
+  return (
+    <section aria-labelledby="more-case-studies-heading" className="border-t border-black/12 bg-[#fbfaf7] px-5 py-10 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <h2 id="more-case-studies-heading" className="text-2xl font-semibold leading-tight text-black/88">More case studies</h2>
+          <Link href="/#case-studies" className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-strong)]">
+            All featured work
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="-mx-5 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8 lg:mx-0 lg:overflow-visible lg:px-0">
+          <div className="grid w-max grid-flow-col auto-cols-[13.25rem] gap-4 lg:w-full lg:grid-flow-row lg:grid-cols-5 lg:auto-cols-auto lg:gap-4 xl:gap-5">
+            {otherStudies.map((study) => (
+              <RelatedCaseStudyCard key={study.id} study={study} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FeaturedProofPointRow() {
   return (
     <section className="bg-[#fbfaf7] px-5 pt-12 sm:px-8 lg:px-10">
@@ -2764,6 +2833,7 @@ function LockedCaseStudyPage({
           </Link>
         </div>
         <CaseStudyStoryView study={study} />
+        <OtherCaseStudiesSection currentStudyId={study.id} />
         <PortfolioFooter />
       </main>
     );
@@ -2891,6 +2961,7 @@ export function FullCaseStudyPage({ studyId }: { studyId: string }) {
         </Link>
       </div>
       <CaseStudyStoryView study={study} />
+      <OtherCaseStudiesSection currentStudyId={study.id} />
       <PortfolioFooter />
     </main>
   );
