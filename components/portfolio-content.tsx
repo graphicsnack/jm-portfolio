@@ -307,7 +307,7 @@ export const caseStudies: CaseStudy[] = [
         title: "Define the iOS job",
         detail:
           "The core job is simple: watch campground availability, surface trustworthy signals, and help campers act before a site disappears.",
-        evidence: "Problem framing",
+        evidence: "Core product job",
       },
       {
         phase: "02",
@@ -424,6 +424,16 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         phase: "03",
+        label: "Create monitor",
+        title: "Monitor creation keeps setup focused and reversible",
+        image: "/screenshots/campglint-case-study/ios-create-monitor.jpg",
+        alt: "CampGlint iOS create monitor sheet",
+        story:
+          "The setup flow keeps campground selection, trip timing, stay length, and flexible-date controls in one native sheet so users can start a watch without committing to every detail upfront.",
+        evidence: "Starting points, campground search, booking URL entry, trip window, stay length stepper, flexible-date option, and disabled create state.",
+      },
+      {
+        phase: "04",
         label: "Discover",
         title: "Discovery gives users backup options worth watching",
         image: "/projects/CampGlint/iOS%20app%20screens/05-discover-recommendations.png",
@@ -433,7 +443,7 @@ export const caseStudies: CaseStudy[] = [
         evidence: "Starting points, discovery profile, recommendation card, campground image, provider context, and watch-oriented next step.",
       },
       {
-        phase: "04",
+        phase: "05",
         label: "Trips",
         title: "After a booking, the app shifts into readiness",
         image: "/projects/CampGlint/iOS%20app%20screens/04-trip-detail-new-brighton.png",
@@ -1863,7 +1873,9 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">My role</p>
                     <p className="mt-2 text-base font-semibold leading-7 text-black/82">{study.role}</p>
-                    <p className="mt-2 text-sm leading-6 text-black/62">{study.platform} / {study.status}</p>
+                    {study.id === "campglint" ? null : (
+                      <p className="mt-2 text-sm leading-6 text-black/62">{study.platform} / {study.status}</p>
+                    )}
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">What mattered</p>
@@ -1900,7 +1912,6 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                     <p className="text-sm font-semibold text-black/36">{item.phase}</p>
                     <div>
                       <h3 className="text-base font-semibold leading-6 text-black/84">{item.title}</h3>
-                      <p className="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black/38">{item.evidence}</p>
                     </div>
                     <p className="text-sm leading-6 text-black/66">{item.detail}</p>
                   </li>
