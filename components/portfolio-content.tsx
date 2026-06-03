@@ -265,7 +265,7 @@ export const caseStudies: CaseStudy[] = [
       "CampGlint is a native SwiftUI app that helps campers stop manually checking campground availability. The iOS experience centers on saved monitors, fast monitor creation, discovery for backup options, and trip readiness after a booking is secured.",
     role: "Founder, product designer, iOS builder",
     status: "Native build, launch readiness active",
-    heroImage: "/projects/CampGlint/iOS%20app%20screens/campglint-ios-light-monitors-list.png",
+    heroImage: "/projects/CampGlint/iOS%20app%20screens/01-monitors-list.png",
     heroAlt: "CampGlint iOS monitors list screen",
     accent: "bg-[#176B5D]",
     activeClass: "border-[#176B5D] bg-[#176B5D] text-white",
@@ -403,7 +403,7 @@ export const caseStudies: CaseStudy[] = [
         phase: "01",
         label: "Monitors",
         title: "The iOS home screen starts with the user's active watches",
-        image: "/projects/CampGlint/iOS%20app%20screens/campglint-ios-light-monitors-list.png",
+        image: "/projects/CampGlint/iOS%20app%20screens/01-monitors-list.png",
         alt: "CampGlint iOS monitors list screen",
         story:
           "The signed-in home screen puts saved monitors first, giving campers a quick read on campground targets, scan timing, alert state, and next actions.",
@@ -411,19 +411,19 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         phase: "02",
-        label: "Create monitor",
-        title: "Monitor setup is short enough for mobile use",
-        image: "/projects/CampGlint/iOS%20app%20screens/campglint-ios-light-create-monitor-sheet.png",
-        alt: "CampGlint iOS create monitor sheet",
+        label: "Monitor detail",
+        title: "Monitor detail turns a saved watch into a clear action surface",
+        image: "/projects/CampGlint/iOS%20app%20screens/02-monitor-detail-portola.png",
+        alt: "CampGlint iOS monitor detail screen",
         story:
-          "The create flow is a native sheet that asks only for the information needed to start watching: destination, trip window, stay length, and flexibility.",
-        evidence: "Starting points, campground picker, date controls, stay length, flexible plus/minus two days, and disabled Create monitor guardrail.",
+          "The detail screen keeps campground context, trip timing, scan status, and booking handoff close to the saved monitor.",
+        evidence: "Campground detail, reservation window, monitor status, provider context, availability signals, and booking handoff.",
       },
       {
         phase: "03",
         label: "Discover",
         title: "Discovery gives users backup options worth watching",
-        image: "/projects/CampGlint/iOS%20app%20screens/campglint-ios-light-discover-recommendations.png",
+        image: "/projects/CampGlint/iOS%20app%20screens/05-discover-recommendations.png",
         alt: "CampGlint iOS discover recommendations screen",
         story:
           "Discover supports the moment before a user has a fixed destination by recommending alternate campgrounds that can become monitors.",
@@ -433,7 +433,7 @@ export const caseStudies: CaseStudy[] = [
         phase: "04",
         label: "Trips",
         title: "After a booking, the app shifts into readiness",
-        image: "/projects/CampGlint/iOS%20app%20screens/campglint-ios-light-trip-detail-clean.png",
+        image: "/projects/CampGlint/iOS%20app%20screens/04-trip-detail-new-brighton.png",
         alt: "CampGlint iOS trip detail screen",
         story:
           "Trips keeps confirmed reservation details and preparation tasks close to the same product loop that helped the user find availability.",
@@ -2319,17 +2319,17 @@ const caseStudyBriefs: Record<string, { family: string; question: string }> = {
 const campGlintPreviewScreens = [
   {
     label: "Discover",
-    src: "/projects/CampGlint/iOS%20app%20screens/campglint-ios-light-discover-recommendations.png",
+    src: "/projects/CampGlint/iOS%20app%20screens/05-discover-recommendations.png",
     alt: "CampGlint iOS discover recommendations screen",
   },
   {
     label: "Monitors",
-    src: "/projects/CampGlint/iOS%20app%20screens/campglint-ios-light-monitors-list.png",
+    src: "/projects/CampGlint/iOS%20app%20screens/01-monitors-list.png",
     alt: "CampGlint iOS monitors list screen",
   },
   {
     label: "Trips",
-    src: "/projects/CampGlint/iOS%20app%20screens/campglint-ios-light-trip-detail-clean.png",
+    src: "/projects/CampGlint/iOS%20app%20screens/04-trip-detail-new-brighton.png",
     alt: "CampGlint iOS trip detail screen",
   },
 ];
