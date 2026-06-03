@@ -1,18 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowLeft,
   ArrowUpRight,
   BellRing,
   Camera,
-  CheckCircle2,
   ChevronRight,
   Compass,
   FileText,
-  Flag,
   History,
   Layers3,
   Link2,
@@ -1569,13 +1567,8 @@ export const caseStudies: CaseStudy[] = [
 
 const phoneCaseIds = new Set(["campglint", "graphicsnack-ios"]);
 const publicCaseStudyIds = new Set(["campglint"]);
-const caseStudyPasscodeLength = 6;
-type CaseStudyExperimentVariant = "current" | "story";
-const defaultCaseStudyExperimentVariant: CaseStudyExperimentVariant = "story";
-const caseStudyExperimentStorageKey = "juan-case-study-experiment-v2";
-type HomepageExperimentVariant = "current" | "story";
-const defaultHomepageExperimentVariant: HomepageExperimentVariant = "current";
-const homepageExperimentStorageKey = "juan-homepage-experiment-v2";
+const caseStudyPasscode = "JM2026";
+const caseStudyPasscodeLength = caseStudyPasscode.length;
 
 const featuredCaseStudyIds = ["campglint", "sales-insights", "seller-agent"];
 const compactCaseStudyIds = ["company-pages", "career-pages", "sales-navigator-multiseat"];
@@ -1650,37 +1643,6 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="text-xs font-semibold uppercase text-black/55">{children}</p>;
 }
 
-function SectionHeader({
-  eyebrow,
-  title,
-  body,
-}: {
-  eyebrow: string;
-  title: string;
-  body?: string;
-}) {
-  return (
-    <div className="max-w-2xl">
-      <Eyebrow>{eyebrow}</Eyebrow>
-      <h2 className="mt-3 text-2xl font-semibold leading-tight text-balance sm:text-3xl">{title}</h2>
-      {body ? <p className="mt-3 text-sm leading-6 text-black/68">{body}</p> : null}
-    </div>
-  );
-}
-
-function MetricStrip({ items }: { items: SnapshotItem[] }) {
-  return (
-    <dl className="grid border-y border-black/15 bg-[#fffefb]/75 sm:grid-cols-2 lg:grid-cols-4">
-      {items.map((item) => (
-        <div key={item.label} className="border-b border-black/10 p-4 last:border-b-0 sm:nth-[n+3]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0">
-          <dt className="text-xs font-semibold uppercase text-black/48">{item.label}</dt>
-          <dd className="mt-2 text-sm font-medium leading-6 text-black/82">{item.value}</dd>
-        </div>
-      ))}
-    </dl>
-  );
-}
-
 function PhoneShot({
   src,
   alt,
@@ -1696,192 +1658,6 @@ function PhoneShot({
         <img src={src} alt={alt} className="block h-auto w-full" loading={priority ? "eager" : "lazy"} />
       </div>
     </div>
-  );
-}
-
-function ProductImage({
-  src,
-  alt,
-  priority = false,
-  phone = false,
-}: {
-  src: string;
-  alt: string;
-  priority?: boolean;
-  phone?: boolean;
-}) {
-  if (phone) {
-    return <PhoneShot src={src} alt={alt} priority={priority} />;
-  }
-
-  return (
-    <div className="overflow-hidden rounded-lg border border-black/15 bg-white shadow-[0_22px_54px_-38px_rgb(0_0_0/0.58)]">
-      <img src={src} alt={alt} className="block max-h-[34rem] w-full object-cover object-top" loading={priority ? "eager" : "lazy"} />
-    </div>
-  );
-}
-
-function DetailGrid({ items }: { items: DetailItem[] }) {
-  return (
-    <div className="grid gap-3 md:grid-cols-2">
-      {items.map((item) => {
-        const Icon = item.icon ?? Sparkles;
-        return (
-          <article key={item.title} className="rounded-lg border border-black/12 bg-[#fffefb]/88 p-4">
-            <div className="flex items-center gap-2 text-sm font-semibold">
-              <Icon className="h-4 w-4 text-black/58" />
-              {item.title}
-            </div>
-            <p className="mt-3 text-sm leading-6 text-black/66">{item.detail}</p>
-          </article>
-        );
-      })}
-    </div>
-  );
-}
-
-export function CaseStudyView({ study }: { study: CaseStudy }) {
-  const isPhoneCase = phoneCaseIds.has(study.id);
-
-  return (
-    <section id="case-study-view" className="border-t border-black/15 bg-[#fbfaf7]">
-      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 lg:px-10">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,0.78fr)] lg:items-end">
-          <div>
-            <div className="flex items-center gap-3">
-              <span className={`h-3 w-3 ${study.accent}`} />
-              <Eyebrow>{study.product}</Eyebrow>
-            </div>
-            <h1 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight text-balance sm:text-4xl lg:text-[2.65rem]">
-              {study.headline}
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-black/70">{study.summary}</p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {[study.role, study.platform, study.status].map((item) => (
-                <span key={item} className="rounded-md border border-black/15 bg-white/74 px-3 py-1.5 text-xs font-semibold text-black/66">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative w-full max-w-[32rem] justify-self-center">
-            <ProductImage src={study.heroImage} alt={study.heroAlt} priority phone={isPhoneCase} />
-          </div>
-        </div>
-
-        <div className="mt-10">
-          <MetricStrip items={study.snapshot} />
-        </div>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-[180px_minmax(0,1fr)]">
-          <SectionHeader eyebrow="Outcome" title="What changed" />
-          <DetailGrid items={study.impact} />
-        </div>
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-[180px_minmax(0,1fr)]">
-          <SectionHeader
-            eyebrow="Strategy"
-            title="How the direction took shape"
-          />
-          <div className="space-y-3">
-            {study.journey.map((item) => (
-              <article key={item.phase} className="grid gap-3 rounded-lg border border-black/12 bg-white/78 p-4 md:grid-cols-[4rem_13rem_minmax(0,1fr)_9rem]">
-                <div className="text-xs font-semibold text-black/45">{item.phase}</div>
-                <h3 className="text-sm font-semibold leading-6">{item.title}</h3>
-                <p className="text-sm leading-6 text-black/66">{item.detail}</p>
-                <p className="text-xs font-semibold uppercase text-black/45">{item.evidence}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-[180px_minmax(0,1fr)]">
-          <SectionHeader eyebrow="Experience" title="Product surfaces" />
-          <DetailGrid items={study.surfaces} />
-        </div>
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-[180px_minmax(0,1fr)]">
-          <SectionHeader eyebrow="Ownership" title="Scope of work" />
-          <div className="grid gap-3">
-            {study.systemBuild.map((item) => (
-              <div key={item} className="flex gap-3 border-b border-black/12 pb-3 text-sm leading-6 text-black/70 last:border-b-0">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-black/54" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-[180px_minmax(0,1fr)]">
-          <SectionHeader eyebrow="Rationale" title="Tradeoffs and decisions" />
-          <div className="grid gap-3">
-            {study.decisions.map((item) => (
-              <article key={item.title} className="rounded-lg border border-black/12 bg-[#fffefb]/86 p-4">
-                <div className="flex items-center gap-2 text-sm font-semibold">
-                  <Flag className="h-4 w-4 text-black/55" />
-                  {item.title}
-                </div>
-                <p className="mt-3 text-sm leading-6 text-black/66">{item.detail}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-[180px_minmax(0,1fr)]">
-          <div className="lg:sticky lg:top-8 lg:h-fit">
-            <SectionHeader
-              eyebrow="Screens"
-              title="Selected product moments"
-            />
-          </div>
-          <div className="space-y-12">
-            {study.story.map((chapter, index) => (
-              <article key={chapter.phase} className="border-t border-black/14 pt-8">
-                <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1fr)]">
-                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                    <div className="flex items-center gap-3">
-                      <span className={`grid h-10 w-10 place-items-center rounded-md text-xs font-semibold text-white ${study.accent}`}>
-                        {chapter.phase}
-                      </span>
-                      <Eyebrow>{chapter.label}</Eyebrow>
-                    </div>
-                    <h3 className="mt-4 max-w-xl text-2xl font-semibold leading-tight text-balance">{chapter.title}</h3>
-                    <p className="mt-4 max-w-2xl text-base leading-7 text-black/70">{chapter.story}</p>
-                    <div className="mt-5 border-l-2 border-black/30 pl-4">
-                      <p className="text-xs font-semibold uppercase text-black/45">Evidence</p>
-                      <p className="mt-2 text-sm leading-6 text-black/65">{chapter.evidence}</p>
-                    </div>
-                  </div>
-                  <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                    <ProductImage src={chapter.image} alt={chapter.alt} priority={index < 2} phone={isPhoneCase} />
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-14 grid gap-6 border-y border-black/15 py-8 lg:grid-cols-[180px_minmax(0,1fr)]">
-          <SectionHeader eyebrow="Results" title={study.outcomesTitle} />
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.72fr)]">
-            <ul className="space-y-3">
-              {study.outcomes.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-6 text-black/70">
-                  <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-black/48" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <aside className="rounded-lg border border-black/12 bg-[#1f2220] p-6 text-white">
-              <Layers3 className="h-5 w-5" />
-              <h3 className="mt-4 text-2xl font-semibold leading-tight">Design signal</h3>
-              <p className="mt-4 text-sm leading-6 text-white/72">{study.takeaway}</p>
-            </aside>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -1942,7 +1718,7 @@ function StoryProductMedia({
   );
 }
 
-function CaseStudyStoryExperimentView({ study }: { study: CaseStudy }) {
+function CaseStudyStoryView({ study }: { study: CaseStudy }) {
   const isPhoneCase = phoneCaseIds.has(study.id);
   const brief = caseStudyBriefs[study.id] ?? {
     family: study.platform,
@@ -1957,7 +1733,7 @@ function CaseStudyStoryExperimentView({ study }: { study: CaseStudy }) {
           <div>
             <div className="flex items-center gap-3">
               <span className={`h-3 w-3 ${study.accent}`} />
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/45">Experiment B / Story layout</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/45">{study.product}</p>
             </div>
             <p className="mt-5 text-sm font-semibold leading-6 text-black/58">{brief.family}</p>
             <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-[1.06] text-balance text-black/90 sm:text-5xl lg:text-[3.45rem]">
@@ -1993,7 +1769,6 @@ function CaseStudyStoryExperimentView({ study }: { study: CaseStudy }) {
               <StorySectionLabel
                 eyebrow="Problem frame"
                 title={brief.question}
-                body="The B experiment opens with the product question, role, and most important signals before moving into evidence. This keeps the page readable for a fast scan while still supporting a deeper read."
               />
               <div className="grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(16rem,0.45fr)]">
                 <div className="grid gap-5">
@@ -2029,8 +1804,7 @@ function CaseStudyStoryExperimentView({ study }: { study: CaseStudy }) {
             <section className="grid gap-7 border-b border-black/12 pb-12">
               <StorySectionLabel
                 eyebrow="How it unfolded"
-                title="A progression from ambiguity to product direction"
-                body="Instead of presenting process as separate containers, this version reads the work as a sequence of product decisions."
+                title="From ambiguity to product direction"
               />
               <ol className="grid gap-0 border-t border-black/12">
                 {study.journey.map((item) => (
@@ -2049,8 +1823,7 @@ function CaseStudyStoryExperimentView({ study }: { study: CaseStudy }) {
             <section className="grid gap-10">
               <StorySectionLabel
                 eyebrow="Product story"
-                title="Selected moments that carry the narrative"
-                body="The screenshots stay tied to the story they support, so the page reads top-to-bottom instead of as a gallery of disconnected UI."
+                title="Selected product moments"
               />
               {study.story.map((chapter, index) => (
                 <article key={chapter.phase} className="grid gap-6 border-t border-black/12 pt-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-9">
@@ -2112,115 +1885,11 @@ function CaseStudyStoryExperimentView({ study }: { study: CaseStudy }) {
   );
 }
 
-function CaseStudyExperimentView({
-  study,
-  variant,
-}: {
-  study: CaseStudy;
-  variant: CaseStudyExperimentVariant;
-}) {
-  if (variant === "story") {
-    return <CaseStudyStoryExperimentView study={study} />;
-  }
-
-  return <CaseStudyView study={study} />;
-}
-
-function useCaseStudyExperimentVariant() {
-  const [variant, setVariant] = useState<CaseStudyExperimentVariant>(defaultCaseStudyExperimentVariant);
-
-  useEffect(() => {
-    const savedVariant = window.localStorage.getItem(caseStudyExperimentStorageKey);
-
-    if (savedVariant === "story" || savedVariant === "current") {
-      setVariant(savedVariant);
-    }
-  }, []);
-
-  function updateVariant(nextVariant: CaseStudyExperimentVariant) {
-    setVariant(nextVariant);
-    window.localStorage.setItem(caseStudyExperimentStorageKey, nextVariant);
-  }
-
-  return [variant, updateVariant] as const;
-}
-
-function useHomepageExperimentVariant() {
-  const [variant, setVariant] = useState<HomepageExperimentVariant>(defaultHomepageExperimentVariant);
-
-  useEffect(() => {
-    const savedVariant = window.localStorage.getItem(homepageExperimentStorageKey);
-
-    if (savedVariant === "story" || savedVariant === "current") {
-      setVariant(savedVariant);
-    }
-  }, []);
-
-  function updateVariant(nextVariant: HomepageExperimentVariant) {
-    setVariant(nextVariant);
-    window.localStorage.setItem(homepageExperimentStorageKey, nextVariant);
-  }
-
-  return [variant, updateVariant] as const;
-}
-
-function CaseStudyExperimentToggle({
-  variant,
-  onChange,
-  ariaLabel = "Case study layout experiment",
-}: {
-  variant: CaseStudyExperimentVariant;
-  onChange: (variant: CaseStudyExperimentVariant) => void;
-  ariaLabel?: string;
-}) {
-  const options: { value: CaseStudyExperimentVariant; label: string; shortLabel: string }[] = [
-    { value: "current", label: "Current", shortLabel: "A" },
-    { value: "story", label: "Story", shortLabel: "B" },
-  ];
-
-  return (
-    <div className="flex shrink-0 items-center gap-1 rounded-md border border-black/12 bg-white/64 p-1" role="group" aria-label={ariaLabel}>
-      {options.map((option) => {
-        const isActive = variant === option.value;
-
-        return (
-          <button
-            key={option.value}
-            type="button"
-            aria-pressed={isActive}
-            onClick={() => onChange(option.value)}
-            className={[
-              "inline-flex h-8 items-center gap-1.5 rounded-[0.32rem] px-2.5 text-[0.78rem] font-semibold transition",
-              isActive
-                ? "bg-[#1f2220] text-white shadow-[0_10px_24px_-18px_rgb(0_0_0/0.72)]"
-                : "text-black/55 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]",
-            ].join(" ")}
-          >
-            <span>{option.shortLabel}</span>
-            <span className="hidden lg:inline">{option.label}</span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
 function PortfolioHeader({
   caseStudy = false,
-  experimentVariant,
-  onExperimentVariantChange,
-  homepageExperimentVariant,
-  onHomepageExperimentVariantChange,
 }: {
   caseStudy?: boolean;
-  experimentVariant?: CaseStudyExperimentVariant;
-  onExperimentVariantChange?: (variant: CaseStudyExperimentVariant) => void;
-  homepageExperimentVariant?: HomepageExperimentVariant;
-  onHomepageExperimentVariantChange?: (variant: HomepageExperimentVariant) => void;
 }) {
-  const showCaseStudyExperimentToggle = caseStudy && experimentVariant && onExperimentVariantChange;
-  const showHomepageExperimentToggle = !caseStudy && homepageExperimentVariant && onHomepageExperimentVariantChange;
-
   return (
     <header className={`${caseStudy ? "relative" : "sticky top-0"} z-40 border-b border-black/15 bg-[#fbfaf7]/94 backdrop-blur`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2.5 sm:px-8 lg:px-12">
@@ -2249,16 +1918,6 @@ function PortfolioHeader({
             Resume
           </Link>
         </nav>
-        {showCaseStudyExperimentToggle ? (
-          <CaseStudyExperimentToggle variant={experimentVariant} onChange={onExperimentVariantChange} />
-        ) : null}
-        {showHomepageExperimentToggle ? (
-          <CaseStudyExperimentToggle
-            variant={homepageExperimentVariant}
-            onChange={onHomepageExperimentVariantChange}
-            ariaLabel="Homepage layout experiment"
-          />
-        ) : null}
         <a
           href="mailto:advrunr@gmail.com"
           className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-3 py-1.5 text-[0.82rem] font-semibold text-white hover:bg-[var(--accent-strong)]"
@@ -2478,8 +2137,7 @@ function GridBLeadPreview({ study }: { study: CaseStudy }) {
 
   return (
     <div className="flex h-full flex-col p-5 sm:p-7 lg:p-8">
-      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-black/45">{brief?.family ?? study.platform}</p>
-      <h4 className="mt-3 text-3xl font-semibold leading-tight text-balance sm:text-4xl">{study.headline}</h4>
+      <h4 className="text-3xl font-semibold leading-tight text-balance sm:text-4xl">{study.headline}</h4>
       <p className="mobile-clamp-3 mt-4 text-base leading-7 text-black/66">{study.summary}</p>
 
       {brief ? (
@@ -2507,8 +2165,7 @@ function GridBSupportingCasePreview({ study }: { study: CaseStudy }) {
     >
       <CaseStudyThumbnail study={study} />
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-black/45">{brief?.family ?? study.platform}</p>
-        <h4 className="mt-2 text-2xl font-semibold leading-tight text-balance">{study.product}</h4>
+        <h4 className="text-2xl font-semibold leading-tight text-balance">{study.product}</h4>
         <p className="mt-3 text-base leading-7 text-black/66">{study.headline}</p>
 
         {brief ? (
@@ -2573,8 +2230,7 @@ function CompactCaseStudyCard({ study }: { study: CaseStudy }) {
     >
       <CompactCaseStudyThumbnail study={study} />
       <div className="flex flex-1 flex-col p-4">
-        <p className="text-[0.66rem] font-semibold uppercase tracking-[0.08em] text-black/42">{study.platform}</p>
-        <h4 className="mt-2 text-lg font-semibold leading-tight text-black/88">{study.product}</h4>
+        <h4 className="text-lg font-semibold leading-tight text-black/88">{study.product}</h4>
         <p className="text-clamp-3 mt-2 text-sm leading-6 text-black/66">{study.headline}</p>
         <CaseStudyCardAction study={study} />
       </div>
@@ -2682,11 +2338,7 @@ function HomepageStoryHero() {
     <section id="top" className="portfolio-grid-pattern px-5 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(19rem,0.42fr)] lg:items-start">
         <div>
-          <div className="flex items-center gap-3">
-            <span className="h-3 w-3 bg-[var(--accent)]" />
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/45">Experiment B / Portfolio story</p>
-          </div>
-          <p className="mt-5 text-sm font-semibold leading-6 text-black/58">Juan Mondragon / Product Designer and Builder</p>
+          <p className="text-sm font-semibold leading-6 text-black/58">Juan Mondragon / Product Designer and Builder</p>
           <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-[1.06] text-balance text-black/90 sm:text-5xl lg:text-[3.65rem]">
             Product systems that turn ambiguity into trusted workflows and working products.
           </h1>
@@ -2748,8 +2400,7 @@ function HomepageStoryLeadStudy({ study }: { study: CaseStudy }) {
   return (
     <Link href={"/case-studies/" + study.id} className="group grid gap-7 border-b border-black/12 py-9 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,0.58fr)] lg:items-center">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">{brief?.family ?? study.platform}</p>
-        <h3 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight text-balance text-black/88 sm:text-4xl">{study.headline}</h3>
+        <h3 className="max-w-3xl text-3xl font-semibold leading-tight text-balance text-black/88 sm:text-4xl">{study.headline}</h3>
         <p className="mt-4 max-w-2xl text-base leading-7 text-black/66">{study.summary}</p>
         {brief ? (
           <p className="mt-5 border-l border-black/22 pl-4 text-sm font-semibold leading-6 text-black/72">{brief.question}</p>
@@ -2776,8 +2427,7 @@ function HomepageStorySupportingStudy({ study }: { study: CaseStudy }) {
     <Link href={"/case-studies/" + study.id} className="group grid gap-6 border-b border-black/12 py-8 lg:grid-cols-[minmax(17rem,0.44fr)_minmax(0,1fr)] lg:items-center">
       <HomepageStoryMedia study={study} />
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">{brief?.family ?? study.platform}</p>
-        <h3 className="mt-2 text-2xl font-semibold leading-tight text-balance text-black/88">{study.product}</h3>
+        <h3 className="text-2xl font-semibold leading-tight text-balance text-black/88">{study.product}</h3>
         <p className="mt-3 max-w-3xl text-base leading-7 text-black/66">{study.headline}</p>
         {brief ? <p className="mt-4 text-sm font-medium leading-6 text-black/62">{brief.question}</p> : null}
         <div className="mt-5 flex flex-wrap gap-2">
@@ -2811,8 +2461,7 @@ function HomepageStoryNotableWork() {
           <Link key={study.id} href={"/case-studies/" + study.id} className="group grid gap-4 border-b border-black/12 py-5 md:grid-cols-[14rem_minmax(0,1fr)_auto] md:items-center">
             <img src={study.heroImage} alt={study.heroAlt} className="block aspect-[2.82/1] w-full rounded-md border border-black/12 object-cover object-top" loading="lazy" />
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/40">{study.platform}</p>
-              <h4 className="mt-1 text-lg font-semibold leading-7 text-black/86">{study.product}</h4>
+              <h4 className="text-lg font-semibold leading-7 text-black/86">{study.product}</h4>
               <p className="mt-1 max-w-3xl text-sm leading-6 text-black/62">{study.headline}</p>
             </div>
             <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
@@ -2840,7 +2489,6 @@ function HomepageStoryFeaturedWork() {
         <StorySectionLabel
           eyebrow="Featured case studies"
           title="Three stories that show how the work moves from strategy into product reality."
-          body="The B homepage keeps the same work visible, but changes the reading order: first the clearest product arc, then adjacent enterprise and AI systems, then smaller supporting projects."
         />
         <div className="mt-8 border-t border-black/12">
           <HomepageStoryLeadStudy study={leadStudy} />
@@ -3092,14 +2740,11 @@ function HomeClosingSection() {
 
 function LockedCaseStudyPage({
   study,
-  experimentVariant,
-  onExperimentVariantChange,
 }: {
   study: CaseStudy;
-  experimentVariant: CaseStudyExperimentVariant;
-  onExperimentVariantChange: (variant: CaseStudyExperimentVariant) => void;
 }) {
   const [passcode, setPasscode] = useState("");
+  const [passcodeError, setPasscodeError] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const canSubmit = passcode.length === caseStudyPasscodeLength;
   const requestAccessHref =
@@ -3111,18 +2756,14 @@ function LockedCaseStudyPage({
   if (unlocked) {
     return (
       <main id="top" className="min-h-screen text-[#1f2220]">
-        <PortfolioHeader
-          caseStudy
-          experimentVariant={experimentVariant}
-          onExperimentVariantChange={onExperimentVariantChange}
-        />
+        <PortfolioHeader caseStudy />
         <div className="mx-auto max-w-6xl px-5 py-5 sm:px-8 lg:px-10">
           <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
             <ChevronRight className="h-4 w-4 rotate-180" />
             Back to featured work
           </Link>
         </div>
-        <CaseStudyExperimentView study={study} variant={experimentVariant} />
+        <CaseStudyStoryView study={study} />
         <PortfolioFooter />
       </main>
     );
@@ -3130,11 +2771,7 @@ function LockedCaseStudyPage({
 
   return (
     <main id="top" className="min-h-screen bg-[#f2efe7] text-[#1f2220]">
-      <PortfolioHeader
-        caseStudy
-        experimentVariant={experimentVariant}
-        onExperimentVariantChange={onExperimentVariantChange}
-      />
+      <PortfolioHeader caseStudy />
       <section className="grid min-h-[calc(100vh-var(--portfolio-header-height))] place-items-center px-5 py-12 sm:px-8 lg:px-10">
         <div
           role="dialog"
@@ -3161,9 +2798,12 @@ function LockedCaseStudyPage({
             className="mt-6"
             onSubmit={(event) => {
               event.preventDefault();
-              if (canSubmit) {
+              if (passcode === caseStudyPasscode) {
                 setUnlocked(true);
+                return;
               }
+
+              setPasscodeError("That passcode does not match. Try again or request access.");
             }}
           >
             <label htmlFor="case-study-passcode" className="text-sm font-semibold leading-6 text-black/78">
@@ -3173,15 +2813,25 @@ function LockedCaseStudyPage({
               id="case-study-passcode"
               type="password"
               value={passcode}
-              onChange={(event) => setPasscode(event.target.value.slice(0, caseStudyPasscodeLength))}
+              onChange={(event) => {
+                setPasscode(event.target.value.slice(0, caseStudyPasscodeLength));
+                setPasscodeError("");
+              }}
               maxLength={caseStudyPasscodeLength}
               autoComplete="one-time-code"
               placeholder={`${caseStudyPasscodeLength}-character passcode`}
-              className="mt-2 h-12 w-full rounded-md border border-black/15 bg-white/80 px-3 text-base font-semibold tracking-[0.12em] text-black/82 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[rgb(var(--accent-rgb)/0.12)]"
+              aria-invalid={Boolean(passcodeError)}
+              aria-describedby={passcodeError ? "case-study-passcode-error" : "case-study-passcode-progress"}
+              className="mt-2 h-12 w-full rounded-md border border-black/15 bg-white/80 px-3 text-base font-semibold tracking-[0.12em] text-black/82 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[rgb(var(--accent-rgb)/0.12)] aria-invalid:border-red-700 aria-invalid:ring-4 aria-invalid:ring-red-700/10"
             />
-            <p className="mt-2 text-xs leading-5 text-black/45">
+            <p id="case-study-passcode-progress" className="mt-2 text-xs leading-5 text-black/45">
               {passcode.length}/{caseStudyPasscodeLength} characters entered
             </p>
+            {passcodeError ? (
+              <p id="case-study-passcode-error" className="mt-2 text-sm font-semibold leading-6 text-red-800">
+                {passcodeError}
+              </p>
+            ) : null}
 
             <div className="mt-6 flex flex-wrap gap-3">
               <button
@@ -3208,7 +2858,6 @@ function LockedCaseStudyPage({
 
 export function FullCaseStudyPage({ studyId }: { studyId: string }) {
   const study = caseStudies.find((item) => item.id === studyId);
-  const [experimentVariant, setExperimentVariant] = useCaseStudyExperimentVariant();
 
   if (!study) {
     return (
@@ -3228,28 +2877,20 @@ export function FullCaseStudyPage({ studyId }: { studyId: string }) {
 
   if (!publicCaseStudyIds.has(study.id)) {
     return (
-      <LockedCaseStudyPage
-        study={study}
-        experimentVariant={experimentVariant}
-        onExperimentVariantChange={setExperimentVariant}
-      />
+      <LockedCaseStudyPage study={study} />
     );
   }
 
   return (
     <main id="top" className="min-h-screen text-[#1f2220]">
-      <PortfolioHeader
-        caseStudy
-        experimentVariant={experimentVariant}
-        onExperimentVariantChange={setExperimentVariant}
-      />
+      <PortfolioHeader caseStudy />
       <div className="mx-auto max-w-6xl px-5 py-5 sm:px-8 lg:px-10">
         <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
           <ChevronRight className="h-4 w-4 rotate-180" />
           Back to featured work
         </Link>
       </div>
-      <CaseStudyExperimentView study={study} variant={experimentVariant} />
+      <CaseStudyStoryView study={study} />
       <PortfolioFooter />
     </main>
   );
@@ -3267,31 +2908,9 @@ export function ResumePage() {
 }
 
 export function PortfolioPage() {
-  const [homepageExperimentVariant, setHomepageExperimentVariant] = useHomepageExperimentVariant();
-
-  if (homepageExperimentVariant === "story") {
-    return (
-      <main className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
-        <PortfolioHeader
-          homepageExperimentVariant={homepageExperimentVariant}
-          onHomepageExperimentVariantChange={setHomepageExperimentVariant}
-        />
-        <HomepageStoryHero />
-        <HomepageStoryProofPoints />
-        <HomepageStoryFeaturedWork />
-        <HomepageStoryExperience />
-        <HomeClosingSection />
-        <PortfolioFooter />
-      </main>
-    );
-  }
-
   return (
     <main className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
-      <PortfolioHeader
-        homepageExperimentVariant={homepageExperimentVariant}
-        onHomepageExperimentVariantChange={setHomepageExperimentVariant}
-      />
+      <PortfolioHeader />
       <section id="top" className="portfolio-grid-pattern px-5 py-9 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(19rem,0.42fr)] lg:items-start">
           <div>
