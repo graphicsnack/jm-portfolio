@@ -58,6 +58,17 @@ body {
   z-index: 1;
 }
 
+.resume-grid-pattern::before {
+  bottom: auto;
+  height: 32.7rem;
+}
+
+@media (min-width: 640px) {
+  .resume-grid-pattern::before {
+    height: 26.8rem;
+  }
+}
+
 button,
 a {
   cursor: pointer;

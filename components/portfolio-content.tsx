@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import type { CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowDown,
@@ -11,10 +13,12 @@ import {
   Camera,
   ChevronRight,
   Compass,
+  Dribbble,
   FileText,
   History,
   Layers3,
   Link2,
+  Mail,
   LockKeyhole,
   Map,
   MonitorCheck,
@@ -1576,7 +1580,7 @@ const compactCaseStudyIds = ["company-pages", "career-pages", "sales-navigator-m
 const routedCaseStudyIds = ["campglint", "sales-insights", "seller-agent", "company-pages", "career-pages", "sales-navigator-multiseat"];
 
 const resumeSignals = [
-  "11+ years at LinkedIn across Sales, Talent, Company Pages, content systems, and AI agent workflows.",
+  "10+ years at LinkedIn across Sales, Talent, Company Pages, content systems, and AI agent workflows.",
   "Senior product designer focused on complex systems, product strategy, interaction design, and cross-functional alignment.",
   "Founder-led CampGlint work carries product strategy through design, code, launch readiness, and consumer product judgment.",
 ];
@@ -1676,28 +1680,85 @@ function StorySectionLabel({
   title,
   body,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   body?: string;
 }) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">{eyebrow}</p>
-      <h2 className="mt-3 max-w-2xl text-2xl font-semibold leading-tight text-balance text-black/88 sm:text-3xl">{title}</h2>
+      {eyebrow ? <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">{eyebrow}</p> : null}
+      <h2 className={`${eyebrow ? "mt-3 " : ""}max-w-2xl text-2xl font-semibold leading-tight text-balance text-black/88 sm:text-3xl`}>{title}</h2>
       {body ? <p className="mt-3 max-w-2xl text-sm leading-6 text-black/64">{body}</p> : null}
     </div>
   );
 }
 
-function StoryMetaList({ items }: { items: SnapshotItem[] }) {
+const storyMetaLogos: Record<string, { src: string; alt: string }> = {
+  LinkedIn: {
+    src: "/brand/LinkedIn_logo.png",
+    alt: "LinkedIn",
+  },
+  CampGlint: {
+    src: "/screenshots/campglint-case-study/campglint-app-icon.png",
+    alt: "CampGlint",
+  },
+  GraphicSnack: {
+    src: "/screenshots/graphicsnack-ios-case-study/app-icon.png",
+    alt: "GraphicSnack",
+  },
+  "GraphicSnack iOS": {
+    src: "/screenshots/graphicsnack-ios-case-study/app-icon.png",
+    alt: "GraphicSnack iOS",
+  },
+};
+
+function getStoryMetaLogo(item: SnapshotItem) {
+  if (item.label === "Company" || item.label === "Product") {
+    return storyMetaLogos[item.value];
+  }
+
+  return undefined;
+}
+
+function StoryMetaList({ items, compact = false }: { items: SnapshotItem[]; compact?: boolean }) {
   return (
-    <dl className="grid gap-x-7 gap-y-5 border-y border-black/12 py-5 sm:grid-cols-2 lg:grid-cols-4">
-      {items.map((item) => (
-        <div key={item.label}>
-          <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-black/42">{item.label}</dt>
-          <dd className="mt-1.5 text-sm font-medium leading-6 text-black/76">{item.value}</dd>
-        </div>
-      ))}
+    <dl
+      className={[
+        "grid gap-x-7 transition-[padding,gap] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:grid-cols-2 lg:grid-cols-4",
+        compact ? "gap-y-3 py-3" : "gap-y-5 py-5",
+      ].join(" ")}
+    >
+      {items.map((item) => {
+        const logo = getStoryMetaLogo(item);
+
+        return (
+          <div key={item.label}>
+            <dt className={["font-semibold uppercase tracking-[0.12em] text-black/42 transition-[font-size,line-height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]", compact ? "text-[0.58rem] leading-4" : "text-[0.68rem] leading-5"].join(" ")}>
+              {item.label}
+            </dt>
+            <dd
+              className={[
+                "font-medium text-black/76 transition-[margin,font-size,line-height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                logo ? "flex items-center gap-2.5" : "",
+                compact ? "mt-1 text-xs leading-5" : logo ? "mt-2 text-sm leading-6" : "mt-1.5 text-sm leading-6",
+              ].join(" ")}
+            >
+              {logo ? (
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className={[
+                    "shrink-0 object-cover shadow-[0_10px_22px_-16px_rgb(var(--accent-rgb)/0.8)] transition-[width,height,border-radius] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                    compact ? "h-5 w-5 rounded-[0.2rem]" : "h-6 w-6 rounded-[0.26rem]",
+                  ].join(" ")}
+                  loading="lazy"
+                />
+              ) : null}
+              <span>{item.value}</span>
+            </dd>
+          </div>
+        );
+      })}
     </dl>
   );
 }
@@ -1730,23 +1791,41 @@ function StoryProductMedia({
 
 function CaseStudyStoryView({ study }: { study: CaseStudy }) {
   const isPhoneCase = phoneCaseIds.has(study.id);
+  const metaRef = useRef<HTMLDivElement>(null);
+  const [isMetaStuck, setIsMetaStuck] = useState(false);
+  const [metaHeight, setMetaHeight] = useState(0);
   const brief = caseStudyBriefs[study.id] ?? {
     family: study.platform,
     question: study.headline,
   };
   const primaryImpact = study.impact.slice(0, 3);
 
+  useEffect(() => {
+    function updateMetaStickyState() {
+      const meta = metaRef.current;
+      if (!meta) return;
+
+      const rect = meta.getBoundingClientRect();
+      setIsMetaStuck(rect.top <= 0);
+      setMetaHeight(Math.ceil(rect.height));
+    }
+
+    updateMetaStickyState();
+    window.addEventListener("scroll", updateMetaStickyState, { passive: true });
+    window.addEventListener("resize", updateMetaStickyState);
+
+    return () => {
+      window.removeEventListener("scroll", updateMetaStickyState);
+      window.removeEventListener("resize", updateMetaStickyState);
+    };
+  }, []);
+
   return (
     <section id="case-study-view" className="border-t border-black/12 bg-[#fbfaf7]">
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 lg:px-10">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(20rem,0.58fr)] lg:items-center">
           <div>
-            <div className="flex items-center gap-3">
-              <span className={`h-3 w-3 ${study.accent}`} />
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/45">{study.product}</p>
-            </div>
-            <p className="mt-5 text-sm font-semibold leading-6 text-black/58">{brief.family}</p>
-            <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-[1.06] text-balance text-black/90 sm:text-5xl lg:text-[3.45rem]">
+            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.06] text-balance text-black/90 sm:text-5xl lg:text-[3.45rem]">
               {study.headline}
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-black/68">{study.summary}</p>
@@ -1757,23 +1836,22 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
           </div>
         </div>
 
-        <div className="mt-10">
-          <StoryMetaList items={study.snapshot} />
+        <div
+          ref={metaRef}
+          className={[
+            "sticky top-0 z-30 -mx-5 mt-10 bg-[#fbfaf7]/92 px-5 backdrop-blur-sm transition-[background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-screen after:-translate-x-1/2 after:bg-black/12 after:content-[''] sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10",
+            isMetaStuck ? "bg-[#fbfaf7]/98 shadow-[0_18px_42px_-40px_rgb(var(--accent-rgb)/0.62)]" : "",
+          ].join(" ")}
+        >
+          <div className={["transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]", isMetaStuck ? "-translate-y-px opacity-95" : "translate-y-0 opacity-100"].join(" ")}>
+            <StoryMetaList items={study.snapshot} compact={isMetaStuck} />
+          </div>
         </div>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[13rem_minmax(0,1fr)]">
-          <aside className="lg:sticky lg:top-8 lg:h-fit">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">Story arc</p>
-            <ol className="mt-4 grid gap-3">
-              {study.story.map((chapter) => (
-                <li key={chapter.phase} className="grid grid-cols-[2.2rem_minmax(0,1fr)] gap-3 border-l border-black/14 pl-3">
-                  <span className="text-xs font-semibold text-black/38">{chapter.phase}</span>
-                  <span className="text-sm font-semibold leading-5 text-black/72">{chapter.label}</span>
-                </li>
-              ))}
-            </ol>
-          </aside>
-
+        <div
+          className="mt-14 grid gap-14 transition-[padding-top] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] pt-[var(--case-meta-offset)]"
+          style={{ "--case-meta-offset": isMetaStuck ? `${metaHeight + 24}px` : "0px" } as CSSProperties}
+        >
           <div className="grid gap-14">
             <section className="grid gap-7 border-b border-black/12 pb-12">
               <StorySectionLabel
@@ -1900,6 +1978,12 @@ function PortfolioHeader({
 }: {
   caseStudy?: boolean;
 }) {
+  const pathname = usePathname();
+  const isCaseStudiesActive = pathname === "/" || pathname.startsWith("/case-studies");
+  const isResumeActive = pathname === "/resume";
+  const navLinkBase =
+    "inline-flex min-h-10 items-center rounded-md px-3 py-2 text-[0.82rem] font-medium hover:text-[var(--accent)]";
+
   return (
     <header className={`${caseStudy ? "relative" : "sticky top-0"} z-40 border-b border-black/15 bg-[#fbfaf7]/94 backdrop-blur`}>
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 gap-y-2 px-5 py-2.5 sm:px-8 md:flex-nowrap lg:px-12">
@@ -1914,16 +1998,18 @@ function PortfolioHeader({
             <span className="block truncate text-[0.7rem] leading-4 text-black/56">Product design portfolio</span>
           </span>
         </Link>
-        <nav className="order-3 flex w-full items-center gap-1 border-t border-black/10 pt-2 md:order-none md:w-auto md:border-0 md:pt-0" aria-label="Portfolio navigation">
+        <nav className="order-3 -mx-5 flex w-[calc(100%+2.5rem)] items-center gap-1 border-t border-black/10 px-5 pt-2 sm:-mx-8 sm:w-[calc(100%+4rem)] sm:px-8 md:order-none md:mx-0 md:w-auto md:border-0 md:px-0 md:pt-0" aria-label="Portfolio navigation">
           <Link
             href="/"
-            className="inline-flex min-h-10 items-center rounded-md px-3 py-2 text-[0.82rem] font-medium text-black/64 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]"
+            aria-current={isCaseStudiesActive ? "page" : undefined}
+            className={`${navLinkBase} ${isCaseStudiesActive ? "text-[var(--accent)]" : "text-black/64"}`}
           >
             Case studies
           </Link>
           <Link
             href="/resume"
-            className="inline-flex min-h-10 items-center rounded-md px-3 py-2 text-[0.82rem] font-medium text-black/64 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]"
+            aria-current={isResumeActive ? "page" : undefined}
+            className={`${navLinkBase} ${isResumeActive ? "text-[var(--accent)]" : "text-black/64"}`}
           >
             Resume
           </Link>
@@ -1940,18 +2026,110 @@ function PortfolioHeader({
   );
 }
 
-function PortfolioFooter() {
+function LinkedInBrandIcon({ className }: { className?: string }) {
   return (
-    <footer className="border-t border-black/15 bg-[#1f2220] px-5 py-10 text-white sm:px-8 lg:px-12">
-      <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 sm:flex-row sm:items-center">
-        <div>
-          <p className="text-sm font-semibold">Juan Mondragon</p>
-          <p className="mt-1 text-sm text-white/62">Product design portfolio, 2026.</p>
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z" />
+    </svg>
+  );
+}
+
+function BehanceBrandIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
+      <path d="M22 7h-7V5h7v2ZM6.47 8.4c2.45 0 3.78.71 3.78 2.75 0 1.08-.5 1.82-1.32 2.18 1.13.33 1.69 1.19 1.69 2.47 0 1.98-1.6 3.05-3.78 3.05H0V8.4h6.47Zm-3.8 4.14h3.41c.98 0 1.52-.37 1.52-1.18 0-.91-.7-1.1-1.63-1.1h-3.3v2.28Zm0 4.46h3.59c1.1 0 1.74-.4 1.74-1.36 0-1.07-.87-1.33-1.8-1.33H2.67V17Zm21.06 0c-.44 1.3-2.03 3-5.1 3-3.08 0-5.57-1.73-5.57-5.68 0-3.91 2.33-5.92 5.47-5.92 3.08 0 4.96 1.78 5.38 4.43.08.51.1 1.19.09 2.14h-7.94c.13 3.21 3.48 3.31 4.59 2.03h3.08Zm-7.69-4h4.97c-.11-1.55-1.14-2.22-2.48-2.22-1.47 0-2.28.77-2.49 2.22Z" />
+    </svg>
+  );
+}
+
+function PortfolioFooter() {
+  const socialLinks = [
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/juanmondragon",
+      external: true,
+      icon: LinkedInBrandIcon,
+    },
+    {
+      label: "Dribbble",
+      href: "https://dribbble.com/1mondragon",
+      external: true,
+      icon: Dribbble,
+    },
+    {
+      label: "Behance",
+      href: "https://www.behance.net/graphicsnack",
+      external: true,
+      icon: BehanceBrandIcon,
+    },
+    {
+      label: "Contact me",
+      href: "mailto:advrunr@gmail.com",
+      icon: Mail,
+    },
+  ];
+
+  return (
+    <footer className="relative isolate overflow-hidden border-t border-[rgb(var(--accent-rgb)/0.28)] bg-[var(--accent)] px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+      <img
+        src="/brand/background.JPG"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 -z-30 h-full w-full object-cover object-[center_18%] opacity-82 saturate-[0.82] contrast-110"
+      />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgb(24_32_112/0.78)_0%,rgb(24_32_112/0.64)_42%,rgb(24_32_112/0.34)_100%)]" />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_top,rgb(24_32_112/0.76)_0%,rgb(24_32_112/0.30)_52%,rgb(24_32_112/0.62)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.08)_1px,transparent_1px)] bg-[size:56px_56px] opacity-45 [mask-image:linear-gradient(to_right,rgb(24_32_112),transparent_78%)]" />
+      <div className="absolute right-[-9rem] top-[-7rem] -z-10 h-80 w-80 rounded-full border border-white/18" />
+      <div className="absolute bottom-12 right-8 -z-10 hidden h-px w-72 rotate-[-16deg] bg-white/24 sm:block" />
+
+      <div className="mx-auto grid min-h-[16rem] max-w-7xl content-between gap-12">
+        <div className="grid gap-9 lg:grid-cols-[minmax(0,0.8fr)_auto] lg:items-start">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-md bg-white/92 shadow-[0_16px_45px_-28px_rgb(24_32_112/0.9)]">
+                <img src="/brand/JM_logo_icon_transparent.png" alt="" aria-hidden="true" className="h-9 w-9 object-contain" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-white">Juan Mondragon</p>
+                <p className="mt-0.5 text-sm text-white/66">Product Designer and Builder</p>
+              </div>
+            </div>
+            <p className="mt-7 max-w-lg text-lg font-normal leading-7 text-white/74 sm:text-xl sm:leading-8 lg:text-[1.35rem]">
+              Product systems for enterprise teams, AI workflows, and founder-led products.
+            </p>
+          </div>
+
+          <nav className="flex flex-wrap gap-3 lg:justify-end" aria-label="Social links">
+            {socialLinks.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
+                  aria-label={item.label}
+                  title={item.label}
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-white/20 bg-white/10 text-white backdrop-blur hover:border-white/34 hover:bg-white/16 hover:text-white"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              );
+            })}
+          </nav>
         </div>
-        <Link href="#top" className="inline-flex items-center gap-2 rounded-md border border-white/20 px-3 py-2 text-sm font-semibold hover:bg-white/10">
-          Back to top
-          <ArrowUpRight className="h-4 w-4" />
-        </Link>
+
+        <div className="flex flex-col gap-5 border-t border-white/16 pt-5 text-sm text-white/64 sm:flex-row sm:items-center sm:justify-between">
+          <p>Product design portfolio, 2026.</p>
+          <Link href="#top" className="inline-flex w-fit items-center gap-2 rounded-md border border-white/20 px-3 py-2 font-semibold text-white hover:bg-white/10">
+            Back to top
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
       </div>
     </footer>
   );
@@ -2386,14 +2564,14 @@ function HomepageStoryHero() {
           Product systems that turn ambiguity into trusted workflows and working products.
         </h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-black/68">
-          Eleven years at LinkedIn shaped a practice around enterprise systems, GTM data workflows, AI-assisted selling, and founder-led native iOS product work.
+          10+ years at LinkedIn shaped a practice around enterprise systems, GTM data workflows, AI-assisted selling, and founder-led native iOS product work.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
             Read featured work
             <ArrowDown className="h-4 w-4" />
           </Link>
-          <Link href="/resume" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
+          <Link href="/resume" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
             Resume
           </Link>
         </div>
@@ -2567,7 +2745,7 @@ function HomepageStoryExperience() {
             View resume
             <ArrowUpRight className="h-4 w-4" />
           </Link>
-          <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
+          <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
             Contact me
             <ArrowUpRight className="h-4 w-4" />
           </a>
@@ -2606,7 +2784,7 @@ function ResumeDocumentHeader() {
             </div>
           </div>
           <p className="pt-4 text-sm leading-6 text-black/66">
-            Senior Product Designer with 11+ years at LinkedIn, leading design across sales, talent, and content platforms. I've shaped
+            Senior Product Designer with 10+ years at LinkedIn, leading design across sales, talent, and content platforms. I've shaped
             systems that help teams publish faster, plan smarter, and connect through AI-driven tools like Seller Agent. I bring a
             user-centered, data-informed mindset to solving complex product challenges at scale.
           </p>
@@ -2706,7 +2884,7 @@ function ResumeExperienceList() {
 function ResumeSnapshot({ standalone = false }: { standalone?: boolean }) {
   if (standalone) {
     return (
-      <section id="resume" className="border-t border-black/15 bg-[#f2efe7] px-5 py-12 sm:px-8 lg:px-10">
+      <section id="resume" className="portfolio-grid-pattern resume-grid-pattern px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-6xl gap-5">
           <ResumeDocumentHeader />
           <ResumeCurrentBuilderExperience />
@@ -2734,7 +2912,7 @@ function ResumeSnapshot({ standalone = false }: { standalone?: boolean }) {
             </a>
             <a
               href="mailto:advrunr@gmail.com"
-              className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black"
+              className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
             >
               advrunr@gmail.com
             </a>
@@ -2755,48 +2933,13 @@ function ResumeSnapshot({ standalone = false }: { standalone?: boolean }) {
   );
 }
 
-function ResumeBottomCta() {
-  return (
-    <section className="bg-[#f2efe7] px-5 pb-12 sm:px-8 lg:px-10" aria-labelledby="resume-cta-title">
-      <div className="mx-auto max-w-6xl rounded-lg border border-black/12 bg-[#fffefb]/86 p-4 sm:p-5">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/45">Next step</p>
-          <h2 id="resume-cta-title" className="mt-3 max-w-2xl text-3xl font-semibold leading-tight text-black/88 sm:text-4xl">
-            Want a deeper look at the work behind the resume?
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-black/66">
-            Reach out to learn more about my product design experience, the decisions behind these projects, or opportunities to work together.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <a
-              href="mailto:advrunr@gmail.com"
-              className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]"
-            >
-              Contact me
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <a
-              href="/resume"
-              className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black"
-            >
-              View resume
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function HomeClosingSection() {
   return (
     <section className="bg-[#fbfaf7] px-5 pb-12 pt-2 sm:px-8 lg:px-10" aria-labelledby="work-with-me-heading">
       <div className="mx-auto max-w-6xl border-y border-black/12 py-9 sm:py-11">
         <div className="grid gap-7 xl:grid-cols-[minmax(0,0.82fr)_auto] xl:items-end">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/42">Work with me</p>
-            <h2 id="work-with-me-heading" className="mt-4 max-w-4xl text-3xl font-semibold leading-tight text-balance text-black/90 sm:text-4xl lg:text-[2.85rem]">
+            <h2 id="work-with-me-heading" className="max-w-4xl text-3xl font-semibold leading-tight text-balance text-black/90 sm:text-4xl lg:text-[2.85rem]">
               Open to startup design roles, AI product work, and opportunities where design and building are tightly connected.
             </h2>
           </div>
@@ -2813,7 +2956,7 @@ function HomeClosingSection() {
             </a>
             <a
               href="mailto:advrunr@gmail.com"
-              className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black"
+              className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
             >
               Contact me
               <ArrowUpRight className="h-4 w-4" />
@@ -2845,7 +2988,7 @@ function LockedCaseStudyPage({
       <main id="top" className="min-h-screen text-[#1f2220]">
         <PortfolioHeader caseStudy />
         <div className="mx-auto max-w-6xl px-5 py-5 sm:px-8 lg:px-10">
-          <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
+          <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
             <ChevronRight className="h-4 w-4 rotate-180" />
             Back to featured work
           </Link>
@@ -2932,7 +3075,7 @@ function LockedCaseStudyPage({
               </button>
               <a
                 href={requestAccessHref}
-                className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black"
+                className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
               >
                 Request access
               </a>
@@ -2973,7 +3116,7 @@ export function FullCaseStudyPage({ studyId }: { studyId: string }) {
     <main id="top" className="min-h-screen text-[#1f2220]">
       <PortfolioHeader caseStudy />
       <div className="mx-auto max-w-6xl px-5 py-5 sm:px-8 lg:px-10">
-        <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
+        <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
           <ChevronRight className="h-4 w-4 rotate-180" />
           Back to featured work
         </Link>
@@ -2987,10 +3130,10 @@ export function FullCaseStudyPage({ studyId }: { studyId: string }) {
 
 export function ResumePage() {
   return (
-    <main id="top" className="min-h-screen text-[#1f2220]">
+    <main id="top" className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
       <PortfolioHeader caseStudy />
       <ResumeSnapshot standalone />
-      <ResumeBottomCta />
+      <HomeClosingSection />
       <PortfolioFooter />
     </main>
   );
@@ -3006,14 +3149,14 @@ export function PortfolioPage() {
             Product systems for enterprise scale, AI workflows, and founder-led products.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
-            Eleven years at LinkedIn shaped how I work: turn ambiguous product mandates into clear systems, trustworthy workflows, and product surfaces ready for real users.
+            10+ years at LinkedIn shaped how I work: turn ambiguous product mandates into clear systems, trustworthy workflows, and product surfaces ready for real users.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
               Read featured work
               <ArrowDown className="h-4 w-4" />
             </Link>
-            <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
+            <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
               Contact me
               <ArrowUpRight className="h-4 w-4" />
             </a>
