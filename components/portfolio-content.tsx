@@ -3295,8 +3295,7 @@ export function PortfolioPage() {
       <section id="top" className="portfolio-grid-pattern px-5 py-9 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(19rem,0.42fr)] lg:items-start">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-black/48">Juan Mondragon / Product designer and builder</p>
-            <h1 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
+            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
               Product systems for enterprise scale, AI workflows, and founder-led products.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
