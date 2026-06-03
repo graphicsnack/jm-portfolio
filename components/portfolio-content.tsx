@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
+  ArrowDown,
   ArrowLeft,
   ArrowUpRight,
   BellRing,
@@ -1893,7 +1894,7 @@ function PortfolioHeader({
 }) {
   return (
     <header className={`${caseStudy ? "relative" : "sticky top-0"} z-40 border-b border-black/15 bg-[#fbfaf7]/94 backdrop-blur`}>
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2.5 sm:px-8 lg:px-12">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 gap-y-2 px-5 py-2.5 sm:px-8 md:flex-nowrap lg:px-12">
         <Link href={caseStudy ? "/#top" : "#top"} className="flex min-w-0 items-center gap-2.5">
           <img
             src="/brand/JM_logo_icon_transparent.png"
@@ -1905,25 +1906,25 @@ function PortfolioHeader({
             <span className="block truncate text-[0.7rem] leading-4 text-black/56">Product design portfolio</span>
           </span>
         </Link>
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Portfolio navigation">
+        <nav className="order-3 flex w-full items-center gap-1 border-t border-black/10 pt-2 md:order-none md:w-auto md:border-0 md:pt-0" aria-label="Portfolio navigation">
           <Link
             href="/"
-            className="rounded-md px-2.5 py-1.5 text-[0.82rem] font-medium text-black/64 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]"
+            className="inline-flex min-h-10 items-center rounded-md px-3 py-2 text-[0.82rem] font-medium text-black/64 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]"
           >
             Case studies
           </Link>
           <Link
             href="/resume"
-            className="rounded-md px-2.5 py-1.5 text-[0.82rem] font-medium text-black/64 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]"
+            className="inline-flex min-h-10 items-center rounded-md px-3 py-2 text-[0.82rem] font-medium text-black/64 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]"
           >
             Resume
           </Link>
         </nav>
         <a
           href="mailto:advrunr@gmail.com"
-          className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-3 py-1.5 text-[0.82rem] font-semibold text-white hover:bg-[var(--accent-strong)]"
+          className="inline-flex shrink-0 items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-3 py-1.5 text-[0.82rem] font-semibold text-white hover:bg-[var(--accent-strong)]"
         >
-          Contact
+          Contact me
           <ArrowUpRight className="h-3.5 w-3.5" />
         </a>
       </div>
@@ -1994,6 +1995,8 @@ const campGlintPreviewScreens = [
   },
 ];
 
+const campGlintLargeThumbnail = "/projects/CampGlint/campglint-ios-current-thumbnail-lg.png";
+
 function DeviceMockup({
   screen,
   className = "",
@@ -2022,17 +2025,6 @@ function DeviceMockup({
   );
 }
 
-function CampGlintAppIconMark() {
-  return (
-    <img
-      src="/screenshots/campglint-case-study/campglint-app-icon.png"
-      alt="CampGlint app icon"
-      className="absolute left-4 top-4 z-30 h-12 w-12 rounded-xl border border-[#D7DFE6] object-cover shadow-[0_18px_48px_-34px_rgb(14_21_23/0.5)] sm:left-5 sm:top-5 sm:h-14 sm:w-14"
-      loading="lazy"
-    />
-  );
-}
-
 function CampGlintDeviceScene({
   variant,
 }: {
@@ -2040,22 +2032,21 @@ function CampGlintDeviceScene({
 }) {
   const variantConfig = {
     row: {
-      frame: "relative min-h-[20rem] items-center justify-center overflow-hidden border-b border-black/12 bg-[#F0F4F7] px-4 py-8 sm:min-h-[24rem] sm:py-10 lg:min-h-[26rem]",
-      list: "relative z-10 flex items-end justify-center",
-      size: "md" as const,
-      item: ["z-10 translate-x-7 translate-y-7 -rotate-[4deg] sm:translate-x-9", "z-20 -translate-y-1 scale-110", "z-10 -translate-x-7 translate-y-7 rotate-[4deg] sm:-translate-x-9"],
+      frame: "relative min-h-[15.5rem] items-center justify-center overflow-hidden border-b border-black/12 bg-[#F0F4F7] px-5 py-5 sm:min-h-[17rem] lg:min-h-[18.5rem]",
+      list: "relative z-10 flex items-end justify-center gap-6 sm:gap-10 lg:gap-16",
+      size: "sm" as const,
+      item: ["z-10 translate-y-3 -rotate-[4deg]", "z-20 -translate-y-2", "z-10 translate-y-3 rotate-[4deg]"],
     },
     shelf: {
-      frame: "items-end justify-center overflow-hidden border-b border-black/12 bg-[#F0F4F7] px-4 pt-7",
-      list: "grid grid-cols-3 items-end justify-items-center gap-2 sm:gap-3",
+      frame: "items-end justify-center overflow-hidden border-b border-black/12 bg-[#F0F4F7] px-5 pt-5",
+      list: "grid grid-cols-3 items-end justify-items-center gap-4 sm:gap-6",
       size: "sm" as const,
-      item: ["translate-y-5", "-translate-y-2 scale-105", "translate-y-5"],
+      item: ["translate-y-3", "-translate-y-1", "translate-y-3"],
     },
   }[variant];
 
   return (
     <div className={"flex " + variantConfig.frame}>
-      {variant === "row" ? <CampGlintAppIconMark /> : null}
       <div className={variantConfig.list}>
         {campGlintPreviewScreens.map((screen, index) => (
           <DeviceMockup key={screen.label} screen={screen} size={variantConfig.size} className={variantConfig.item[index]} />
@@ -2195,7 +2186,12 @@ function FeaturedGridBento({ studies }: { studies: CaseStudy[] }) {
   return (
     <div className="grid gap-6 lg:gap-8">
       <Link href={"/case-studies/" + campGlint.id} className="group grid overflow-hidden rounded-xl border border-black/15 bg-[#fffefb]/94 shadow-[0_24px_76px_-64px_rgb(0_0_0/0.6)] transition duration-300 hover:-translate-y-0.5">
-        <CampGlintDeviceScene variant="row" />
+        <img
+          src={campGlintLargeThumbnail}
+          alt="CampGlint iOS app screens showing discovery, monitor tracking, and trip readiness"
+          className="block aspect-[1800/760] w-full border-b border-black/12 object-cover object-center"
+          loading="eager"
+        />
         <GridBLeadPreview study={campGlint} />
       </Link>
       <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
@@ -2373,59 +2369,26 @@ function FeaturedCaseStudies() {
   );
 }
 
-function HeroProfileSummary({ className = "" }: { className?: string }) {
-  return (
-    <aside
-      className={["max-w-md border-t border-black/14 pt-5 lg:max-w-none lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0", className].filter(Boolean).join(" ")}
-      aria-label="Portfolio focus summary"
-    >
-      <div className="flex items-center gap-4">
-        <img src="/avatars/juan.png" alt="Juan Mondragon" className="h-14 w-14 rounded-lg object-cover object-[50%_42%]" />
-        <div>
-          <p className="text-sm font-semibold leading-6 text-black/86">Senior product designer</p>
-          <p className="text-sm leading-6 text-black/58">LinkedIn systems / CampGlint iOS</p>
-        </div>
-      </div>
-      <ul className="mt-5 grid gap-3 border-t border-black/12 pt-5">
-        {[
-          "Enterprise SaaS systems",
-          "Talent and sales platforms",
-          "Founder-led mobile build",
-        ].map((item) => (
-          <li key={item} className="flex items-center gap-3 text-sm font-semibold leading-6 text-black/62">
-            <span className="h-1.5 w-1.5 bg-[var(--accent)]" aria-hidden="true" />
-            {item}
-          </li>
-        ))}
-      </ul>
-    </aside>
-  );
-}
-
 function HomepageStoryHero() {
   return (
     <section id="top" className="portfolio-grid-pattern px-5 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(19rem,0.42fr)] lg:items-start">
-        <div>
-          <p className="text-sm font-semibold leading-6 text-black/58">Juan Mondragon / Product Designer and Builder</p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-[1.06] text-balance text-black/90 sm:text-5xl lg:text-[3.65rem]">
-            Product systems that turn ambiguity into trusted workflows and working products.
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-black/68">
-            Eleven years at LinkedIn shaped a practice around enterprise systems, GTM data workflows, AI-assisted selling, and founder-led native iOS product work.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
-              Read featured work
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
-            <Link href="/resume" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
-              Resume
-            </Link>
-          </div>
+      <div className="mx-auto max-w-6xl">
+        <p className="text-sm font-semibold leading-6 text-black/58">Juan Mondragon / Product Designer and Builder</p>
+        <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-[1.06] text-balance text-black/90 sm:text-5xl lg:text-[3.65rem]">
+          Product systems that turn ambiguity into trusted workflows and working products.
+        </h1>
+        <p className="mt-5 max-w-3xl text-lg leading-8 text-black/68">
+          Eleven years at LinkedIn shaped a practice around enterprise systems, GTM data workflows, AI-assisted selling, and founder-led native iOS product work.
+        </p>
+        <div className="mt-7 flex flex-wrap gap-3">
+          <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
+            Read featured work
+            <ArrowDown className="h-4 w-4" />
+          </Link>
+          <Link href="/resume" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
+            Resume
+          </Link>
         </div>
-
-        <HeroProfileSummary className="lg:mt-[4.75rem]" />
       </div>
     </section>
   );
@@ -2597,7 +2560,8 @@ function HomepageStoryExperience() {
             <ArrowUpRight className="h-4 w-4" />
           </Link>
           <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
-            Contact
+            Contact me
+            <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>
       </div>
@@ -2713,7 +2677,7 @@ function ResumeSnapshot({ standalone = false }: { standalone?: boolean }) {
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
-              href="/resume/JM_Resume_2025.pdf"
+              href="/resume"
               className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]"
             >
               View resume
@@ -2759,15 +2723,14 @@ function ResumeBottomCta() {
               href="mailto:advrunr@gmail.com"
               className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]"
             >
-              Contact
+              Contact me
               <ArrowUpRight className="h-4 w-4" />
             </a>
             <a
-              href="/resume/JM_Resume_2025.pdf"
-              download
+              href="/resume"
               className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black"
             >
-              Download resume
+              View resume
               <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
@@ -2779,28 +2742,34 @@ function ResumeBottomCta() {
 
 function HomeClosingSection() {
   return (
-    <section className="bg-[#fbfaf7] px-5 pb-12 sm:px-8 lg:px-10" aria-label="Portfolio end links">
-      <div className="mx-auto max-w-6xl border-t border-black/12 pt-5">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/42">
-            Selected work / 2014-2026
-          </p>
+    <section className="bg-[#fbfaf7] px-5 pb-12 pt-2 sm:px-8 lg:px-10" aria-labelledby="work-with-me-heading">
+      <div className="mx-auto max-w-6xl border-y border-black/12 py-9 sm:py-11">
+        <div className="grid gap-7 xl:grid-cols-[minmax(0,0.82fr)_auto] xl:items-end">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/42">Work with me</p>
+            <h2 id="work-with-me-heading" className="mt-4 max-w-4xl text-3xl font-semibold leading-tight text-balance text-black/90 sm:text-4xl lg:text-[2.85rem]">
+              Open to startup design roles, AI product work, and opportunities where design and building are tightly connected.
+            </h2>
+          </div>
 
-          <nav className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Portfolio closing links">
+          <div className="flex flex-wrap gap-3 xl:justify-end">
+            <a
+              href="https://www.linkedin.com/in/juanmondragon"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]"
+            >
+              LinkedIn
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
             <a
               href="mailto:advrunr@gmail.com"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-black/62 hover:text-[var(--accent)]"
+              className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black"
             >
-              Email
-              <ArrowUpRight className="h-3.5 w-3.5" />
+              Contact me
+              <ArrowUpRight className="h-4 w-4" />
             </a>
-            <Link
-              href="/resume"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-black/62 hover:text-[var(--accent)]"
-            >
-              Resume
-            </Link>
-          </nav>
+          </div>
         </div>
       </div>
     </section>
@@ -2983,25 +2952,23 @@ export function PortfolioPage() {
     <main className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
       <PortfolioHeader />
       <section id="top" className="portfolio-grid-pattern px-5 py-9 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(19rem,0.42fr)] lg:items-start">
-          <div>
-            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
-              Product systems for enterprise scale, AI workflows, and founder-led products.
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
-              Eleven years at LinkedIn shaped how I work: turn ambiguous product mandates into clear systems, trustworthy workflows, and product surfaces ready for real users.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
-                Read featured work
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-              <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
-                Contact
-              </a>
-            </div>
+        <div className="mx-auto max-w-6xl">
+          <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
+            Product systems for enterprise scale, AI workflows, and founder-led products.
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
+            Eleven years at LinkedIn shaped how I work: turn ambiguous product mandates into clear systems, trustworthy workflows, and product surfaces ready for real users.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
+              Read featured work
+              <ArrowDown className="h-4 w-4" />
+            </Link>
+            <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-black">
+              Contact me
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
           </div>
-          <HeroProfileSummary className="lg:mt-[4.25rem]" />
         </div>
       </section>
 
