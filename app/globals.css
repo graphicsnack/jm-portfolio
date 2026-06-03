@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbfaf7;
+  --foreground: #1f2220;
+  --accent: #182070;
+  --accent-rgb: 24 32 112;
+  --accent-strong: #10165f;
+  --muted: #646760;
+  --line: #d9d5ca;
+  --panel: #fffefb;
+  --portfolio-header-height: 57px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--portfolio-header-height) + 1rem);
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(to right, rgb(31 34 32 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(31 34 32 / 0.06) 1px, transparent 1px),
+    var(--background);
+  background-size: 48px 48px;
+  color: var(--foreground);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.portfolio-grid-pattern {
+  position: relative;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.portfolio-grid-pattern::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, rgb(31 34 32 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(31 34 32 / 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black 0%, black 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 78%, transparent 100%);
+}
+
+.portfolio-grid-pattern > * {
+  position: relative;
+  z-index: 1;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+.text-clamp-2,
+.text-clamp-3 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.text-clamp-2 {
+  -webkit-line-clamp: 2;
+}
+
+.text-clamp-3 {
+  -webkit-line-clamp: 3;
+}
+
+.sm-text-clamp-2 {
+  display: none;
+}
+
+.mobile-clamp-3 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@media (min-width: 640px) {
+  .sm-text-clamp-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .mobile-clamp-3 {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+  }
+}
+
+::selection {
+  background: var(--accent);
+  color: #fbfaf7;
+}
