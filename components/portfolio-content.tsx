@@ -2216,6 +2216,116 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
       },
     ],
   },
+  "sales-insights": {
+    title: "The opportunity",
+    body:
+      "Revenue teams had access to more market, company, and relationship data than they could reliably operationalize. Sales Insights could turn that data into a trusted planning workflow for sizing markets, prioritizing accounts, improving CRM quality, and aligning Sales and Marketing around the same account logic.",
+    points: [
+      {
+        title: "Planning needed confidence",
+        detail:
+          "Sales Ops and RevOps teams were making decisions that affected territories, campaigns, CRM records, and rep focus. The product had to show why a recommendation was worth trusting.",
+      },
+      {
+        title: "Data trust was the product experience",
+        detail:
+          "Source clarity, account matching, freshness, unresolved records, and field mapping were not setup details. They were the moments where users decided whether the system could touch operational data.",
+      },
+      {
+        title: "Insight had to move into action",
+        detail:
+          "A report became more valuable when its account logic could travel into exports, CRM workflows, Marketing activation, and Sales Navigator execution without every team rebuilding the criteria.",
+      },
+    ],
+  },
+  "seller-agent": {
+    title: "The opportunity",
+    body:
+      "Sellers were already using LinkedIn activity, profile changes, relationship paths, Sales Navigator, and CRM context to decide who to contact and how to engage. Seller Agent could turn that scattered research into in-context guidance without forcing sellers into a separate AI destination.",
+    points: [
+      {
+        title: "Seller research was fragmented",
+        detail:
+          "Account updates, social signals, lead profiles, warm paths, and CRM follow-up lived across surfaces. The agent opportunity was to connect those signals inside the workflow sellers already used.",
+      },
+      {
+        title: "AI needed a visible rationale",
+        detail:
+          "The concept had to show why a lead mattered, what changed, who could help, and which source backed the recommendation so sellers could trust the next action.",
+      },
+      {
+        title: "Outreach still needed seller control",
+        detail:
+          "Drafting support was useful only if sellers could review, personalize, copy, save, or discard the output instead of handing the relationship moment to automation.",
+      },
+    ],
+  },
+  "company-pages": {
+    title: "The opportunity",
+    body:
+      "Job seekers needed a more credible way to understand what it was like to work at a company, while employees needed trust before answering sensitive employer-related questions. Employee Experience could turn verified employee signals into useful company research without compromising member privacy.",
+    points: [
+      {
+        title: "Company research lacked employee proof",
+        detail:
+          "Employer-authored content could not fully answer fit questions around growth, leadership, flexibility, pride, compensation, and day-to-day experience.",
+      },
+      {
+        title: "Contribution required visible privacy",
+        detail:
+          "Employees were being asked to evaluate current or previous employers. Private response language, aggregation, skip states, and audience controls had to be part of the core experience.",
+      },
+      {
+        title: "Signals were most valuable in context",
+        detail:
+          "Ratings and reviews were strongest when they appeared inside Company Pages, Jobs, recommendations, feed discovery, and Career Pages rather than as an isolated review destination.",
+      },
+    ],
+  },
+  "career-pages": {
+    title: "The opportunity",
+    body:
+      "Companies needed better ways to tell credible employer stories, and candidates needed clearer paths from company research to job action. Career Pages could connect admin-authored content, employee proof, and candidate workflows across LinkedIn's paid and free company presence.",
+    points: [
+      {
+        title: "Employer branding needed proof",
+        detail:
+          "Life Pages were stronger when company stories came through teams, employees, photos, perspectives, and testimonials instead of broad recruiting claims.",
+      },
+      {
+        title: "Admins needed publishing confidence",
+        detail:
+          "Talent Brand managers needed controls for authoring, previewing, targeting, saving, and publishing content that would shape how candidates evaluated the company.",
+      },
+      {
+        title: "Company interest needed a next step",
+        detail:
+          "Company research became more useful when candidates could browse jobs, create alerts, find employees, and signal interest without leaving the company context.",
+      },
+    ],
+  },
+  "sales-navigator-multiseat": {
+    title: "The opportunity",
+    body:
+      "Sales Navigator had to grow from a focused seller workspace into a CRM-connected team system. The opportunity was to make LinkedIn relationship intelligence useful inside account, lead, CRM, admin, and team adoption workflows without losing trust in the systems of record.",
+    points: [
+      {
+        title: "Sellers needed a dedicated workspace",
+        detail:
+          "Accounts, leads, saved work, search, TeamLink paths, alerts, and relationship signals needed to feel purpose-built for sales rather than ordinary LinkedIn browsing with extra filters.",
+      },
+      {
+        title: "CRM was still the operating home",
+        detail:
+          "Sales Navigator context had to travel into Salesforce and Microsoft Dynamics-style workflows while respecting CRM as the source of record for contacts, accounts, opportunities, and activity.",
+      },
+      {
+        title: "Teams needed admin trust",
+        detail:
+          "Sync preferences, connection states, field mapping, activity writeback, usage reporting, onboarding, and data controls made the product scalable beyond individual seller productivity.",
+      },
+    ],
+  },
 };
 
 const campGlintPreviewScreens = [
@@ -3201,10 +3311,10 @@ export function PortfolioPage() {
       <section id="top" className="portfolio-grid-pattern px-5 py-9 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
         <div className="mx-auto max-w-6xl">
           <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
-            Product systems for enterprise scale, AI workflows, and founder-led products.
+            Senior product designer for enterprise systems, AI workflows, and founder-led products.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
-            10+ years at LinkedIn shaped how I work: turn ambiguous product mandates into clear systems, trustworthy workflows, and product surfaces ready for real users.
+            10+ years at LinkedIn shaped a practice around turning ambiguous product mandates into trusted workflows, shipped systems, and founder-led native iOS product work.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
