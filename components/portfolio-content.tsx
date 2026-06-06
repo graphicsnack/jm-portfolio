@@ -17,6 +17,7 @@ import {
   History,
   Layers3,
   Link2,
+  LockKeyhole,
   Mail,
   Map,
   MonitorCheck,
@@ -1717,6 +1718,9 @@ export const caseStudies: CaseStudy[] = [
 const phoneCaseIds = new Set(["campglint", "graphicsnack-ios"]);
 const wideThumbnailCaseIds = new Set(["seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"]);
 const alignedWideThumbnailCaseIds = new Set(["seller-agent", "sales-navigator-multiseat"]);
+const caseStudyPasscode = "JM2026";
+const caseStudyPasscodeLength = caseStudyPasscode.length;
+const caseStudyUnlockStorageKey = "jm-case-studies-unlocked";
 
 const featuredCaseStudyIds = ["sales-insights", "seller-agent", "sales-navigator-multiseat", "campglint", "company-pages", "career-pages"];
 const compactCaseStudyIds: string[] = [];
@@ -2628,7 +2632,9 @@ function CaseStudyThumbnail({ study }: { study: CaseStudy }) {
       {isPhoneCase ? (
         <img src={thumbnail.src} alt={thumbnail.alt} className="mx-auto block h-44 w-auto object-contain object-top pt-3" loading="lazy" />
       ) : isAlignedWideThumbnail ? (
-        <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[1444/512] w-full -translate-y-2 object-contain object-top" loading="lazy" />
+        <div className="aspect-[1444/512] overflow-hidden">
+          <img src={thumbnail.src} alt={thumbnail.alt} className="h-full w-full origin-top -translate-y-2 scale-[1.035] object-cover object-top" loading="lazy" />
+        </div>
       ) : isWideThumbnail ? (
         <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[1444/512] w-full object-contain object-center" loading="lazy" />
       ) : (
@@ -2674,8 +2680,8 @@ function CaseStudyPreviewMeta({ study, compact = false }: { study: CaseStudy; co
 function CaseStudyCardAction() {
   return (
     <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
-      Open case
-      <ArrowUpRight className="h-4 w-4" />
+      Passcode required
+      <LockKeyhole className="h-4 w-4" />
     </span>
   );
 }
@@ -2857,8 +2863,8 @@ function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
         <h3 className="text-clamp-2 mt-1.5 text-sm font-semibold leading-5 text-black/88">{study.product}</h3>
         <p className="text-clamp-3 mt-2 text-xs leading-5 text-black/62">{study.headline}</p>
         <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-xs font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
-          Open case
-          <ArrowUpRight className="h-3.5 w-3.5" />
+          Passcode
+          <LockKeyhole className="h-3.5 w-3.5" />
         </span>
       </div>
     </Link>
@@ -3075,8 +3081,8 @@ function HomepageStoryNotableWork() {
                 <p className="mt-1 max-w-3xl text-sm leading-6 text-black/62">{study.headline}</p>
               </div>
               <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
-                Open case
-                <ArrowUpRight className="h-4 w-4" />
+                Passcode required
+                <LockKeyhole className="h-4 w-4" />
               </span>
             </Link>
           );
@@ -3361,6 +3367,140 @@ function HomeClosingSection() {
   );
 }
 
+function CaseStudyUnlockedPage({ study }: { study: CaseStudy }) {
+  return (
+    <main id="top" className="min-h-screen text-[#1f2220]">
+      <PortfolioHeader caseStudy />
+      <div className="mx-auto max-w-6xl px-5 py-5 sm:px-8 lg:px-10">
+        <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
+          <ChevronRight className="h-4 w-4 rotate-180" />
+          Back to featured work
+        </Link>
+      </div>
+      <CaseStudyStoryView study={study} />
+      <OtherCaseStudiesSection currentStudyId={study.id} />
+      <PortfolioFooter />
+    </main>
+  );
+}
+
+function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
+  const [passcode, setPasscode] = useState("");
+  const [passcodeError, setPasscodeError] = useState("");
+  const [unlocked, setUnlocked] = useState(false);
+  const normalizedPasscode = passcode.trim();
+  const canSubmit = normalizedPasscode.length === caseStudyPasscodeLength;
+  const requestAccessHref =
+    "mailto:advrunr@gmail.com?subject=" +
+    encodeURIComponent(`Request access to ${study.product} case study`) +
+    "&body=" +
+    encodeURIComponent(`Hi Juan,\n\nI'd like to request access to the ${study.product} case study.\n\nThanks.`);
+
+  useEffect(() => {
+    try {
+      setUnlocked(window.sessionStorage.getItem(caseStudyUnlockStorageKey) === "true");
+    } catch {
+      setUnlocked(false);
+    }
+  }, []);
+
+  if (unlocked) {
+    return <CaseStudyUnlockedPage study={study} />;
+  }
+
+  return (
+    <main id="top" className="min-h-screen bg-[#f2efe7] text-[#1f2220]">
+      <PortfolioHeader caseStudy />
+      <section className="grid min-h-[calc(100vh-var(--portfolio-header-height))] place-items-center px-5 py-12 sm:px-8 lg:px-10">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="case-study-lock-title"
+          className="w-full max-w-xl rounded-lg border border-black/12 bg-[#fffefb]/94 p-4 shadow-[0_28px_80px_-62px_rgb(0_0_0/0.62)] sm:p-5"
+        >
+          <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-sm font-semibold text-black/60 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]">
+            <ChevronRight className="h-4 w-4 rotate-180" />
+            Back to featured work
+          </Link>
+
+          <div className="mt-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/45">{study.product}</p>
+            <h1 id="case-study-lock-title" className="mt-3 text-3xl font-semibold leading-tight text-black/88 sm:text-4xl">
+              Enter passcode to view case study
+            </h1>
+            <p className="mt-3 text-sm leading-6 text-black/66">
+              This case study includes protected project details. Enter the passcode to review the full work.
+            </p>
+          </div>
+
+          <form
+            className="mt-6"
+            onSubmit={(event) => {
+              event.preventDefault();
+
+              if (normalizedPasscode === caseStudyPasscode) {
+                try {
+                  window.sessionStorage.setItem(caseStudyUnlockStorageKey, "true");
+                } catch {}
+
+                setUnlocked(true);
+                return;
+              }
+
+              setPasscodeError("That passcode does not match. Try again or request access.");
+            }}
+          >
+            <label htmlFor="case-study-passcode" className="text-sm font-semibold leading-6 text-black/78">
+              Passcode
+            </label>
+            <input
+              id="case-study-passcode"
+              type="password"
+              value={passcode}
+              onChange={(event) => {
+                setPasscode(event.target.value.slice(0, caseStudyPasscodeLength));
+                setPasscodeError("");
+              }}
+              maxLength={caseStudyPasscodeLength}
+              autoComplete="one-time-code"
+              autoCapitalize="characters"
+              placeholder={`${caseStudyPasscodeLength}-character passcode`}
+              aria-invalid={Boolean(passcodeError)}
+              aria-describedby={passcodeError ? "case-study-passcode-error" : "case-study-passcode-progress"}
+              className="mt-2 h-12 w-full rounded-md border border-black/15 bg-white/80 px-3 text-base font-semibold tracking-[0.12em] text-black/82 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[rgb(var(--accent-rgb)/0.12)] aria-invalid:border-red-700 aria-invalid:ring-4 aria-invalid:ring-red-700/10"
+            />
+            <p id="case-study-passcode-progress" className="mt-2 text-xs leading-5 text-black/45">
+              {normalizedPasscode.length}/{caseStudyPasscodeLength} characters entered
+            </p>
+            {passcodeError ? (
+              <p id="case-study-passcode-error" className="mt-2 text-sm font-semibold leading-6 text-red-800">
+                {passcodeError}
+              </p>
+            ) : null}
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button
+                type="submit"
+                disabled={!canSubmit}
+                className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:border-black/12 disabled:bg-black/10 disabled:text-black/38"
+              >
+                View case study
+                <ArrowUpRight className="h-4 w-4" />
+              </button>
+              <a
+                href={requestAccessHref}
+                className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
+              >
+                Request access
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 export function FullCaseStudyPage({ studyId }: { studyId: string }) {
   const study = caseStudies.find((item) => item.id === studyId);
 
@@ -3380,20 +3520,7 @@ export function FullCaseStudyPage({ studyId }: { studyId: string }) {
     );
   }
 
-  return (
-    <main id="top" className="min-h-screen text-[#1f2220]">
-      <PortfolioHeader caseStudy />
-      <div className="mx-auto max-w-6xl px-5 py-5 sm:px-8 lg:px-10">
-        <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
-          <ChevronRight className="h-4 w-4 rotate-180" />
-          Back to featured work
-        </Link>
-      </div>
-      <CaseStudyStoryView study={study} />
-      <OtherCaseStudiesSection currentStudyId={study.id} />
-      <PortfolioFooter />
-    </main>
-  );
+  return <LockedCaseStudyPage study={study} />;
 }
 
 export function ResumePage() {
