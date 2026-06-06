@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowDown,
-  ArrowLeft,
   ArrowUpRight,
   BellRing,
   Camera,
@@ -19,7 +18,6 @@ import {
   Layers3,
   Link2,
   Mail,
-  LockKeyhole,
   Map,
   MonitorCheck,
   Route,
@@ -30,6 +28,8 @@ import {
   Tent,
   Wrench,
 } from "lucide-react";
+
+import { MaxHeightImageViewport } from "@/components/max-height-image-viewport";
 
 type SnapshotItem = {
   label: string;
@@ -59,6 +59,12 @@ type StoryItem = {
   evidence: string;
 };
 
+type CaseStudyContribution = {
+  owned: string[];
+  partnered: string[];
+  proof: string[];
+};
+
 export type CaseStudy = {
   id: string;
   shortLabel: string;
@@ -68,8 +74,11 @@ export type CaseStudy = {
   summary: string;
   role: string;
   status: string;
+  contribution?: CaseStudyContribution;
   heroImage: string;
   heroAlt: string;
+  thumbnailImage?: string;
+  thumbnailAlt?: string;
   accent: string;
   activeClass: string;
   icon: LucideIcon;
@@ -84,6 +93,33 @@ export type CaseStudy = {
   outcomes: string[];
   takeaway: string;
 };
+
+const fourPartJourneyCues: Array<{ label: string; icon: LucideIcon }> = [
+  { label: "Signal", icon: Compass },
+  { label: "Frame", icon: Target },
+  { label: "System", icon: Layers3 },
+  { label: "Outcome", icon: ArrowUpRight },
+];
+
+const fivePartJourneyCues: Array<{ label: string; icon: LucideIcon }> = [
+  { label: "Signal", icon: Compass },
+  { label: "Frame", icon: Target },
+  { label: "System", icon: Layers3 },
+  { label: "Expand", icon: Route },
+  { label: "Outcome", icon: ArrowUpRight },
+];
+
+function getJourneyCue(index: number, total: number) {
+  const cues = total >= 5 ? fivePartJourneyCues : fourPartJourneyCues;
+  return cues[index] ?? { label: "Thread", icon: Route };
+}
+
+function getCaseStudyThumbnail(study: CaseStudy) {
+  return {
+    src: study.thumbnailImage ?? study.heroImage,
+    alt: study.thumbnailAlt ?? study.heroAlt,
+  };
+}
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -268,6 +304,22 @@ export const caseStudies: CaseStudy[] = [
       "CampGlint is a native SwiftUI app that helps campers stop manually checking campground availability. The iOS experience centers on saved monitors, fast monitor creation, discovery for backup options, and trip readiness after a booking is secured.",
     role: "Founder, product designer, iOS builder",
     status: "Native build, launch readiness active",
+    contribution: {
+      owned: [
+        "Defined the native iOS product loop across Monitors, Create Monitor, Discover, Trips, and Settings.",
+        "Designed and built the SwiftUI app structure, interaction patterns, visual system, and key app states.",
+        "Framed launch readiness around auth, session restore, notifications, deep links, App Intents, device QA, and App Store preparation.",
+      ],
+      partnered: [
+        "Translated the campsite-availability problem into a monitor-based product model.",
+        "Kept booking handoff transparent by preserving official campground systems as the final reservation endpoint.",
+      ],
+      proof: [
+        "Monitors list and monitor detail",
+        "Create Monitor sheet and discovery recommendations",
+        "Trip readiness flow and native system integrations",
+      ],
+    },
     heroImage: "/projects/CampGlint/iOS%20app%20screens/01-monitors-list.png",
     heroAlt: "CampGlint iOS monitors list screen",
     accent: "bg-[#176B5D]",
@@ -658,6 +710,22 @@ export const caseStudies: CaseStudy[] = [
       "Across two rotations on Sales Navigator, I worked on product systems that turned LinkedIn relationship data into a focused seller workflow. The work spans launch-era Sales Navigator thinking, CRM and Gmail integrations, Salesforce and Microsoft Dynamics partner surfaces, admin and sync settings, search and lead workflows, onboarding, usage reporting, and later team expansion paths.",
     role: "Product designer across launch-era and later Sales Navigator rotations",
     status: "LinkedIn Sales Navigator product systems and integrations",
+    contribution: {
+      owned: [
+        "Contributed to Sales Navigator's shift from LinkedIn feature set into a standalone seller workspace.",
+        "Designed across seller workflows, CRM widgets, sync settings, admin controls, onboarding, reporting, and team expansion paths.",
+        "Helped make relationship intelligence portable across Sales Navigator, CRM, Gmail, and partner surfaces.",
+      ],
+      partnered: [
+        "Balanced seller action with admin trust across sync behavior, field mapping, activity capture, reporting, and governance.",
+        "Extended the product model from individual seller productivity into team and enterprise workflows.",
+      ],
+      proof: [
+        "Sales Navigator workspace and Lead Builder",
+        "CRM widgets, TeamLink paths, and sync settings",
+        "Salesforce controls, reporting, and multi-seat flows",
+      ],
+    },
     heroImage: "/projects/Sales%20Nav/Sales-Navigator-thumbnail-sm.png",
     heroAlt: "Sales Navigator product system mockups",
     accent: "bg-[#0a66c2]",
@@ -838,6 +906,22 @@ export const caseStudies: CaseStudy[] = [
       "Career Pages was LinkedIn's paid product for companies that needed stronger recruiting, hiring, and employee-experience storytelling. As the primary designer for member and admin experiences, I shaped paid Career Pages and related free Company Pages surfaces so Talent Brand managers could publish credible Life Page content and job seekers could evaluate companies, create alerts, and signal interest.",
     role: "Primary product designer across member and admin experiences",
     status: "Shipped LinkedIn recruiting product",
+    contribution: {
+      owned: [
+        "Owned member-facing and admin-facing Career Pages experiences as the primary product designer.",
+        "Designed authoring, editing, preview, targeting, publishing, Life Page modules, job alerts, and candidate action paths.",
+        "Connected paid Career Pages value to the broader free Company Pages ecosystem.",
+      ],
+      partnered: [
+        "Partnered with two PMs, PMM, UXR, and mobile and web engineering teams.",
+        "Balanced Talent Brand admin needs with job seeker research, trust, and action paths.",
+      ],
+      proof: [
+        "Admin publishing tools and Life Pages",
+        "Team tabs, employee stories, photos, and testimonials",
+        "Jobs tab, saved job alerts, and interest signals",
+      ],
+    },
     heroImage: "/projects/career-pages/Career-Pages-thumbnail-sm.png",
     heroAlt: "LinkedIn Career Pages composite showing desktop, mobile, ratings, and employer brand surfaces",
     accent: "bg-[#0a66c2]",
@@ -1020,6 +1104,22 @@ export const caseStudies: CaseStudy[] = [
       "LinkedIn Employee Experience explored how current and previous employees could rate what it was like to work at a company, then turn those verified signals into trusted company research for job seekers. I led design and research for the pilot across Company Pages, feed collection, privacy states, question systems, review concepts, and integration paths that later informed employee-focused Career Pages features.",
     role: "Design and research lead",
     status: "Pilot validated, patterns informed Career Pages launches",
+    contribution: {
+      owned: [
+        "Led design and research for the employee-generated company review pilot.",
+        "Designed the initial Company Pages collection model, privacy states, question system, skip and completion states, and aggregation patterns.",
+        "Explored how ratings, reviews, and employee signals could travel into Company Pages, Jobs, feed, recommendations, and Career Pages.",
+      ],
+      partnered: [
+        "Partnered with PM, PMM, and mobile and web engineers.",
+        "Used research to frame employee contribution, privacy, and trust as core product requirements.",
+      ],
+      proof: [
+        "Company Page module and feed give-and-get flow",
+        "Standard questions, expanded ratings, and subjective reviews",
+        "Company Pages, Jobs, feed, recommendations, and Career Pages integration concepts",
+      ],
+    },
     heroImage: "/projects/Employee%20experience/Employee-Experience-thumbnail-sm.png",
     heroAlt: "LinkedIn Employee Experience desktop and mobile Company Page pilot mocks",
     accent: "bg-[#0a66c2]",
@@ -1225,8 +1325,26 @@ export const caseStudies: CaseStudy[] = [
       "LinkedIn Sales Insights helped revenue teams use LinkedIn's company, member, and relationship data to size markets, prioritize accounts, improve CRM data, and align sales and marketing execution. My work sat in the product-maturity phase, turning dense insight discovery into repeatable workflows across reports, sources, account lists, CRM automation, and downstream activation.",
     role: "Lead product designer across core experience and integrations",
     status: "LinkedIn enterprise product",
-    heroImage: "/projects/sales-insights/Sales-Insights-thumbnail-md.png",
-    heroAlt: "LinkedIn Sales Insights report interface with account filters, personas, market sizing, and account table",
+    contribution: {
+      owned: [
+        "Led design across core planning workflows, reports, sources, account lists, exports, and integration states.",
+        "Reframed dense GTM data around planning confidence, data trust, and repeatable enterprise workflows.",
+        "Designed CRM and CSV automation moments as core UX surfaces, not back-office setup.",
+      ],
+      partnered: [
+        "Partnered with two PMs across core experience and integrations.",
+        "Onboarded two temporarily reassigned designers and helped them ramp on rapid-cycle Sales Insights initiatives.",
+        "Connected Sales Ops planning needs to downstream CRM, Marketing, and Sales Navigator activation.",
+      ],
+      proof: [
+        "In the report workflow, source model, and account-matching experience.",
+        "In field mapping, export paths, CRM sync, review states, and exception handling.",
+      ],
+    },
+    heroImage: "/projects/sales-insights/LSI%20Report%20Builder%20-%20Mercado%20Update%402x.png",
+    heroAlt: "LinkedIn Sales Insights report builder showing filters, market segments, trend metrics, and account results",
+    thumbnailImage: "/projects/sales-insights/Sales-Insights-thumbnail-md.png",
+    thumbnailAlt: "LinkedIn Sales Insights report interface with account filters, personas, market sizing, and account table",
     accent: "bg-[#336f8f]",
     activeClass: "border-[#336f8f] bg-[#336f8f] text-white",
     icon: MonitorCheck,
@@ -1406,6 +1524,22 @@ export const caseStudies: CaseStudy[] = [
       "Seller Agent explored how Sales Navigator value could meet sellers inside the main LinkedIn experience. As the sole designer, I shaped a 0-to-1 concept that used LinkedIn social signals, relationship paths, account context, and guided prompts to help sellers move from research to outreach without rebuilding context across tools.",
     role: "Sole designer with product and AI Agent partners",
     status: "Foundational LinkedIn AI Agent exploration",
+    contribution: {
+      owned: [
+        "Defined the 0-to-1 in-context AI agent concept for seller prospecting on LinkedIn.com.",
+        "Mapped the feed-to-lead-to-outreach storyboard and translated seller research signals into guided prompts.",
+        "Explored agent UI patterns that balanced free-form questions, structured prompts, source-backed context, and seller control.",
+      ],
+      partnered: [
+        "Worked with product, research, engineering, and AI Agent platform partners.",
+        "Used internal seller feedback to tighten trust, prompt density, relationship-path visibility, and action control.",
+      ],
+      proof: [
+        "Prospecting map and feed digest",
+        "Profile agent panel, warm paths, and talking points",
+        "Draft outreach and mobile agent flow",
+      ],
+    },
     heroImage: "/projects/seller-agent/Seller-Agent-thumbnail-md.png",
     heroAlt: "Seller Agent concept embedded beside a LinkedIn profile with prompts, relationship paths, and draft actions",
     accent: "bg-[var(--accent)]",
@@ -1581,12 +1715,11 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 const phoneCaseIds = new Set(["campglint", "graphicsnack-ios"]);
-const publicCaseStudyIds = new Set(["campglint"]);
-const caseStudyPasscode = "JM2026";
-const caseStudyPasscodeLength = caseStudyPasscode.length;
+const wideThumbnailCaseIds = new Set(["seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"]);
+const alignedWideThumbnailCaseIds = new Set(["seller-agent", "sales-navigator-multiseat"]);
 
-const featuredCaseStudyIds = ["campglint", "sales-insights", "seller-agent"];
-const compactCaseStudyIds = ["company-pages", "career-pages", "sales-navigator-multiseat"];
+const featuredCaseStudyIds = ["sales-insights", "seller-agent", "sales-navigator-multiseat", "campglint", "company-pages", "career-pages"];
+const compactCaseStudyIds: string[] = [];
 const routedCaseStudyIds = ["campglint", "sales-insights", "seller-agent", "company-pages", "career-pages", "sales-navigator-multiseat"];
 
 const resumeSignals = [
@@ -1778,11 +1911,13 @@ function StoryProductMedia({
   alt,
   priority = false,
   phone = false,
+  maxHeightClass,
 }: {
   src: string;
   alt: string;
   priority?: boolean;
   phone?: boolean;
+  maxHeightClass?: string;
 }) {
   if (phone) {
     return (
@@ -1793,9 +1928,67 @@ function StoryProductMedia({
   }
 
   return (
-    <figure className="overflow-hidden rounded-lg border border-black/12 bg-white">
-      <img src={src} alt={alt} className="block max-h-[36rem] w-full object-cover object-top" loading={priority ? "eager" : "lazy"} />
-    </figure>
+    <MaxHeightImageViewport src={src} alt={alt} priority={priority} maxHeightClass={maxHeightClass} />
+  );
+}
+
+function ExactContributionModule({
+  contribution,
+  compact = false,
+}: {
+  contribution: CaseStudyContribution;
+  compact?: boolean;
+}) {
+  const groups = [
+    {
+      title: "I personally owned",
+      items: contribution.owned,
+    },
+    {
+      title: "I shaped with partners",
+      items: contribution.partnered,
+    },
+    {
+      title: "Where this shows up",
+      items: contribution.proof,
+    },
+  ];
+
+  return (
+    <section className={compact ? "grid gap-5 border-t border-black/12 pt-7" : "grid gap-6 border-b border-black/12 pb-12"}>
+      <StorySectionLabel eyebrow="Contribution" title="What I owned and shaped" />
+      <div className={compact ? "grid gap-4" : "grid gap-4 lg:grid-cols-3"}>
+        {groups.map((group) => (
+          <div key={group.title} className="border-l border-black/14 pl-4">
+            <h3 className="text-sm font-semibold leading-5 text-black/78">{group.title}</h3>
+            <ul className="mt-3 grid gap-2">
+              {group.items.slice(0, 2).map((item) => (
+                <li key={item} className="text-sm leading-6 text-black/62">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function CaseStudyImagePlaceholder({ accent }: { accent: string }) {
+  return (
+    <section id="problem-frame-visual" aria-label="Image placeholder" className="scroll-mt-32 border-b border-black/12 pb-12">
+      <div className="relative min-h-[13rem] overflow-hidden rounded-lg border border-black/12 bg-[#f3f0e8] sm:aspect-[16/7]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(0_0_0/0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgb(0_0_0/0.04)_1px,transparent_1px)] bg-[size:44px_44px]" />
+        <div className="absolute inset-x-6 bottom-6 top-6 rounded-md border border-dashed border-black/18 bg-[#fffefb]/36 sm:inset-x-8 sm:bottom-8 sm:top-8" />
+        <div className={`absolute left-6 top-6 h-2 w-24 rounded-full ${accent} sm:left-8 sm:top-8`} />
+        <div className="absolute inset-0 grid place-items-center">
+          <div className="grid h-12 w-12 place-items-center rounded-md border border-black/12 bg-[#fffefb]/76 text-black/36">
+            <Camera className="h-5 w-5" aria-hidden="true" />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1843,7 +2036,13 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
           </div>
 
           <div className="justify-self-center lg:justify-self-end">
-            <StoryProductMedia src={study.heroImage} alt={study.heroAlt} priority phone={isPhoneCase} />
+            <StoryProductMedia
+              src={study.heroImage}
+              alt={study.heroAlt}
+              priority
+              phone={isPhoneCase}
+              maxHeightClass="max-h-[19.5rem] sm:max-h-[22.5rem]"
+            />
           </div>
         </div>
 
@@ -1887,54 +2086,68 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                 eyebrow="Problem frame"
                 title={brief.question}
               />
-              <div className="grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(16rem,0.45fr)]">
-                <div className="grid gap-5">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">My role</p>
-                    <p className="mt-2 text-base font-semibold leading-7 text-black/82">{study.role}</p>
-                    {study.id === "campglint" ? null : (
-                      <p className="mt-2 text-sm leading-6 text-black/62">{study.platform} / {study.status}</p>
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">What mattered</p>
-                    <div className="mt-3 grid gap-4">
-                      {primaryImpact.map((item) => (
-                        <div key={item.title} className="border-l border-black/18 pl-4">
-                          <h3 className="text-base font-semibold leading-6 text-black/84">{item.title}</h3>
-                          <p className="mt-1.5 text-sm leading-6 text-black/64">{item.detail}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+              <div className="grid gap-6 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">My role</p>
+                  <p className="mt-2 text-base font-semibold leading-7 text-black/82">{study.role}</p>
+                  {study.id === "campglint" ? null : (
+                    <p className="mt-2 text-sm leading-6 text-black/62">{study.platform} / {study.status}</p>
+                  )}
                 </div>
-
-                <div className="border-l border-black/14 pl-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">Scope</p>
-                  <ul className="mt-3 grid gap-3">
-                    {study.systemBuild.slice(0, 5).map((item) => (
-                      <li key={item} className="text-sm leading-6 text-black/66">{item}</li>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">What I focused on</p>
+                  <div className="mt-3 grid gap-4">
+                    {primaryImpact.map((item) => (
+                      <div key={item.title} className="border-l border-black/18 pl-4">
+                        <h3 className="text-base font-semibold leading-6 text-black/84">{item.title}</h3>
+                        <p className="mt-1.5 text-sm leading-6 text-black/64">{item.detail}</p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </section>
 
-            <section className="grid gap-7 border-b border-black/12 pb-12">
+            <CaseStudyImagePlaceholder accent={study.accent} />
+
+            <section id="scope" className="grid gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
+              <StorySectionLabel
+                eyebrow="Scope"
+                title="What the work covered"
+              />
+              <ul className="grid gap-4 sm:grid-cols-2">
+                {study.systemBuild.map((item) => (
+                  <li key={item} className="border-l border-black/18 pl-4 text-sm leading-6 text-black/66">{item}</li>
+                ))}
+              </ul>
+            </section>
+
+            {study.contribution ? <ExactContributionModule contribution={study.contribution} /> : null}
+
+            <section id="how-it-unfolded" className="grid scroll-mt-32 gap-7 border-b border-black/12 pb-12">
               <StorySectionLabel
                 eyebrow="How it unfolded"
                 title="From ambiguity to product direction"
               />
-              <ol className="grid gap-0 border-t border-black/12">
-                {study.journey.map((item) => (
-                  <li key={item.phase} className="grid gap-4 border-b border-black/12 py-5 sm:grid-cols-[4rem_minmax(12rem,0.38fr)_minmax(0,1fr)]">
-                    <p className="text-sm font-semibold text-black/36">{item.phase}</p>
-                    <div>
-                      <h3 className="text-base font-semibold leading-6 text-black/84">{item.title}</h3>
-                    </div>
-                    <p className="text-sm leading-6 text-black/66">{item.detail}</p>
-                  </li>
-                ))}
+              <ol className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                {study.journey.map((item, index) => {
+                  const cue = getJourneyCue(index, study.journey.length);
+                  const CueIcon = cue.icon;
+
+                  return (
+                    <li key={item.phase} className="group relative flex min-h-[13.5rem] flex-col overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/72 p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_58px_-50px_rgb(0_0_0/0.55)]">
+                      <div className="flex items-center gap-2.5">
+                        <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-md text-white ${study.accent}`}>
+                          <CueIcon className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{cue.label}</p>
+                        <span className="h-px flex-1 bg-black/12" />
+                      </div>
+                      <h3 className="mt-4 text-base font-semibold leading-6 text-balance text-black/86">{item.title}</h3>
+                      <p className="text-clamp-3 mt-2.5 text-sm leading-6 text-black/62">{item.detail}</p>
+                    </li>
+                  );
+                })}
               </ol>
             </section>
 
@@ -2127,9 +2340,6 @@ function PortfolioFooter() {
                 <p className="mt-0.5 text-sm text-white/66">Product Designer and Builder</p>
               </div>
             </div>
-            <p className="mt-7 max-w-lg text-lg font-normal leading-7 text-white/74 sm:text-xl sm:leading-8 lg:text-[1.35rem]">
-              Product systems for enterprise teams, AI workflows, and founder-led products.
-            </p>
           </div>
 
           <nav className="flex flex-wrap gap-3 lg:justify-end" aria-label="Social links">
@@ -2409,13 +2619,20 @@ function CampGlintDeviceScene({
 
 function CaseStudyThumbnail({ study }: { study: CaseStudy }) {
   const isPhoneCase = phoneCaseIds.has(study.id);
+  const isWideThumbnail = wideThumbnailCaseIds.has(study.id);
+  const isAlignedWideThumbnail = alignedWideThumbnailCaseIds.has(study.id);
+  const thumbnail = getCaseStudyThumbnail(study);
 
   return (
     <div className="relative overflow-hidden border-b border-black/12 bg-[#eee9df]">
       {isPhoneCase ? (
-        <img src={study.heroImage} alt={study.heroAlt} className="mx-auto block h-44 w-auto object-contain object-top pt-3" loading="lazy" />
+        <img src={thumbnail.src} alt={thumbnail.alt} className="mx-auto block h-44 w-auto object-contain object-top pt-3" loading="lazy" />
+      ) : isAlignedWideThumbnail ? (
+        <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[1444/512] w-full -translate-y-2 object-contain object-top" loading="lazy" />
+      ) : isWideThumbnail ? (
+        <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[1444/512] w-full object-contain object-center" loading="lazy" />
       ) : (
-        <img src={study.heroImage} alt={study.heroAlt} className="block aspect-[16/9] w-full object-cover object-top" loading="lazy" />
+        <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[16/9] w-full object-cover object-top" loading="lazy" />
       )}
     </div>
   );
@@ -2440,11 +2657,10 @@ function CaseStudyPreviewMeta({ study, compact = false }: { study: CaseStudy; co
   const meta = [
     ["Role", study.role],
     ["Platform", study.platform],
-    ["Status", study.status],
   ];
 
   return (
-    <div className={(compact ? "mt-5 grid gap-3 xl:grid-cols-3" : "mt-6 grid gap-4 sm:grid-cols-3") + " border-t border-black/12 pt-4"}>
+    <div className={(compact ? "mt-5 grid gap-3 xl:grid-cols-2" : "mt-6 grid gap-4 sm:grid-cols-2") + " border-t border-black/12 pt-4"}>
       {meta.map(([label, value]) => (
         <div key={label}>
           <p className="text-[0.68rem] font-semibold uppercase text-black/42">{label}</p>
@@ -2455,22 +2671,11 @@ function CaseStudyPreviewMeta({ study, compact = false }: { study: CaseStudy; co
   );
 }
 
-function CaseStudyCardAction({ study }: { study: CaseStudy }) {
-  const isPublic = publicCaseStudyIds.has(study.id);
-
+function CaseStudyCardAction() {
   return (
     <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
-      {isPublic ? (
-        <>
-          Open case
-          <ArrowUpRight className="h-4 w-4" />
-        </>
-      ) : (
-        <>
-          Passcode required
-          <LockKeyhole className="h-4 w-4" />
-        </>
-      )}
+      Open case
+      <ArrowUpRight className="h-4 w-4" />
     </span>
   );
 }
@@ -2493,7 +2698,7 @@ function GridBLeadPreview({ study }: { study: CaseStudy }) {
       <CaseStudyPreviewImpactList study={study} />
       <CaseStudyPreviewMeta study={study} />
 
-      <CaseStudyCardAction study={study} />
+      <CaseStudyCardAction />
     </div>
   );
 }
@@ -2523,48 +2728,72 @@ function GridBSupportingCasePreview({ study }: { study: CaseStudy }) {
         <CaseStudyPreviewImpactList study={study} compact />
         <CaseStudyPreviewMeta study={study} compact />
 
-        <CaseStudyCardAction study={study} />
+        <CaseStudyCardAction />
       </div>
     </Link>
   );
 }
 
-function FeaturedGridBento({ studies }: { studies: CaseStudy[] }) {
-  const [campGlint, ...supporting] = studies;
+function GridBLargeCasePreview({ study }: { study: CaseStudy }) {
+  const isCampGlint = study.id === "campglint";
+  const thumbnail = getCaseStudyThumbnail(study);
 
-  if (!campGlint) return null;
+  return (
+    <Link href={"/case-studies/" + study.id} className="group grid overflow-hidden rounded-xl border border-black/15 bg-[#fffefb]/94 shadow-[0_24px_76px_-64px_rgb(0_0_0/0.6)] transition duration-300 hover:-translate-y-0.5">
+      <img
+        src={isCampGlint ? campGlintLargeThumbnail : thumbnail.src}
+        alt={isCampGlint ? "CampGlint iOS app screens showing discovery, monitor tracking, and trip readiness" : thumbnail.alt}
+        className={`block aspect-[1800/608] w-full border-b border-black/12 object-cover ${isCampGlint ? "object-center" : "object-top"}`}
+        loading="eager"
+      />
+      <GridBLeadPreview study={study} />
+    </Link>
+  );
+}
+
+function FeaturedGridBento({ studies }: { studies: CaseStudy[] }) {
+  const [leadStudy, ...supporting] = studies;
+  const campGlintIndex = supporting.findIndex((study) => study.id === "campglint");
+  const supportingBeforeCampGlint = campGlintIndex >= 0 ? supporting.slice(0, campGlintIndex) : supporting;
+  const campGlintStudy = campGlintIndex >= 0 ? supporting[campGlintIndex] : undefined;
+  const supportingAfterCampGlint = campGlintIndex >= 0 ? supporting.slice(campGlintIndex + 1) : [];
+
+  if (!leadStudy) return null;
 
   return (
     <div className="grid gap-6 lg:gap-8">
-      <Link href={"/case-studies/" + campGlint.id} className="group grid overflow-hidden rounded-xl border border-black/15 bg-[#fffefb]/94 shadow-[0_24px_76px_-64px_rgb(0_0_0/0.6)] transition duration-300 hover:-translate-y-0.5">
-        <img
-          src={campGlintLargeThumbnail}
-          alt="CampGlint iOS app screens showing discovery, monitor tracking, and trip readiness"
-          className="block aspect-[1800/760] w-full border-b border-black/12 object-cover object-center"
-          loading="eager"
-        />
-        <GridBLeadPreview study={campGlint} />
-      </Link>
-      <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-        {supporting.map((study) => (
-          <GridBSupportingCasePreview key={study.id} study={study} />
-        ))}
-      </div>
+      <GridBLargeCasePreview study={leadStudy} />
+      {supportingBeforeCampGlint.length > 0 ? (
+        <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+          {supportingBeforeCampGlint.map((study) => (
+            <GridBSupportingCasePreview key={study.id} study={study} />
+          ))}
+        </div>
+      ) : null}
+      {campGlintStudy ? <GridBLargeCasePreview study={campGlintStudy} /> : null}
+      {supportingAfterCampGlint.length > 0 ? (
+        <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+          {supportingAfterCampGlint.map((study) => (
+            <GridBSupportingCasePreview key={study.id} study={study} />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
 
 function CompactCaseStudyThumbnail({ study }: { study: CaseStudy }) {
   const isPhoneCase = phoneCaseIds.has(study.id);
+  const thumbnail = getCaseStudyThumbnail(study);
 
   return (
     <div className="overflow-hidden border-b border-black/12 bg-[#eee9df]">
       {isPhoneCase ? (
         <div className="grid h-32 place-items-center px-4 py-3">
-          <img src={study.heroImage} alt={study.heroAlt} className="max-h-full w-auto max-w-full object-contain object-top" loading="lazy" />
+          <img src={thumbnail.src} alt={thumbnail.alt} className="max-h-full w-auto max-w-full object-contain object-top" loading="lazy" />
         </div>
       ) : (
-        <img src={study.heroImage} alt={study.heroAlt} className="block h-32 w-full object-cover object-top" loading="lazy" />
+        <img src={thumbnail.src} alt={thumbnail.alt} className="block h-32 w-full object-cover object-top" loading="lazy" />
       )}
     </div>
   );
@@ -2580,7 +2809,7 @@ function CompactCaseStudyCard({ study }: { study: CaseStudy }) {
       <div className="flex flex-1 flex-col p-4">
         <h4 className="text-lg font-semibold leading-tight text-black/88">{study.product}</h4>
         <p className="text-clamp-3 mt-2 text-sm leading-6 text-black/66">{study.headline}</p>
-        <CaseStudyCardAction study={study} />
+        <CaseStudyCardAction />
       </div>
     </Link>
   );
@@ -2590,6 +2819,8 @@ function CompactCaseStudyRow() {
   const compactStudies = compactCaseStudyIds
     .map((id) => caseStudies.find((study) => study.id === id))
     .filter((study): study is CaseStudy => Boolean(study));
+
+  if (compactStudies.length === 0) return null;
 
   return (
     <div className="mt-10 lg:mt-12">
@@ -2607,7 +2838,7 @@ function CompactCaseStudyRow() {
 
 function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
   const isPhoneCase = phoneCaseIds.has(study.id);
-  const isPublic = publicCaseStudyIds.has(study.id);
+  const thumbnail = getCaseStudyThumbnail(study);
 
   return (
     <Link
@@ -2616,9 +2847,9 @@ function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
     >
       <div className="grid h-28 shrink-0 place-items-center overflow-hidden border-b border-black/12 bg-[#eee9df]">
         {isPhoneCase ? (
-          <img src={study.heroImage} alt={study.heroAlt} className="max-h-full w-auto max-w-full object-contain object-top p-2" loading="lazy" />
+          <img src={thumbnail.src} alt={thumbnail.alt} className="max-h-full w-auto max-w-full object-contain object-top p-2" loading="lazy" />
         ) : (
-          <img src={study.heroImage} alt={study.heroAlt} className="h-full w-full object-cover object-top" loading="lazy" />
+          <img src={thumbnail.src} alt={thumbnail.alt} className="h-full w-full object-cover object-top" loading="lazy" />
         )}
       </div>
       <div className="flex min-h-0 flex-1 flex-col p-3.5">
@@ -2626,17 +2857,8 @@ function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
         <h3 className="text-clamp-2 mt-1.5 text-sm font-semibold leading-5 text-black/88">{study.product}</h3>
         <p className="text-clamp-3 mt-2 text-xs leading-5 text-black/62">{study.headline}</p>
         <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-xs font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
-          {isPublic ? (
-            <>
-              Open case
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </>
-          ) : (
-            <>
-              Passcode
-              <LockKeyhole className="h-3.5 w-3.5" />
-            </>
-          )}
+          Open case
+          <ArrowUpRight className="h-3.5 w-3.5" />
         </span>
       </div>
     </Link>
@@ -2762,6 +2984,8 @@ function HomepageStoryProofPoints() {
 }
 
 function HomepageStoryMedia({ study }: { study: CaseStudy }) {
+  const thumbnail = getCaseStudyThumbnail(study);
+
   if (study.id === "campglint") {
     return (
       <div className="overflow-hidden rounded-lg border border-black/12 bg-[#F0F4F7]">
@@ -2772,7 +2996,7 @@ function HomepageStoryMedia({ study }: { study: CaseStudy }) {
 
   return (
     <div className="overflow-hidden rounded-lg border border-black/12 bg-white">
-      <img src={study.heroImage} alt={study.heroAlt} className="block aspect-[16/9] w-full object-cover object-top" loading="lazy" />
+      <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[16/9] w-full object-cover object-top" loading="lazy" />
     </div>
   );
 }
@@ -2796,7 +3020,7 @@ function HomepageStoryLeadStudy({ study }: { study: CaseStudy }) {
             </div>
           ))}
         </div>
-        <CaseStudyCardAction study={study} />
+        <CaseStudyCardAction />
       </div>
       <HomepageStoryMedia study={study} />
     </Link>
@@ -2814,13 +3038,13 @@ function HomepageStorySupportingStudy({ study }: { study: CaseStudy }) {
         <p className="mt-3 max-w-3xl text-base leading-7 text-black/66">{study.headline}</p>
         {brief ? <p className="mt-4 text-sm font-medium leading-6 text-black/62">{brief.question}</p> : null}
         <div className="mt-5 flex flex-wrap gap-2">
-          {[study.role, study.platform, study.status].map((item) => (
+          {[study.role, study.platform].map((item) => (
             <span key={item} className="border-l border-black/18 pl-3 text-xs font-semibold leading-5 text-black/52">
               {item}
             </span>
           ))}
         </div>
-        <CaseStudyCardAction study={study} />
+        <CaseStudyCardAction />
       </div>
     </Link>
   );
@@ -2840,19 +3064,23 @@ function HomepageStoryNotableWork() {
         <p className="text-sm leading-6 text-black/62">Smaller public-safe previews that show the same pattern across enterprise systems, talent products, and admin workflows.</p>
       </div>
       <div className="mt-6 border-t border-black/12">
-        {compactStudies.map((study) => (
-          <Link key={study.id} href={"/case-studies/" + study.id} className="group grid gap-4 border-b border-black/12 py-5 md:grid-cols-[14rem_minmax(0,1fr)_auto] md:items-center">
-            <img src={study.heroImage} alt={study.heroAlt} className="block aspect-[2.82/1] w-full rounded-md border border-black/12 object-cover object-top" loading="lazy" />
-            <div>
-              <h4 className="text-lg font-semibold leading-7 text-black/86">{study.product}</h4>
-              <p className="mt-1 max-w-3xl text-sm leading-6 text-black/62">{study.headline}</p>
-            </div>
-            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
-              Passcode required
-              <LockKeyhole className="h-4 w-4" />
-            </span>
-          </Link>
-        ))}
+        {compactStudies.map((study) => {
+          const thumbnail = getCaseStudyThumbnail(study);
+
+          return (
+            <Link key={study.id} href={"/case-studies/" + study.id} className="group grid gap-4 border-b border-black/12 py-5 md:grid-cols-[14rem_minmax(0,1fr)_auto] md:items-center">
+              <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[2.82/1] w-full rounded-md border border-black/12 object-cover object-top" loading="lazy" />
+              <div>
+                <h4 className="text-lg font-semibold leading-7 text-black/86">{study.product}</h4>
+                <p className="mt-1 max-w-3xl text-sm leading-6 text-black/62">{study.headline}</p>
+              </div>
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
+                Open case
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
@@ -3133,125 +3361,6 @@ function HomeClosingSection() {
   );
 }
 
-function LockedCaseStudyPage({
-  study,
-}: {
-  study: CaseStudy;
-}) {
-  const [passcode, setPasscode] = useState("");
-  const [passcodeError, setPasscodeError] = useState("");
-  const [unlocked, setUnlocked] = useState(false);
-  const canSubmit = passcode.length === caseStudyPasscodeLength;
-  const requestAccessHref =
-    "mailto:advrunr@gmail.com?subject=" +
-    encodeURIComponent(`Request access to ${study.product} case study`) +
-    "&body=" +
-    encodeURIComponent(`Hi Juan,\n\nI'd like to request access to the ${study.product} case study.\n\nThanks.`);
-
-  if (unlocked) {
-    return (
-      <main id="top" className="min-h-screen text-[#1f2220]">
-        <PortfolioHeader caseStudy />
-        <div className="mx-auto max-w-6xl px-5 py-5 sm:px-8 lg:px-10">
-          <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
-            <ChevronRight className="h-4 w-4 rotate-180" />
-            Back to featured work
-          </Link>
-        </div>
-        <CaseStudyStoryView study={study} />
-        <OtherCaseStudiesSection currentStudyId={study.id} />
-        <PortfolioFooter />
-      </main>
-    );
-  }
-
-  return (
-    <main id="top" className="min-h-screen bg-[#f2efe7] text-[#1f2220]">
-      <PortfolioHeader caseStudy />
-      <section className="grid min-h-[calc(100vh-var(--portfolio-header-height))] place-items-center px-5 py-12 sm:px-8 lg:px-10">
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="case-study-lock-title"
-          className="w-full max-w-xl rounded-lg border border-black/12 bg-[#fffefb]/94 p-4 shadow-[0_28px_80px_-62px_rgb(0_0_0/0.62)] sm:p-5"
-        >
-          <Link href="/" className="inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-sm font-semibold text-black/60 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]">
-            <ArrowLeft className="h-4 w-4" />
-            Back to main page
-          </Link>
-
-          <div className="mt-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/45">{study.product}</p>
-            <h1 id="case-study-lock-title" className="mt-3 text-3xl font-semibold leading-tight text-black/88 sm:text-4xl">
-              Enter passcode to view case study
-            </h1>
-            <p className="mt-3 text-sm leading-6 text-black/66">
-              This project includes access-controlled details. Enter the passcode or request access to review the full case study.
-            </p>
-          </div>
-
-          <form
-            className="mt-6"
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (passcode === caseStudyPasscode) {
-                setUnlocked(true);
-                return;
-              }
-
-              setPasscodeError("That passcode does not match. Try again or request access.");
-            }}
-          >
-            <label htmlFor="case-study-passcode" className="text-sm font-semibold leading-6 text-black/78">
-              Passcode
-            </label>
-            <input
-              id="case-study-passcode"
-              type="password"
-              value={passcode}
-              onChange={(event) => {
-                setPasscode(event.target.value.slice(0, caseStudyPasscodeLength));
-                setPasscodeError("");
-              }}
-              maxLength={caseStudyPasscodeLength}
-              autoComplete="one-time-code"
-              placeholder={`${caseStudyPasscodeLength}-character passcode`}
-              aria-invalid={Boolean(passcodeError)}
-              aria-describedby={passcodeError ? "case-study-passcode-error" : "case-study-passcode-progress"}
-              className="mt-2 h-12 w-full rounded-md border border-black/15 bg-white/80 px-3 text-base font-semibold tracking-[0.12em] text-black/82 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[rgb(var(--accent-rgb)/0.12)] aria-invalid:border-red-700 aria-invalid:ring-4 aria-invalid:ring-red-700/10"
-            />
-            <p id="case-study-passcode-progress" className="mt-2 text-xs leading-5 text-black/45">
-              {passcode.length}/{caseStudyPasscodeLength} characters entered
-            </p>
-            {passcodeError ? (
-              <p id="case-study-passcode-error" className="mt-2 text-sm font-semibold leading-6 text-red-800">
-                {passcodeError}
-              </p>
-            ) : null}
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button
-                type="submit"
-                disabled={!canSubmit}
-                className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:border-black/12 disabled:bg-black/10 disabled:text-black/38"
-              >
-                View case study
-                <ArrowUpRight className="h-4 w-4" />
-              </button>
-              <a
-                href={requestAccessHref}
-                className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
-              >
-                Request access
-              </a>
-            </div>
-          </form>
-        </div>
-      </section>
-    </main>
-  );
-}
-
 export function FullCaseStudyPage({ studyId }: { studyId: string }) {
   const study = caseStudies.find((item) => item.id === studyId);
 
@@ -3268,12 +3377,6 @@ export function FullCaseStudyPage({ studyId }: { studyId: string }) {
           </Link>
         </section>
       </main>
-    );
-  }
-
-  if (!publicCaseStudyIds.has(study.id)) {
-    return (
-      <LockedCaseStudyPage study={study} />
     );
   }
 
@@ -3296,11 +3399,162 @@ export function FullCaseStudyPage({ studyId }: { studyId: string }) {
 export function ResumePage() {
   return (
     <main id="top" className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
-      <PortfolioHeader caseStudy />
+      <PortfolioHeader />
       <ResumeSnapshot standalone />
       <HomeClosingSection />
       <PortfolioFooter />
     </main>
+  );
+}
+
+function HomeHeroGraphic() {
+  return (
+    <figure
+      aria-hidden="true"
+      className="relative isolate h-[18rem] overflow-hidden border border-black/12 bg-[var(--accent)] shadow-[0_30px_86px_-66px_rgb(0_0_0/0.74)] [clip-path:polygon(8%_0,100%_0,94%_82%,68%_100%,0_92%,0_16%)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out sm:h-[22rem] lg:h-[26rem]"
+      style={{ transform: "translate3d(var(--hero-plate-x, 0px), var(--hero-plate-y, 0px), 0)" }}
+    >
+      <img
+        src="/brand/background.JPG"
+        alt=""
+        loading="eager"
+        decoding="async"
+        className="absolute inset-0 -z-30 h-full w-full object-cover object-[54%_9%] opacity-92 saturate-[0.82] contrast-110 motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out"
+        style={{ transform: "translate3d(var(--hero-bg-x, 0px), calc(var(--hero-bg-y, 0px) - 18px), 0) scale(1.14)" }}
+      />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(118deg,rgb(24_32_112/0.90)_0%,rgb(24_32_112/0.58)_44%,rgb(4_116_179/0.16)_100%)]" />
+      <div
+        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.08)_1px,transparent_1px)] bg-[size:56px_56px] opacity-45 [mask-image:linear-gradient(to_right,rgb(24_32_112),transparent_78%)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out"
+        style={{ transform: "translate3d(var(--hero-grid-x, 0px), var(--hero-grid-y, 0px), 0)" }}
+      />
+
+      <div className="absolute -left-12 bottom-10 h-32 w-56 rotate-[-11deg] border border-white/24 sm:h-40 sm:w-72" />
+      <div className="absolute right-14 top-7 h-36 w-px bg-white/28" />
+      <div className="absolute left-8 top-14 h-px w-[82%] rotate-[20deg] bg-white/26" />
+      <div className="absolute bottom-0 left-0 right-0 h-28 bg-[linear-gradient(to_top,rgb(24_32_112/0.74),transparent)]" />
+      <div className="absolute bottom-9 right-9 grid w-44 grid-cols-6 gap-2">
+        {[0, 1, 2, 3, 4, 5].map((item) => (
+          <span key={item} className="h-1 bg-white/34" />
+        ))}
+      </div>
+      <img
+        src="/brand/JM_logo_mark_white.png"
+        alt=""
+        className="absolute bottom-8 left-8 h-10 w-10 object-contain opacity-90 motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out sm:h-12 sm:w-12"
+        style={{ transform: "translate3d(var(--hero-logo-x, 0px), var(--hero-logo-y, 0px), 0)" }}
+      />
+    </figure>
+  );
+}
+
+function HomeHeroVisual() {
+  const visualRef = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const reduceMotionRef = useRef(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    function resetParallax() {
+      setParallaxVars(0);
+    }
+
+    function syncMotionPreference() {
+      reduceMotionRef.current = mediaQuery.matches;
+
+      if (mediaQuery.matches) {
+        resetParallax();
+        return;
+      }
+
+      updateScrollParallax();
+    }
+
+    function updateScrollParallax() {
+      if (reduceMotionRef.current) return;
+
+      const visual = visualRef.current;
+
+      if (!visual) return;
+
+      const rect = visual.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 1;
+      const visualCenter = rect.top + rect.height / 2;
+      const viewportCenter = viewportHeight / 2;
+      const progress = Math.max(-1, Math.min(1, (viewportCenter - visualCenter) / viewportHeight));
+
+      setParallaxVars(progress);
+    }
+
+    function handleScroll() {
+      updateScrollParallax();
+    }
+
+    syncMotionPreference();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    mediaQuery.addEventListener("change", syncMotionPreference);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      mediaQuery.removeEventListener("change", syncMotionPreference);
+
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
+
+  function setParallaxVars(progress: number) {
+    if (animationFrameRef.current !== null) {
+      window.cancelAnimationFrame(animationFrameRef.current);
+    }
+
+    animationFrameRef.current = window.requestAnimationFrame(() => {
+      const visual = visualRef.current;
+
+      if (!visual) return;
+
+      visual.style.setProperty("--hero-plate-x", `${progress * -5}px`);
+      visual.style.setProperty("--hero-plate-y", `${progress * -16}px`);
+      visual.style.setProperty("--hero-bg-x", `${progress * 8}px`);
+      visual.style.setProperty("--hero-bg-y", `${progress * 54}px`);
+      visual.style.setProperty("--hero-grid-x", `${progress * -12}px`);
+      visual.style.setProperty("--hero-grid-y", `${progress * -30}px`);
+      visual.style.setProperty("--hero-photo-x", `${progress * 16}px`);
+      visual.style.setProperty("--hero-photo-y", `${progress * -44}px`);
+      visual.style.setProperty("--hero-logo-x", `${progress * -9}px`);
+      visual.style.setProperty("--hero-logo-y", `${progress * -24}px`);
+      visual.style.setProperty("--hero-line-x", `${progress * -16}px`);
+      visual.style.setProperty("--hero-line-y", `${progress * -34}px`);
+    });
+  }
+
+  return (
+    <div
+      ref={visualRef}
+      aria-hidden="true"
+      className="relative isolate mx-auto w-full max-w-[34rem] pb-10 pr-6 pt-5 sm:pb-12 sm:pr-8 lg:mx-0 lg:max-w-none lg:pb-8 lg:pr-9"
+    >
+      <HomeHeroGraphic />
+      <div
+        className="pointer-events-none absolute right-0 top-0 z-20 h-44 w-32 bg-[#fbfaf7]/92 p-1.5 drop-shadow-[0_24px_44px_rgb(0_0_0/0.26)] [clip-path:polygon(16%_0,100%_8%,90%_92%,28%_100%,0_76%,0_12%)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out sm:h-56 sm:w-40 lg:-right-2 lg:h-60 lg:w-44"
+        style={{ transform: "translate3d(var(--hero-photo-x, 0px), var(--hero-photo-y, 0px), 0) rotate(4deg)" }}
+      >
+        <img
+          src="/avatars/juan.png"
+          alt=""
+          loading="eager"
+          decoding="async"
+          className="h-full w-full object-cover object-[center_24%] [clip-path:inherit]"
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute bottom-16 left-16 z-10 h-px w-56 bg-[rgb(var(--accent-rgb)/0.38)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out sm:left-24 sm:w-72 lg:left-20"
+        style={{ transform: "translate3d(var(--hero-line-x, 0px), var(--hero-line-y, 0px), 0) rotate(-17deg)" }}
+      />
+    </div>
   );
 }
 
@@ -3309,23 +3563,26 @@ export function PortfolioPage() {
     <main className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
       <PortfolioHeader />
       <section id="top" className="portfolio-grid-pattern px-5 py-9 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
-        <div className="mx-auto max-w-6xl">
-          <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
-            Senior product designer for enterprise systems, AI workflows, and founder-led products.
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
-            10+ years at LinkedIn shaped a practice around turning ambiguous product mandates into trusted workflows, shipped systems, and founder-led native iOS product work.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
-              Read featured work
-              <ArrowDown className="h-4 w-4" />
-            </Link>
-            <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
-              Contact me
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
+        <div className="mx-auto grid max-w-6xl gap-9 lg:grid-cols-[minmax(0,0.95fr)_minmax(20rem,0.72fr)] lg:items-center">
+          <div>
+            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
+              Turning complex product mandates into trusted workflows.
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
+              Senior product designer with 10+ years at LinkedIn, focused on enterprise systems, AI-assisted selling, GTM workflows, and founder-led product building.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
+                Read featured work
+                <ArrowDown className="h-4 w-4" />
+              </Link>
+              <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
+                Contact me
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
+          <HomeHeroVisual />
         </div>
       </section>
 
