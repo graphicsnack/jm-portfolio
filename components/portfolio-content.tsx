@@ -1905,15 +1905,24 @@ function StoryMetaList({ items, compact = false }: { items: SnapshotItem[]; comp
   return (
     <dl
       className={[
-        "grid gap-x-7 transition-[padding,gap] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:grid-cols-2 lg:grid-cols-4",
-        compact ? "gap-y-3 py-3" : "gap-y-5 py-5",
+        "transition-[padding,gap] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        compact
+          ? "flex gap-2 overflow-x-auto py-2 [scrollbar-width:none] sm:grid sm:grid-cols-2 sm:gap-x-7 sm:gap-y-3 sm:overflow-visible sm:py-3 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden"
+          : "grid gap-x-7 gap-y-5 py-5 sm:grid-cols-2 lg:grid-cols-4",
       ].join(" ")}
     >
       {items.map((item) => {
         const logo = getStoryMetaLogo(item);
 
         return (
-          <div key={item.label}>
+          <div
+            key={item.label}
+            className={
+              compact
+                ? "min-w-max rounded-md border border-black/10 bg-white/72 px-3 py-2 shadow-[0_10px_24px_-22px_rgb(0_0_0/0.45)] sm:min-w-0 sm:rounded-none sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:shadow-none"
+                : undefined
+            }
+          >
             <dt className={["font-semibold uppercase tracking-[0.12em] text-black/42 transition-[font-size,line-height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]", compact ? "text-[0.58rem] leading-4" : "text-[0.68rem] leading-5"].join(" ")}>
               {item.label}
             </dt>
@@ -1921,6 +1930,7 @@ function StoryMetaList({ items, compact = false }: { items: SnapshotItem[]; comp
               className={[
                 "font-medium text-black/76 transition-[margin,font-size,line-height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
                 logo ? "flex items-center gap-2.5" : "",
+                compact ? "whitespace-nowrap sm:whitespace-normal" : "",
                 compact ? "mt-1 text-xs leading-5" : logo ? "mt-2 text-sm leading-6" : "mt-1.5 text-sm leading-6",
               ].join(" ")}
             >
