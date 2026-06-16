@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
   BellRing,
   Camera,
+  Check,
   ChevronRight,
   Compass,
   Dribbble,
@@ -302,9 +303,9 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "CampGlint",
     product: "CampGlint",
     platform: "Native iOS app",
-    headline: "Designing a native iOS app for campsite signals, booking handoff, and trip readiness",
+    headline: "Native iOS app for campsite signals, booking handoff, and trip readiness",
     summary:
-      "CampGlint is a native SwiftUI app that helps campers stop manually checking campground availability. The iOS experience centers on saved monitors, fast monitor creation, discovery for backup options, and trip readiness after a booking is secured.",
+      "CampGlint is a native iOS app that helps campers track cancelled campsites without manually checking campground availability. I designed and built the product around saved monitors, fast monitor creation, backup discovery, booking handoff, and trip readiness.",
     role: "Founder, product designer, iOS builder",
     status: "Native build, launch readiness active",
     contribution: {
@@ -712,10 +713,10 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "Sales Navigator",
     product: "LinkedIn Sales Navigator",
     platform: "Enterprise SaaS",
-    headline: "Building Sales Navigator from standalone seller workspace to CRM-connected team system",
+    headline: "From a standalone seller workspace to a CRM-connected team system",
     summary:
-      "Across two rotations on Sales Navigator, I worked on product systems that turned LinkedIn relationship data into a focused seller workflow. The work spans launch-era Sales Navigator thinking, CRM and Gmail integrations, Salesforce and Microsoft Dynamics partner surfaces, admin and sync settings, search and lead workflows, onboarding, usage reporting, and later team expansion paths.",
-    role: "Product designer across launch-era and later Sales Navigator rotations",
+      "LinkedIn Sales Navigator turned LinkedIn relationship data into a focused seller workspace connected to CRM and enterprise sales systems. My work spanned early product foundations, seller workflows, integrations, admin controls, sync settings, onboarding, usage reporting, and team expansion paths.",
+    role: "Founding design team member focusing on enterprise and integrations",
     status: "LinkedIn Sales Navigator product systems and integrations",
     contribution: {
       owned: [
@@ -741,9 +742,9 @@ export const caseStudies: CaseStudy[] = [
     icon: Layers3,
     snapshot: [
       { label: "Company", value: "LinkedIn" },
-      { label: "Product", value: "Sales Navigator" },
+      { label: "Product", value: "LinkedIn Sales Navigator" },
       { label: "Audience", value: "Sales leaders, admins, sellers, operations teams" },
-      { label: "Role", value: "Product designer across two team rotations" },
+      { label: "Role", value: "Founding design team member focusing on enterprise and integrations" },
     ],
     impact: [
       {
@@ -909,9 +910,9 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "Career Pages",
     product: "LinkedIn Career Pages",
     platform: "Paid recruiting and talent-brand product",
-    headline: "Designing LinkedIn Career Pages for employer storytelling and candidate action",
+    headline: "LinkedIn Career Pages for employer storytelling and candidate action",
     summary:
-      "Career Pages was LinkedIn's paid product for companies that needed stronger recruiting, hiring, and employee-experience storytelling. As the primary designer for member and admin experiences, I shaped paid Career Pages and related free Company Pages surfaces so Talent Brand managers could publish credible Life Page content and job seekers could evaluate companies, create alerts, and signal interest.",
+      "LinkedIn Career Pages helped companies turn employer storytelling into credible candidate-facing experiences. As the primary designer across member and admin surfaces, I shaped tools for publishing Life Page content and experiences that helped job seekers evaluate companies, create alerts, and signal interest.",
     role: "Primary product designer across member and admin experiences",
     status: "Shipped LinkedIn recruiting product",
     contribution: {
@@ -1108,9 +1109,9 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "Employee Experience",
     product: "LinkedIn Employee Experience",
     platform: "UGC pilot for Company Pages and Career Pages",
-    headline: "Designing LinkedIn's employee-generated company review system",
+    headline: "Employee-generated company review system",
     summary:
-      "LinkedIn Employee Experience explored how current and previous employees could rate what it was like to work at a company, then turn those verified signals into trusted company research for job seekers. I led design and research for the pilot across Company Pages, feed collection, privacy states, question systems, review concepts, and integration paths that later informed employee-focused Career Pages features.",
+      "LinkedIn Employee Experience explored how verified employee perspectives could become trusted company research for job seekers. I led design and research across contribution flows, privacy states, question systems, review concepts, and integration paths that informed later Career Pages features.",
     role: "Design and research lead",
     status: "Pilot validated, patterns informed Career Pages launches",
     contribution: {
@@ -1330,9 +1331,9 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "Sales Insights",
     product: "LinkedIn Sales Insights",
     platform: "Enterprise GTM planning product",
-    headline: "Designing trusted GTM planning workflows for Sales Operations and Marketing teams",
+    headline: "Trusted GTM planning workflows for Sales Operations and Marketing teams",
     summary:
-      "LinkedIn Sales Insights helped revenue teams use LinkedIn's company, member, and relationship data to size markets, prioritize accounts, improve CRM data, and align sales and marketing execution. My work sat in the product-maturity phase, turning dense insight discovery into repeatable workflows across reports, sources, account lists, CRM automation, and downstream activation.",
+      "LinkedIn Sales Insights helped revenue teams turn LinkedIn data into clearer market planning, account prioritization, CRM improvement, and GTM alignment. My work focused on making dense enterprise data feel trustworthy, repeatable, and actionable across reports, sources, account lists, automation, and downstream workflows.",
     role: "Lead product designer across core experience and integrations",
     status: "LinkedIn enterprise product",
     contribution: {
@@ -1530,9 +1531,9 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "Seller Agent",
     product: "LinkedIn Seller Agent",
     platform: "AI agent exploration on LinkedIn.com",
-    headline: "Designing an in-context AI agent for seller prospecting on LinkedIn",
+    headline: "An in-context AI agent for seller prospecting on LinkedIn",
     summary:
-      "Seller Agent explored how Sales Navigator value could meet sellers inside the main LinkedIn experience. As the sole designer, I shaped a 0-to-1 concept that used LinkedIn social signals, relationship paths, account context, and guided prompts to help sellers move from research to outreach without rebuilding context across tools.",
+      "Seller Agent explored how AI could bring Sales Navigator value directly into the LinkedIn workflow. As the sole designer, I shaped an in-context agent concept that used social signals, relationship paths, account context, and guided prompts to help sellers move from research to outreach.",
     role: "Sole designer with product and AI Agent partners",
     status: "Foundational LinkedIn AI Agent exploration",
     contribution: {
@@ -1546,7 +1547,7 @@ export const caseStudies: CaseStudy[] = [
         "Used internal seller feedback to tighten trust, prompt density, relationship-path visibility, and action control.",
       ],
       proof: [
-        "Prospecting map and feed digest",
+        "Explorations and early learnings",
         "Profile agent panel, warm paths, and talking points",
         "Draft outreach and mobile agent flow",
       ],
@@ -1728,9 +1729,10 @@ export const caseStudies: CaseStudy[] = [
 
 const phoneCaseIds = new Set(["campglint", "graphicsnack-ios"]);
 const lightPreviewCaseStudyIds = new Set(["sales-insights", "campglint", "seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"]);
-const caseStudyPasscode = "JM2026";
+const caseStudyPasscode = "JM-8Q4-TZ9-LP2";
 const caseStudyPasscodeLength = caseStudyPasscode.length;
-const caseStudyUnlockStorageKey = "jm-case-studies-unlocked";
+const legacyCaseStudyUnlockStorageKey = "jm-case-studies-unlocked";
+const caseStudyUnlockStorageKey = `jm-case-studies-unlocked:${caseStudyPasscode}`;
 const caseStudyThumbnailImageClass = "case-study-thumbnail-image";
 const caseStudyThumbnailImageStyle: CSSProperties = {
   display: "block",
@@ -2711,7 +2713,6 @@ function CaseStudyGridCard({ study, light = false }: { study: CaseStudy; light?:
       <CaseStudyThumbnail study={study} />
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <h4 className={light ? "text-xl font-semibold leading-tight text-balance" : "text-2xl font-semibold leading-tight text-balance"}>{study.product}</h4>
-        <p className={light ? "text-clamp-3 mt-2 text-sm leading-6 text-black/66" : "mt-3 text-base leading-7 text-black/66"}>{study.headline}</p>
 
         {light ? (
           <p className="text-clamp-3 mt-3 text-sm leading-6 text-black/58">{study.summary}</p>
@@ -2768,7 +2769,6 @@ function CompactCaseStudyCard({ study }: { study: CaseStudy }) {
       <CompactCaseStudyThumbnail study={study} />
       <div className="flex flex-1 flex-col p-4">
         <h4 className="text-lg font-semibold leading-tight text-black/88">{study.product}</h4>
-        <p className="text-clamp-3 mt-2 text-sm leading-6 text-black/66">{study.headline}</p>
         <CaseStudyCardAction />
       </div>
     </Link>
@@ -2810,7 +2810,6 @@ function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
       <div className="flex min-h-0 flex-1 flex-col p-3.5">
         <p className="text-[0.66rem] font-semibold uppercase text-black/42">{study.platform}</p>
         <h3 className="text-clamp-2 mt-1.5 text-sm font-semibold leading-5 text-black/88">{study.product}</h3>
-        <p className="text-clamp-3 mt-2 text-xs leading-5 text-black/62">{study.headline}</p>
         <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-xs font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
           Passcode
           <LockKeyhole className="h-3.5 w-3.5" />
@@ -3290,7 +3289,7 @@ function ResumeSnapshot({ standalone = false }: { standalone?: boolean }) {
 function HomeClosingSection() {
   return (
     <section className="bg-[#fbfaf7] px-5 pb-12 pt-2 sm:px-8 lg:px-10" aria-labelledby="work-with-me-heading">
-      <div className="mx-auto max-w-6xl border-y border-black/12 py-9 sm:py-11">
+      <div className="mx-auto max-w-6xl py-9 sm:py-11">
         <div className="grid gap-7 xl:grid-cols-[minmax(0,0.82fr)_auto] xl:items-end">
           <div>
             <h2 id="work-with-me-heading" className="max-w-4xl text-3xl font-semibold leading-tight text-balance text-black/90 sm:text-4xl lg:text-[2.85rem]">
@@ -3339,6 +3338,84 @@ function CaseStudyUnlockedPage({ study }: { study: CaseStudy }) {
   );
 }
 
+function LockedCaseStudyPreview({ study }: { study: CaseStudy }) {
+  const thumbnail = getCaseStudyThumbnail(study);
+  const brief = caseStudyBriefs[study.id];
+  const previewImpact = study.impact.slice(0, 2);
+
+  return (
+    <div className="min-w-0">
+      <div className="relative grid aspect-[16/9] place-items-center overflow-hidden rounded-lg border border-black/10 bg-[var(--accent)] shadow-[0_28px_84px_-72px_rgb(0_0_0/0.75)] md:aspect-[2.1/1] lg:aspect-[16/9]" style={getCaseStudyThumbnailFrameStyle(study)}>
+        <img src={thumbnail.src} alt={thumbnail.alt} className={caseStudyThumbnailImageClass} style={caseStudyThumbnailImageStyle} loading="eager" />
+        <div className="absolute left-3 top-3 inline-flex items-center gap-2 rounded-md border border-white/55 bg-white/82 px-2.5 py-1.5 text-xs font-semibold text-black/68 backdrop-blur">
+          <ShieldCheck className="h-3.5 w-3.5 text-[var(--accent)]" />
+          Preview available
+        </div>
+      </div>
+
+      <div className="mt-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">{brief?.family ?? study.platform}</p>
+        <h1 id="case-study-lock-title" className="mt-3 max-w-3xl text-4xl font-semibold leading-[1.04] text-balance text-black/90 sm:text-5xl lg:text-[3.25rem]">
+          {study.product}
+        </h1>
+        <p className="mt-4 max-w-2xl text-lg font-semibold leading-8 text-black/74">{study.headline}</p>
+        <p className="mt-4 max-w-2xl text-base leading-7 text-black/62">{study.summary}</p>
+      </div>
+
+      <div className="mt-6 grid gap-3 border-t border-black/12 pt-5 sm:grid-cols-2">
+        {study.snapshot.slice(1, 5).map((item) => (
+          <div key={item.label} className="min-w-0">
+            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-black/40">{item.label}</p>
+            <p className="mt-1 text-sm leading-6 text-black/70">{item.value}</p>
+          </div>
+        ))}
+      </div>
+
+      {brief ? (
+        <div className="mt-6 rounded-lg border border-black/10 bg-[#f7f4ed] p-4">
+          <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-black/40">Product question</p>
+          <p className="mt-2 text-sm font-semibold leading-6 text-black/74">{brief.question}</p>
+        </div>
+      ) : null}
+
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        {previewImpact.map((item) => (
+          <div key={item.title} className="rounded-lg border border-black/10 bg-white/72 p-4">
+            <p className="text-sm font-semibold leading-6 text-black/82">{item.title}</p>
+            <p className="mt-1 text-sm leading-6 text-black/58">{item.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function getFullCaseSignals(study: CaseStudy) {
+  return study.contribution?.proof.slice(0, 3) ?? study.surfaces.slice(0, 3).map((item) => item.title);
+}
+
+function FullCaseStudyCovers({ study }: { study: CaseStudy }) {
+  const fullCaseSignals = getFullCaseSignals(study);
+
+  if (fullCaseSignals.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="rounded-lg border border-black/10 bg-[#fffefb] p-4">
+      <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-black/40">Full case study covers</p>
+      <div className="mt-3 grid gap-2">
+        {fullCaseSignals.map((item) => (
+          <div key={item} className="flex gap-2 text-sm leading-6 text-black/64">
+            <Check className="mt-1 h-4 w-4 shrink-0 text-[var(--accent)]" />
+            <span>{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
   const [passcode, setPasscode] = useState("");
   const [passcodeError, setPasscodeError] = useState("");
@@ -3353,6 +3430,7 @@ function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
 
   useEffect(() => {
     try {
+      window.sessionStorage.removeItem(legacyCaseStudyUnlockStorageKey);
       setUnlocked(window.sessionStorage.getItem(caseStudyUnlockStorageKey) === "true");
     } catch {
       setUnlocked(false);
@@ -3366,90 +3444,102 @@ function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
   return (
     <main id="top" className="min-h-screen bg-[#f2efe7] text-[#1f2220]">
       <PortfolioHeader caseStudy />
-      <section className="grid min-h-[calc(100vh-var(--portfolio-header-height))] place-items-center px-5 py-12 sm:px-8 lg:px-10">
+      <section className="px-5 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
         <div
-          role="dialog"
-          aria-modal="true"
           aria-labelledby="case-study-lock-title"
-          className="w-full max-w-xl rounded-lg border border-black/12 bg-[#fffefb]/94 p-4 shadow-[0_28px_80px_-62px_rgb(0_0_0/0.62)] sm:p-5"
+          className="mx-auto w-full max-w-6xl rounded-xl border border-black/12 bg-[#fffefb]/94 p-4 shadow-[0_28px_80px_-62px_rgb(0_0_0/0.62)] sm:p-5 lg:p-6"
         >
-          <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-sm font-semibold text-black/60 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]">
-            <ChevronRight className="h-4 w-4 rotate-180" />
-            Back to featured work
-          </Link>
-
-          <div className="mt-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/45">{study.product}</p>
-            <h1 id="case-study-lock-title" className="mt-3 text-3xl font-semibold leading-tight text-black/88 sm:text-4xl">
-              Enter passcode to view case study
-            </h1>
-            <p className="mt-3 text-sm leading-6 text-black/66">
-              This case study includes protected project details. Enter the passcode to review the full work.
-            </p>
+          <div className="flex flex-wrap items-center gap-3 border-b border-black/10 pb-4">
+            <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-sm font-semibold text-black/60 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]">
+              <ChevronRight className="h-4 w-4 rotate-180" />
+              Back to featured work
+            </Link>
           </div>
 
-          <form
-            className="mt-6"
-            onSubmit={(event) => {
-              event.preventDefault();
+          <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(21rem,0.46fr)] lg:items-start">
+            <LockedCaseStudyPreview study={study} />
 
-              if (normalizedPasscode === caseStudyPasscode) {
-                try {
-                  window.sessionStorage.setItem(caseStudyUnlockStorageKey, "true");
-                } catch {}
+            <div className="order-first lg:sticky lg:top-[calc(var(--portfolio-header-height)+1rem)] lg:order-none">
+              <div className="overflow-hidden rounded-xl border border-[rgb(var(--accent-rgb)/0.22)] bg-white shadow-[0_26px_72px_-58px_rgb(var(--accent-rgb)/0.8)]">
+                <div className="bg-[var(--accent)] p-5 text-white">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white/12 text-white">
+                      <LockKeyhole className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-semibold leading-7">
+                        Unlock the full story
+                      </h2>
+                    </div>
+                  </div>
+                </div>
 
-                setUnlocked(true);
-                return;
-              }
+                <form
+                  className="p-5"
+                  onSubmit={(event) => {
+                    event.preventDefault();
 
-              setPasscodeError("That passcode does not match. Try again or request access.");
-            }}
-          >
-            <label htmlFor="case-study-passcode" className="text-sm font-semibold leading-6 text-black/78">
-              Passcode
-            </label>
-            <input
-              id="case-study-passcode"
-              type="password"
-              value={passcode}
-              onChange={(event) => {
-                setPasscode(event.target.value.slice(0, caseStudyPasscodeLength));
-                setPasscodeError("");
-              }}
-              maxLength={caseStudyPasscodeLength}
-              autoComplete="one-time-code"
-              autoCapitalize="characters"
-              placeholder={`${caseStudyPasscodeLength}-character passcode`}
-              aria-invalid={Boolean(passcodeError)}
-              aria-describedby={passcodeError ? "case-study-passcode-error" : "case-study-passcode-progress"}
-              className="mt-2 h-12 w-full rounded-md border border-black/15 bg-white/80 px-3 text-base font-semibold tracking-[0.12em] text-black/82 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[rgb(var(--accent-rgb)/0.12)] aria-invalid:border-red-700 aria-invalid:ring-4 aria-invalid:ring-red-700/10"
-            />
-            <p id="case-study-passcode-progress" className="mt-2 text-xs leading-5 text-black/45">
-              {normalizedPasscode.length}/{caseStudyPasscodeLength} characters entered
-            </p>
-            {passcodeError ? (
-              <p id="case-study-passcode-error" className="mt-2 text-sm font-semibold leading-6 text-red-800">
-                {passcodeError}
-              </p>
-            ) : null}
+                    if (normalizedPasscode === caseStudyPasscode) {
+                      try {
+                        window.sessionStorage.setItem(caseStudyUnlockStorageKey, "true");
+                      } catch {}
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button
-                type="submit"
-                disabled={!canSubmit}
-                className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:border-black/12 disabled:bg-black/10 disabled:text-black/38"
-              >
-                View case study
-                <ArrowUpRight className="h-4 w-4" />
-              </button>
-              <a
-                href={requestAccessHref}
-                className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
-              >
-                Request access
-              </a>
+                      setUnlocked(true);
+                      return;
+                    }
+
+                    setPasscodeError("That passcode does not match. Try again or request access.");
+                  }}
+                >
+                  <div className="grid gap-2">
+                    <label htmlFor="case-study-passcode" className="text-sm font-semibold leading-6 text-black/78">
+                      Passcode access
+                    </label>
+                    <input
+                      id="case-study-passcode"
+                      type="password"
+                      value={passcode}
+                      onChange={(event) => {
+                        setPasscode(event.target.value.slice(0, caseStudyPasscodeLength));
+                        setPasscodeError("");
+                      }}
+                      maxLength={caseStudyPasscodeLength}
+                      autoComplete="one-time-code"
+                      autoCapitalize="characters"
+                      placeholder="Enter passcode"
+                      aria-invalid={Boolean(passcodeError)}
+                      aria-describedby={passcodeError ? "case-study-passcode-error" : undefined}
+                      className="h-12 w-full rounded-md border border-black/15 bg-[#fbfaf7] px-3 text-base font-semibold tracking-[0.08em] text-black/82 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[rgb(var(--accent-rgb)/0.12)] aria-invalid:border-red-700 aria-invalid:ring-4 aria-invalid:ring-red-700/10"
+                    />
+                  </div>
+                  {passcodeError ? (
+                    <p id="case-study-passcode-error" className="mt-2 text-sm font-semibold leading-6 text-red-800">
+                      {passcodeError}
+                    </p>
+                  ) : null}
+
+                  <button
+                    type="submit"
+                    disabled={!canSubmit}
+                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:border-black/12 disabled:bg-black/10 disabled:text-black/38"
+                  >
+                    Unlock case study
+                  </button>
+
+                  <p className="mt-4 text-center text-sm leading-6 text-black/48">
+                    Need access?{" "}
+                    <a href={requestAccessHref} className="font-semibold text-black/62 hover:text-[var(--accent)]">
+                      Request the passcode
+                    </a>
+                  </p>
+                </form>
+              </div>
+
+              <div className="mt-4">
+                <FullCaseStudyCovers study={study} />
+              </div>
             </div>
-          </form>
+          </div>
         </div>
       </section>
     </main>
