@@ -1752,9 +1752,9 @@ const compactCaseStudyIds: string[] = [];
 const routedCaseStudyIds = ["campglint", "sales-insights", "seller-agent", "company-pages", "career-pages", "sales-navigator-multiseat"];
 
 const resumeSignals = [
-  "10+ years at LinkedIn across Sales, Talent, Company Pages, content systems, and AI agent workflows.",
-  "Senior product designer focused on complex systems, product strategy, interaction design, and cross-functional alignment.",
-  "Founder-led CampGlint work carries product strategy through design, code, launch readiness, and consumer product judgment.",
+  "11+ years at LinkedIn across Sales, Talent, Company Pages, content platforms, and AI agent workflows.",
+  "Product designer focused on product strategy, end-to-end UX, interaction design, and enterprise workflows.",
+  "Builder of AI-powered web and iOS products from concept to production-ready prototype.",
 ];
 
 const heroFocusItems = [
@@ -1783,46 +1783,52 @@ const experienceHighlights = [
     period: "2022-2025",
     title: "Senior Product Designer, Sales Solutions",
     body:
-      "Drove end-to-end design for scalable Sales Navigator and Sales Insights solutions. Helped lay the groundwork for LinkedIn AI Agents through Sales Navigator's Seller Agent, and helped Sales Operations teams make smarter, faster decisions through Sales Insights by reducing uncertainty and improving forecasting.",
+      "Led end-to-end design across LinkedIn Sales Navigator and Sales Insights, creating scalable workflows for sellers and sales operations teams. Co-defined early Seller Agent concepts that informed LinkedIn's AI-agent direction, and designed Sales Insights planning experiences that helped sales leaders assess markets, prioritize accounts, and forecast with greater confidence.",
   },
   {
     period: "2020-2022",
     title: "Product Design Lead, Productivity Solutions",
     body:
-      "Led a three-person design team improving content creation workflows across LinkedIn. Streamlined Help Center publishing, automated localization, and enabled internal tools like LinkedIn's email creation and management platform.",
+      "Managed a 3-person design team building content creation, publishing, and localization workflows across LinkedIn that reduced manual Help Center operations and enabled faster multi-market content launches.",
   },
   {
     period: "2018-2020",
     title: "Senior Product Designer, Talent Solutions",
     body:
-      "Led design of Pipeline Builder to help organizations build targeted pipelines of interested candidates for high-priority, high-volume, or hard-to-fill roles. Enabled Talent Brand Managers to attract and measure ROI, and helped admins customize their LinkedIn presence with Career Pages.",
+      "Led design of Pipeline Builder to enable organizations to build targeted pipelines of interested candidates for high priority, high volume, or hard-to-fill roles. Enabled Talent Brand Managers to attract and measure ROI, and helped Admins customize their presence on LinkedIn with Career Pages.",
   },
   {
     period: "2016-2018",
     title: "Product Designer, LinkedIn Company Pages",
     body:
-      "Led Company Pages member and admin design, including Employee Experience / Company Ratings, a user-generated content initiative that helped job seekers assess company fit and informed later Career Pages employee-focused features.",
+      "Shaped Company Pages admin and member experiences across free and paid tiers. Launched LinkedIn's first company review experience to help job seekers assess fit.",
   },
   {
     period: "2014-2016",
     title: "Product Designer, Sales Solutions",
     body:
-      "Led design for Admin and Integration pillars, enabling CRM and Gmail integration plus scalable team management. Launched Social Selling Index and growth initiatives to drive adoption, shaping the core product through research, prototyping, and cross-functional collaboration.",
+      "Designed Admin and Integration experiences that enabled CRM and Gmail integrations, scalable team management, and enterprise adoption. Launched Social Selling Index and growth initiatives, shaping core product direction through research, prototyping, and cross-functional collaboration.",
   },
   {
     period: "2013",
     title: "UX Design Intern, Monetization",
     body:
-      "Designed a comprehensive product directory to improve discoverability and navigation for LinkedIn's Monetization team. Conducted user interviews, journey mapping, wireframing, and prototyping.",
+      "Designed a product directory for LinkedIn monetization products to improve discoverability and navigation.",
+  },
+  {
+    period: "2012",
+    title: "UX Design Intern, thredUP",
+    body:
+      "Designed Android shopping flows and print collateral to support thredUP's mobile app launch.",
   },
 ];
 
 const currentBuilderExperience = {
   title: "Product Designer & Builder",
-  company: "Self-employed",
-  period: "Jan 2026 - Present",
+  company: "Independent",
+  period: "2025-Present",
   body:
-    "Designing and building web and iOS applications that turn AI-driven product ideas into working experiences. Developing AI-powered product workflows, integrating LLMs into real-world flows, and shaping human-AI interaction patterns across intelligent interfaces.",
+    "Designing and building AI-powered web and iOS products from concept to production-ready prototype, combining product strategy, UX, visual design, prompt design, and front-end implementation.",
 };
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -3125,14 +3131,14 @@ function ResumeDocumentHeader() {
                 <h2 className="text-2xl font-semibold leading-7 text-black/88 sm:text-4xl sm:leading-tight">
                   Juan Mondragon
                 </h2>
-                <p className="mt-1 text-sm font-semibold leading-5 text-black/70">Product Designer and Builder</p>
+                <p className="mt-1 text-sm font-semibold leading-5 text-black/70">Product Designer & Builder</p>
                 <p className="mt-0.5 text-sm leading-5 text-black/66">San Francisco Bay Area</p>
               </div>
             </div>
           </div>
           <p className="pt-4 text-sm leading-6 text-black/66">
-            Senior Product Designer with 10+ years at LinkedIn, leading design across sales, talent, and content platforms. I've shaped
-            systems that help teams publish faster, plan smarter, and connect through AI-driven tools like Seller Agent. I bring a
+            Product Designer with 11+ years at LinkedIn, leading design across sales, talent, and content platforms. I've shaped
+            systems that empower teams to publish faster, plan smarter, and connect through AI-driven tools like Seller Agent. I bring a
             user-centered, data-informed mindset to solving complex product challenges at scale.
           </p>
         </div>
