@@ -80,6 +80,7 @@ export type CaseStudy = {
   heroAlt: string;
   thumbnailImage?: string;
   thumbnailAlt?: string;
+  thumbnailBackground?: string;
   accent: string;
   activeClass: string;
   icon: LucideIcon;
@@ -135,6 +136,7 @@ export const caseStudies: CaseStudy[] = [
     status: "Live product system",
     heroImage: "/screenshots/case-study-project-details-current.png",
     heroAlt: "GraphicSnack project details page with critique scores and recommendations",
+    thumbnailBackground: "#F1E4DE",
     accent: "bg-[#d84f2a]",
     activeClass: "border-[#d84f2a] bg-[#d84f2a] text-white",
     icon: MonitorCheck,
@@ -323,6 +325,9 @@ export const caseStudies: CaseStudy[] = [
     },
     heroImage: "/projects/CampGlint/iOS%20app%20screens/01-monitors-list.png",
     heroAlt: "CampGlint iOS monitors list screen",
+    thumbnailImage: "/projects/CampGlint/campglint-ios-current-thumbnail-lg.png",
+    thumbnailAlt: "CampGlint iOS app screens showing monitor tracking, discovery, and trip readiness",
+    thumbnailBackground: "#E7EFE5",
     accent: "bg-[#176B5D]",
     activeClass: "border-[#176B5D] bg-[#176B5D] text-white",
     icon: Tent,
@@ -529,6 +534,7 @@ export const caseStudies: CaseStudy[] = [
     status: "Beta-ready prototype, launch gates active",
     heroImage: "/screenshots/graphicsnack-ios-case-study/projects-seeded-light-hires.png",
     heroAlt: "GraphicSnack iOS seeded projects screen",
+    thumbnailBackground: "#E3EAF6",
     accent: "bg-[#2868c7]",
     activeClass: "border-[#2868c7] bg-[#2868c7] text-white",
     icon: Smartphone,
@@ -727,8 +733,9 @@ export const caseStudies: CaseStudy[] = [
         "Salesforce controls, reporting, and multi-seat flows",
       ],
     },
-    heroImage: "/projects/Sales%20Nav/Sales-Navigator-thumbnail-sm.png",
+    heroImage: "/projects/Sales%20Nav/sales-nav-thumbnail.png",
     heroAlt: "Sales Navigator product system mockups",
+    thumbnailBackground: "#E7EEF5",
     accent: "bg-[#0a66c2]",
     activeClass: "border-[#0a66c2] bg-[#0a66c2] text-white",
     icon: Layers3,
@@ -923,8 +930,9 @@ export const caseStudies: CaseStudy[] = [
         "Jobs tab, saved job alerts, and interest signals",
       ],
     },
-    heroImage: "/projects/career-pages/Career-Pages-thumbnail-sm.png",
+    heroImage: "/projects/career-pages/LinkedIn%20Career%20Pages%20-%20case%20study%20thumbnail.png",
     heroAlt: "LinkedIn Career Pages composite showing desktop, mobile, ratings, and employer brand surfaces",
+    thumbnailBackground: "#EEF0E7",
     accent: "bg-[#0a66c2]",
     activeClass: "border-[#0a66c2] bg-[#0a66c2] text-white",
     icon: FileText,
@@ -1121,8 +1129,9 @@ export const caseStudies: CaseStudy[] = [
         "Company Pages, Jobs, feed, recommendations, and Career Pages integration concepts",
       ],
     },
-    heroImage: "/projects/Employee%20experience/Employee-Experience-thumbnail-sm.png",
+    heroImage: "/projects/Employee%20experience/Employee-Experience-thumbnail.png",
     heroAlt: "LinkedIn Employee Experience desktop and mobile Company Page pilot mocks",
+    thumbnailBackground: "#D8D2E6",
     accent: "bg-[#0a66c2]",
     activeClass: "border-[#0a66c2] bg-[#0a66c2] text-white",
     icon: MonitorCheck,
@@ -1346,6 +1355,7 @@ export const caseStudies: CaseStudy[] = [
     heroAlt: "LinkedIn Sales Insights report builder showing filters, market segments, trend metrics, and account results",
     thumbnailImage: "/projects/sales-insights/Sales-Insights-thumbnail-md.png",
     thumbnailAlt: "LinkedIn Sales Insights report interface with account filters, personas, market sizing, and account table",
+    thumbnailBackground: "#E3EEF1",
     accent: "bg-[#336f8f]",
     activeClass: "border-[#336f8f] bg-[#336f8f] text-white",
     icon: MonitorCheck,
@@ -1543,6 +1553,7 @@ export const caseStudies: CaseStudy[] = [
     },
     heroImage: "/projects/seller-agent/Seller-Agent-thumbnail-md.png",
     heroAlt: "Seller Agent concept embedded beside a LinkedIn profile with prompts, relationship paths, and draft actions",
+    thumbnailBackground: "#D9E1D2",
     accent: "bg-[var(--accent)]",
     activeClass: "border-[var(--accent)] bg-[var(--accent)] text-white",
     icon: Sparkles,
@@ -1716,13 +1727,27 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 const phoneCaseIds = new Set(["campglint", "graphicsnack-ios"]);
-const wideThumbnailCaseIds = new Set(["seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"]);
-const alignedWideThumbnailCaseIds = new Set(["seller-agent", "sales-navigator-multiseat"]);
+const lightPreviewCaseStudyIds = new Set(["sales-insights", "campglint", "seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"]);
 const caseStudyPasscode = "JM2026";
 const caseStudyPasscodeLength = caseStudyPasscode.length;
 const caseStudyUnlockStorageKey = "jm-case-studies-unlocked";
+const caseStudyThumbnailImageClass = "case-study-thumbnail-image";
+const caseStudyThumbnailImageStyle: CSSProperties = {
+  display: "block",
+  width: "100%",
+  height: "100%",
+  minHeight: 0,
+  objectFit: "contain",
+  objectPosition: "center",
+};
 
-const featuredCaseStudyIds = ["sales-insights", "seller-agent", "sales-navigator-multiseat", "campglint", "company-pages", "career-pages"];
+function getCaseStudyThumbnailFrameStyle(study: CaseStudy): CSSProperties {
+  return {
+    backgroundColor: study.thumbnailBackground ?? "var(--accent)",
+  };
+}
+
+const featuredCaseStudyIds = ["sales-insights", "campglint", "seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"];
 const compactCaseStudyIds: string[] = [];
 const routedCaseStudyIds = ["campglint", "sales-insights", "seller-agent", "company-pages", "career-pages", "sales-navigator-multiseat"];
 
@@ -2220,11 +2245,8 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
   );
 }
 
-function PortfolioHeader({
-  caseStudy = false,
-}: {
-  caseStudy?: boolean;
-}) {
+
+function PortfolioHeader({ caseStudy = false }: { caseStudy?: boolean }) {
   const pathname = usePathname();
   const isCaseStudiesActive = pathname === "/" || pathname.startsWith("/case-studies");
   const isResumeActive = pathname === "/resume";
@@ -2245,7 +2267,7 @@ function PortfolioHeader({
             <span className="block truncate text-[0.7rem] leading-4 text-black/56">Product design portfolio</span>
           </span>
         </Link>
-        <nav className="order-3 -mx-5 flex w-[calc(100%+2.5rem)] items-center gap-1 border-t border-black/10 px-5 pt-2 sm:-mx-8 sm:w-[calc(100%+4rem)] sm:px-8 md:order-none md:mx-0 md:w-auto md:border-0 md:px-0 md:pt-0" aria-label="Portfolio navigation">
+        <nav className="order-3 -mx-5 flex w-[calc(100%+2.5rem)] flex-wrap items-center gap-1 border-t border-black/10 px-5 pt-2 sm:-mx-8 sm:w-[calc(100%+4rem)] sm:px-8 md:order-none md:mx-0 md:w-auto md:border-0 md:px-0 md:pt-0" aria-label="Portfolio navigation">
           <Link
             href="/"
             aria-current={isCaseStudiesActive ? "page" : undefined}
@@ -2262,7 +2284,7 @@ function PortfolioHeader({
           </Link>
         </nav>
         <a
-          href="mailto:advrunr@gmail.com"
+          href="mailto:juansjsu@gmail.com"
           className="inline-flex shrink-0 items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-3 py-1.5 text-[0.82rem] font-semibold text-white hover:bg-[var(--accent-strong)]"
         >
           Contact me
@@ -2272,6 +2294,7 @@ function PortfolioHeader({
     </header>
   );
 }
+
 
 function LinkedInBrandIcon({ className }: { className?: string }) {
   return (
@@ -2311,7 +2334,7 @@ function PortfolioFooter() {
     },
     {
       label: "Contact me",
-      href: "mailto:advrunr@gmail.com",
+      href: "mailto:juansjsu@gmail.com",
       icon: Mail,
     },
   ];
@@ -2560,8 +2583,6 @@ const campGlintPreviewScreens = [
   },
 ];
 
-const campGlintLargeThumbnail = "/projects/CampGlint/campglint-ios-current-thumbnail-lg.png";
-
 function DeviceMockup({
   screen,
   className = "",
@@ -2622,24 +2643,11 @@ function CampGlintDeviceScene({
 }
 
 function CaseStudyThumbnail({ study }: { study: CaseStudy }) {
-  const isPhoneCase = phoneCaseIds.has(study.id);
-  const isWideThumbnail = wideThumbnailCaseIds.has(study.id);
-  const isAlignedWideThumbnail = alignedWideThumbnailCaseIds.has(study.id);
   const thumbnail = getCaseStudyThumbnail(study);
 
   return (
-    <div className="relative overflow-hidden border-b border-black/12 bg-[#eee9df]">
-      {isPhoneCase ? (
-        <img src={thumbnail.src} alt={thumbnail.alt} className="mx-auto block h-44 w-auto object-contain object-top pt-3" loading="lazy" />
-      ) : isAlignedWideThumbnail ? (
-        <div className="aspect-[1444/512] overflow-hidden">
-          <img src={thumbnail.src} alt={thumbnail.alt} className="h-full w-full origin-top -translate-y-2 scale-[1.035] object-cover object-top" loading="lazy" />
-        </div>
-      ) : isWideThumbnail ? (
-        <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[1444/512] w-full object-contain object-center" loading="lazy" />
-      ) : (
-        <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[16/9] w-full object-cover object-top" loading="lazy" />
-      )}
+    <div className="relative grid h-[10.9375rem] place-items-center overflow-hidden bg-[var(--accent)] lg:h-[15.4375rem]" style={getCaseStudyThumbnailFrameStyle(study)}>
+      <img src={thumbnail.src} alt={thumbnail.alt} className={caseStudyThumbnailImageClass} style={caseStudyThumbnailImageStyle} loading="lazy" />
     </div>
   );
 }
@@ -2686,30 +2694,7 @@ function CaseStudyCardAction() {
   );
 }
 
-function GridBLeadPreview({ study }: { study: CaseStudy }) {
-  const brief = caseStudyBriefs[study.id];
-
-  return (
-    <div className="flex h-full flex-col p-5 sm:p-7 lg:p-8">
-      <h4 className="text-3xl font-semibold leading-tight text-balance sm:text-4xl">{study.headline}</h4>
-      <p className="mobile-clamp-3 mt-4 text-base leading-7 text-black/66">{study.summary}</p>
-
-      {brief ? (
-        <div className="mt-6 border-t border-black/12 pt-4">
-          <p className="text-[0.68rem] font-semibold uppercase text-black/42">Product question</p>
-          <p className="mt-1 text-sm font-semibold leading-6 text-black/78">{brief.question}</p>
-        </div>
-      ) : null}
-
-      <CaseStudyPreviewImpactList study={study} />
-      <CaseStudyPreviewMeta study={study} />
-
-      <CaseStudyCardAction />
-    </div>
-  );
-}
-
-function GridBSupportingCasePreview({ study }: { study: CaseStudy }) {
+function CaseStudyGridCard({ study, light = false }: { study: CaseStudy; light?: boolean }) {
   const brief = caseStudyBriefs[study.id];
 
   return (
@@ -2719,10 +2704,12 @@ function GridBSupportingCasePreview({ study }: { study: CaseStudy }) {
     >
       <CaseStudyThumbnail study={study} />
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <h4 className="text-2xl font-semibold leading-tight text-balance">{study.product}</h4>
-        <p className="mt-3 text-base leading-7 text-black/66">{study.headline}</p>
+        <h4 className={light ? "text-xl font-semibold leading-tight text-balance" : "text-2xl font-semibold leading-tight text-balance"}>{study.product}</h4>
+        <p className={light ? "text-clamp-3 mt-2 text-sm leading-6 text-black/66" : "mt-3 text-base leading-7 text-black/66"}>{study.headline}</p>
 
-        {brief ? (
+        {light ? (
+          <p className="text-clamp-3 mt-3 text-sm leading-6 text-black/58">{study.summary}</p>
+        ) : brief ? (
           <div className="mt-5 border-t border-black/12 pt-4">
             <p className="text-[0.68rem] font-semibold uppercase text-black/42">Product question</p>
             <p className="mt-1 text-sm font-medium leading-6 text-black/72">{brief.question}</p>
@@ -2731,8 +2718,12 @@ function GridBSupportingCasePreview({ study }: { study: CaseStudy }) {
           <p className="text-clamp-3 mt-3 text-sm leading-6 text-black/64">{study.summary}</p>
         )}
 
-        <CaseStudyPreviewImpactList study={study} compact />
-        <CaseStudyPreviewMeta study={study} compact />
+        {light ? null : (
+          <>
+            <CaseStudyPreviewImpactList study={study} compact />
+            <CaseStudyPreviewMeta study={study} compact />
+          </>
+        )}
 
         <CaseStudyCardAction />
       </div>
@@ -2740,67 +2731,24 @@ function GridBSupportingCasePreview({ study }: { study: CaseStudy }) {
   );
 }
 
-function GridBLargeCasePreview({ study }: { study: CaseStudy }) {
-  const isCampGlint = study.id === "campglint";
-  const thumbnail = getCaseStudyThumbnail(study);
+function FeaturedCaseStudyGrid({ studies }: { studies: CaseStudy[] }) {
+  if (studies.length === 0) return null;
 
   return (
-    <Link href={"/case-studies/" + study.id} className="group grid overflow-hidden rounded-xl border border-black/15 bg-[#fffefb]/94 shadow-[0_24px_76px_-64px_rgb(0_0_0/0.6)] transition duration-300 hover:-translate-y-0.5">
-      <img
-        src={isCampGlint ? campGlintLargeThumbnail : thumbnail.src}
-        alt={isCampGlint ? "CampGlint iOS app screens showing discovery, monitor tracking, and trip readiness" : thumbnail.alt}
-        className={`block aspect-[1800/608] w-full border-b border-black/12 object-cover ${isCampGlint ? "object-center" : "object-top"}`}
-        loading="eager"
-      />
-      <GridBLeadPreview study={study} />
-    </Link>
-  );
-}
-
-function FeaturedGridBento({ studies }: { studies: CaseStudy[] }) {
-  const [leadStudy, ...supporting] = studies;
-  const campGlintIndex = supporting.findIndex((study) => study.id === "campglint");
-  const supportingBeforeCampGlint = campGlintIndex >= 0 ? supporting.slice(0, campGlintIndex) : supporting;
-  const campGlintStudy = campGlintIndex >= 0 ? supporting[campGlintIndex] : undefined;
-  const supportingAfterCampGlint = campGlintIndex >= 0 ? supporting.slice(campGlintIndex + 1) : [];
-
-  if (!leadStudy) return null;
-
-  return (
-    <div className="grid gap-6 lg:gap-8">
-      <GridBLargeCasePreview study={leadStudy} />
-      {supportingBeforeCampGlint.length > 0 ? (
-        <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-          {supportingBeforeCampGlint.map((study) => (
-            <GridBSupportingCasePreview key={study.id} study={study} />
-          ))}
-        </div>
-      ) : null}
-      {campGlintStudy ? <GridBLargeCasePreview study={campGlintStudy} /> : null}
-      {supportingAfterCampGlint.length > 0 ? (
-        <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-          {supportingAfterCampGlint.map((study) => (
-            <GridBSupportingCasePreview key={study.id} study={study} />
-          ))}
-        </div>
-      ) : null}
+    <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+      {studies.map((study) => (
+        <CaseStudyGridCard key={study.id} study={study} light={lightPreviewCaseStudyIds.has(study.id)} />
+      ))}
     </div>
   );
 }
 
 function CompactCaseStudyThumbnail({ study }: { study: CaseStudy }) {
-  const isPhoneCase = phoneCaseIds.has(study.id);
   const thumbnail = getCaseStudyThumbnail(study);
 
   return (
-    <div className="overflow-hidden border-b border-black/12 bg-[#eee9df]">
-      {isPhoneCase ? (
-        <div className="grid h-32 place-items-center px-4 py-3">
-          <img src={thumbnail.src} alt={thumbnail.alt} className="max-h-full w-auto max-w-full object-contain object-top" loading="lazy" />
-        </div>
-      ) : (
-        <img src={thumbnail.src} alt={thumbnail.alt} className="block h-32 w-full object-cover object-top" loading="lazy" />
-      )}
+    <div className="grid h-32 place-items-center overflow-hidden bg-[var(--accent)]" style={getCaseStudyThumbnailFrameStyle(study)}>
+      <img src={thumbnail.src} alt={thumbnail.alt} className={caseStudyThumbnailImageClass} style={caseStudyThumbnailImageStyle} loading="lazy" />
     </div>
   );
 }
@@ -2843,7 +2791,6 @@ function CompactCaseStudyRow() {
 }
 
 function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
-  const isPhoneCase = phoneCaseIds.has(study.id);
   const thumbnail = getCaseStudyThumbnail(study);
 
   return (
@@ -2851,12 +2798,8 @@ function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
       href={"/case-studies/" + study.id}
       className="group flex h-[20.5rem] min-w-0 flex-col overflow-hidden rounded-lg border border-black/15 bg-[#fffefb]/94 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_54px_-48px_rgb(0_0_0/0.58)]"
     >
-      <div className="grid h-28 shrink-0 place-items-center overflow-hidden border-b border-black/12 bg-[#eee9df]">
-        {isPhoneCase ? (
-          <img src={thumbnail.src} alt={thumbnail.alt} className="max-h-full w-auto max-w-full object-contain object-top p-2" loading="lazy" />
-        ) : (
-          <img src={thumbnail.src} alt={thumbnail.alt} className="h-full w-full object-cover object-top" loading="lazy" />
-        )}
+      <div className="grid h-28 shrink-0 place-items-center overflow-hidden bg-[var(--accent)]" style={getCaseStudyThumbnailFrameStyle(study)}>
+        <img src={thumbnail.src} alt={thumbnail.alt} className={caseStudyThumbnailImageClass} style={caseStudyThumbnailImageStyle} loading="lazy" />
       </div>
       <div className="flex min-h-0 flex-1 flex-col p-3.5">
         <p className="text-[0.66rem] font-semibold uppercase text-black/42">{study.platform}</p>
@@ -2903,8 +2846,11 @@ function OtherCaseStudiesSection({ currentStudyId }: { currentStudyId: string })
 
 function FeaturedProofPointRow() {
   return (
-    <section className="bg-[#fbfaf7] px-5 pt-12 sm:px-8 lg:px-10">
+    <section className="bg-[#fbfaf7] px-5 pt-12 sm:px-8 lg:px-10" aria-labelledby="portfolio-focus-heading">
       <div className="mx-auto max-w-6xl">
+        <h2 id="portfolio-focus-heading" className="mb-7 max-w-2xl text-2xl font-semibold leading-tight text-black/88 sm:text-3xl">
+          What I bring to complex product work
+        </h2>
         <div className="grid gap-8 sm:grid-cols-3">
           {featuredProofPoints.map((point) => (
             <div key={point.label} className="border-l border-black/15 pl-4">
@@ -2934,11 +2880,11 @@ function FeaturedCaseStudies() {
       <section id="case-studies" className="bg-[#fbfaf7] px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-6xl">
           <div className="py-7">
-            <h2 className="text-3xl font-semibold leading-tight text-balance sm:text-4xl">Featured case studies</h2>
+            <h2 className="max-w-2xl text-2xl font-semibold leading-tight text-black/88 sm:text-3xl">Featured case studies</h2>
           </div>
 
           <div className="mt-8">
-            <FeaturedGridBento studies={featuredStudies} />
+            <FeaturedCaseStudyGrid studies={featuredStudies} />
           </div>
 
           <CompactCaseStudyRow />
@@ -2994,15 +2940,15 @@ function HomepageStoryMedia({ study }: { study: CaseStudy }) {
 
   if (study.id === "campglint") {
     return (
-      <div className="overflow-hidden rounded-lg border border-black/12 bg-[#F0F4F7]">
+      <div className="overflow-hidden rounded-lg bg-[#F0F4F7]" style={getCaseStudyThumbnailFrameStyle(study)}>
         <CampGlintDeviceScene variant="shelf" />
       </div>
     );
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border border-black/12 bg-white">
-      <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[16/9] w-full object-cover object-top" loading="lazy" />
+    <div className="grid aspect-[16/9] place-items-center overflow-hidden rounded-lg bg-[var(--accent)]" style={getCaseStudyThumbnailFrameStyle(study)}>
+      <img src={thumbnail.src} alt={thumbnail.alt} className={caseStudyThumbnailImageClass} style={caseStudyThumbnailImageStyle} loading="lazy" />
     </div>
   );
 }
@@ -3075,7 +3021,9 @@ function HomepageStoryNotableWork() {
 
           return (
             <Link key={study.id} href={"/case-studies/" + study.id} className="group grid gap-4 border-b border-black/12 py-5 md:grid-cols-[14rem_minmax(0,1fr)_auto] md:items-center">
-              <img src={thumbnail.src} alt={thumbnail.alt} className="block aspect-[2.82/1] w-full rounded-md border border-black/12 object-cover object-top" loading="lazy" />
+              <div className="grid aspect-[2.82/1] w-full place-items-center overflow-hidden rounded-md bg-[var(--accent)]" style={getCaseStudyThumbnailFrameStyle(study)}>
+                <img src={thumbnail.src} alt={thumbnail.alt} className={caseStudyThumbnailImageClass} style={caseStudyThumbnailImageStyle} loading="lazy" />
+              </div>
               <div>
                 <h4 className="text-lg font-semibold leading-7 text-black/86">{study.product}</h4>
                 <p className="mt-1 max-w-3xl text-sm leading-6 text-black/62">{study.headline}</p>
@@ -3144,7 +3092,7 @@ function HomepageStoryExperience() {
             View resume
             <ArrowUpRight className="h-4 w-4" />
           </Link>
-          <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
+          <a href="mailto:juansjsu@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
             Contact me
             <ArrowUpRight className="h-4 w-4" />
           </a>
@@ -3310,10 +3258,10 @@ function ResumeSnapshot({ standalone = false }: { standalone?: boolean }) {
               <ArrowUpRight className="h-4 w-4" />
             </a>
             <a
-              href="mailto:advrunr@gmail.com"
+              href="mailto:juansjsu@gmail.com"
               className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
             >
-              advrunr@gmail.com
+              juansjsu@gmail.com
             </a>
           </div>
         </div>
@@ -3331,6 +3279,7 @@ function ResumeSnapshot({ standalone = false }: { standalone?: boolean }) {
     </section>
   );
 }
+
 
 function HomeClosingSection() {
   return (
@@ -3354,7 +3303,7 @@ function HomeClosingSection() {
               <ArrowUpRight className="h-4 w-4" />
             </a>
             <a
-              href="mailto:advrunr@gmail.com"
+              href="mailto:juansjsu@gmail.com"
               className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
             >
               Contact me
@@ -3391,7 +3340,7 @@ function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
   const normalizedPasscode = passcode.trim();
   const canSubmit = normalizedPasscode.length === caseStudyPasscodeLength;
   const requestAccessHref =
-    "mailto:advrunr@gmail.com?subject=" +
+    "mailto:juansjsu@gmail.com?subject=" +
     encodeURIComponent(`Request access to ${study.product} case study`) +
     "&body=" +
     encodeURIComponent(`Hi Juan,\n\nI'd like to request access to the ${study.product} case study.\n\nThanks.`);
@@ -3538,7 +3487,7 @@ function HomeHeroGraphic() {
   return (
     <figure
       aria-hidden="true"
-      className="relative isolate h-[18rem] overflow-hidden border border-black/12 bg-[var(--accent)] shadow-[0_30px_86px_-66px_rgb(0_0_0/0.74)] [clip-path:polygon(8%_0,100%_0,94%_82%,68%_100%,0_92%,0_16%)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out sm:h-[22rem] lg:h-[26rem]"
+      className="portfolio-hero-graphic relative isolate h-[18rem] overflow-hidden border border-black/12 bg-[var(--accent)] shadow-[0_30px_86px_-66px_rgb(0_0_0/0.74)] [clip-path:polygon(8%_0,100%_0,94%_82%,68%_100%,0_92%,0_16%)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out sm:h-[22rem] lg:h-[26rem]"
       style={{ transform: "translate3d(var(--hero-plate-x, 0px), var(--hero-plate-y, 0px), 0)" }}
     >
       <img
@@ -3549,17 +3498,17 @@ function HomeHeroGraphic() {
         className="absolute inset-0 -z-30 h-full w-full object-cover object-[54%_9%] opacity-92 saturate-[0.82] contrast-110 motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out"
         style={{ transform: "translate3d(var(--hero-bg-x, 0px), calc(var(--hero-bg-y, 0px) - 18px), 0) scale(1.14)" }}
       />
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(118deg,rgb(24_32_112/0.90)_0%,rgb(24_32_112/0.58)_44%,rgb(4_116_179/0.16)_100%)]" />
+      <div className="portfolio-hero-overlay absolute inset-0 -z-20 bg-[linear-gradient(118deg,rgb(24_32_112/0.90)_0%,rgb(24_32_112/0.58)_44%,rgb(4_116_179/0.16)_100%)]" />
       <div
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.08)_1px,transparent_1px)] bg-[size:56px_56px] opacity-45 [mask-image:linear-gradient(to_right,rgb(24_32_112),transparent_78%)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out"
+        className="portfolio-hero-grid absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.08)_1px,transparent_1px)] bg-[size:56px_56px] opacity-45 [mask-image:linear-gradient(to_right,rgb(24_32_112),transparent_78%)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out"
         style={{ transform: "translate3d(var(--hero-grid-x, 0px), var(--hero-grid-y, 0px), 0)" }}
       />
 
-      <div className="absolute -left-12 bottom-10 h-32 w-56 rotate-[-11deg] border border-white/24 sm:h-40 sm:w-72" />
-      <div className="absolute right-14 top-7 h-36 w-px bg-white/28" />
-      <div className="absolute left-8 top-14 h-px w-[82%] rotate-[20deg] bg-white/26" />
-      <div className="absolute bottom-0 left-0 right-0 h-28 bg-[linear-gradient(to_top,rgb(24_32_112/0.74),transparent)]" />
-      <div className="absolute bottom-9 right-9 grid w-44 grid-cols-6 gap-2">
+      <div className="portfolio-hero-decoration absolute -left-12 bottom-10 h-32 w-56 rotate-[-11deg] border border-white/24 sm:h-40 sm:w-72" />
+      <div className="portfolio-hero-decoration absolute right-14 top-7 h-36 w-px bg-white/28" />
+      <div className="portfolio-hero-decoration absolute left-8 top-14 h-px w-[82%] rotate-[20deg] bg-white/26" />
+      <div className="portfolio-hero-decoration absolute bottom-0 left-0 right-0 h-28 bg-[linear-gradient(to_top,rgb(24_32_112/0.74),transparent)]" />
+      <div className="portfolio-hero-decoration absolute bottom-9 right-9 grid w-44 grid-cols-6 gap-2">
         {[0, 1, 2, 3, 4, 5].map((item) => (
           <span key={item} className="h-1 bg-white/34" />
         ))}
@@ -3666,7 +3615,7 @@ function HomeHeroVisual() {
     >
       <HomeHeroGraphic />
       <div
-        className="pointer-events-none absolute right-0 top-0 z-20 h-44 w-32 bg-[#fbfaf7]/92 p-1.5 drop-shadow-[0_24px_44px_rgb(0_0_0/0.26)] [clip-path:polygon(16%_0,100%_8%,90%_92%,28%_100%,0_76%,0_12%)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out sm:h-56 sm:w-40 lg:-right-2 lg:h-60 lg:w-44"
+        className="portfolio-hero-photo pointer-events-none absolute right-0 top-0 z-20 h-44 w-32 bg-[#fbfaf7]/92 p-1.5 drop-shadow-[0_24px_44px_rgb(0_0_0/0.26)] [clip-path:polygon(16%_0,100%_8%,90%_92%,28%_100%,0_76%,0_12%)] motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out sm:h-56 sm:w-40 lg:-right-2 lg:h-60 lg:w-44"
         style={{ transform: "translate3d(var(--hero-photo-x, 0px), var(--hero-photo-y, 0px), 0) rotate(4deg)" }}
       >
         <img
@@ -3684,6 +3633,13 @@ function HomeHeroVisual() {
     </div>
   );
 }
+
+function getFeaturedPortfolioStudies() {
+  return featuredCaseStudyIds
+    .map((id) => caseStudies.find((study) => study.id === id))
+    .filter((study): study is CaseStudy => Boolean(study));
+}
+
 
 export function PortfolioPage() {
   return (
@@ -3703,7 +3659,7 @@ export function PortfolioPage() {
                 Read featured work
                 <ArrowDown className="h-4 w-4" />
               </Link>
-              <a href="mailto:advrunr@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
+              <a href="mailto:juansjsu@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
                 Contact me
                 <ArrowUpRight className="h-4 w-4" />
               </a>
