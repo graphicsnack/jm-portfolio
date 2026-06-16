@@ -1338,21 +1338,22 @@ export const caseStudies: CaseStudy[] = [
     status: "LinkedIn enterprise product",
     contribution: {
       owned: [
-        "Led design across core planning workflows, reports, sources, account lists, exports, and integration states.",
-        "Reframed dense GTM data around planning confidence, data trust, and repeatable enterprise workflows.",
-        "Designed CRM and CSV automation moments as core UX surfaces, not back-office setup.",
+        "Led design across reports, sources, account lists, exports, CRM sync, and integration states.",
+        "Reframed dense LinkedIn data around planning confidence: why an account mattered, where the data came from, and what teams could do next.",
+        "Treated matching, field mapping, review, export, and sync states as first-class product moments because they determined whether teams could trust automation.",
       ],
       partnered: [
-        "Partnered with two PMs across core experience and integrations.",
-        "Onboarded two temporarily reassigned designers and helped them ramp on rapid-cycle Sales Insights initiatives.",
-        "Connected Sales Ops planning needs to downstream CRM, Marketing, and Sales Navigator activation.",
+        "Partnered with PMs across core experience and integrations to connect planning workflows with downstream activation.",
+        "Onboarded and supported two temporarily reassigned designers as Sales Insights moved through rapid development.",
+        "Aligned Sales Ops, Marketing, CRM, and Sales Navigator needs around shared account definitions and handoff paths.",
       ],
       proof: [
-        "In the report workflow, source model, and account-matching experience.",
-        "In field mapping, export paths, CRM sync, review states, and exception handling.",
+        "Reports, sources, account lists, and market-sizing workflows.",
+        "Account matching, field mapping, export, sync, review states, and exception handling.",
+        "CRM, Marketing, and Sales Navigator activation paths.",
       ],
     },
-    heroImage: "/projects/sales-insights/LSI%20Report%20Builder%20-%20Mercado%20Update%402x.png",
+    heroImage: "/projects/sales-insights/lsi-report-view-v1.png",
     heroAlt: "LinkedIn Sales Insights report builder showing filters, market segments, trend metrics, and account results",
     thumbnailImage: "/projects/sales-insights/Sales-Insights-thumbnail-md.png",
     thumbnailAlt: "LinkedIn Sales Insights report interface with account filters, personas, market sizing, and account table",
@@ -1454,24 +1455,24 @@ export const caseStudies: CaseStudy[] = [
     ],
     decisions: [
       {
-        title: "Design for confidence, not just analysis",
+        title: "Design for planning confidence, not data density",
         detail:
-          "Users were making decisions that affected territories, campaigns, CRM records, and rep focus. The interface needed to show why an account appeared, how current the data was, and how much confidence to place in matches and recommendations.",
+          "Revenue teams were making decisions that affected territories, campaigns, CRM records, and rep focus. The interface needed to show source, recency, rationale, and match confidence so dense data could become a decision teams trusted.",
       },
       {
-        title: "Make the architecture legible",
+        title: "Make the product model legible",
         detail:
-          "Sales Insights could easily feel like a set of dashboards. The experience needed a clear mental model: sources feed reports, reports create insights and account lists, account lists move into exports, syncs, campaigns, and seller workflows.",
+          "Sales Insights could easily feel like disconnected dashboards. The experience needed a clear model: sources feed reports, reports create account lists, and account lists move into exports, syncs, campaigns, and seller workflows.",
       },
       {
-        title: "Treat integration states as user-facing product",
+        title: "Treat integrations as core UX",
         detail:
-          "CRM connection, CSV import, field mapping, bulk export, daily refresh, sync failure, permissions, and unresolved matches were not edge cases. They were the moments where trust was either earned or lost.",
+          "CRM connection, CSV import, field mapping, permissions, refresh, sync failure, and unresolved matches were not setup details. They were trust moments where users decided whether automation could safely write to operational systems.",
       },
       {
-        title: "Connect Sales Ops planning to downstream teams",
+        title: "Bridge strategy to execution",
         detail:
-          "The value of a report depended on whether Marketing, Sales leaders, CRM admins, and sellers could act on the same account definition without rebuilding the logic elsewhere.",
+          "The value of a report depended on whether Marketing, Sales leaders, CRM admins, and sellers could act on the same account definition without rebuilding the logic in another tool.",
       },
     ],
     story: [
@@ -1479,7 +1480,7 @@ export const caseStudies: CaseStudy[] = [
         phase: "01",
         label: "Core report",
         title: "Market sizing needed to become a decision workflow",
-        image: "/projects/sales-insights/lsi-report-view.png",
+        image: "/projects/sales-insights/LSI-Growth-Trends.png",
         alt: "Sales Insights report view showing filters, personas, account counts, employee signals, job postings, and connectivity",
         story:
           "The report surface carried the main planning job: define a market, apply account filters, compare personas, review account-level signals, and decide which segments were worth action. The design challenge was making dense company and member data readable enough for high-stakes planning.",
@@ -1489,7 +1490,7 @@ export const caseStudies: CaseStudy[] = [
         phase: "02",
         label: "System model",
         title: "Sources, reports, and exports had to feel like one product model",
-        image: "/projects/sales-insights/lsi-mocks.png",
+        image: "/projects/sales-insights/LSI-Buyer-Intent.png",
         alt: "Sales Insights product mockups showing report, source matching, CRM status, and export surfaces",
         story:
           "The public research reconstructs Sales Insights around connected layers: sources, reports and insights, account lists, and exports or integrations. My case-study narrative now centers that architecture because it explains how planning outputs became operational assets.",
@@ -1499,7 +1500,7 @@ export const caseStudies: CaseStudy[] = [
         phase: "03",
         label: "Trust and automation",
         title: "CRM automation needed visible review, status, and exception handling",
-        image: "/projects/sales-insights/lsi-mocks.png",
+        image: "/projects/sales-insights/LSI-Review-Matches.png",
         alt: "Sales Insights integration and matching surfaces for CRM-connected planning workflows",
         story:
           "The integration work mattered because it moved insight into systems of record. Matching accounts to LinkedIn companies, mapping fields, exporting, syncing, and handling errors had to be transparent enough for Sales Ops and CRM owners to let automation change operational data.",
@@ -1516,15 +1517,15 @@ export const caseStudies: CaseStudy[] = [
         evidence: "Strategic prioritization, whitespace, territory planning, ABM planning, inbound prioritization, regional expansion, and Sales Navigator handoff.",
       },
     ],
-    outcomesTitle: "What the work clarified",
+    outcomesTitle: "What the work made clearer",
     outcomes: [
-      "Sales Insights is framed as a trusted GTM planning system, not a generic analytics dashboard.",
-      "The case-study narrative now connects public product context to the 2022 maturity challenge: turning market data into repeatable, high-trust workflows.",
-      "Core experience and integration work are presented as one connected system across sources, reports, account lists, exports, CRM, Marketing, and Sales Navigator execution.",
-      "The page leaves room for final screenshots, approved metrics, and internal artifacts without inventing unsupported launch or adoption claims.",
+      "Sales Insights is framed as a planning system for turning LinkedIn data into accountable GTM decisions, not a dashboard of interesting signals.",
+      "The narrative centers trust as part of the experience: source visibility, match confidence, review states, and exception handling had to be designed into the workflow.",
+      "Core reports and integrations are presented as one connected system across sources, account lists, exports, CRM, Marketing, and Sales Navigator activation.",
+      "The case study stays grounded in product decisions and public-safe evidence, with room for deeper internal metrics or artifacts if they become available.",
     ],
     takeaway:
-      "Sales Insights shows enterprise product design at the intersection of data trust, workflow architecture, automation, and cross-functional GTM execution.",
+      "Sales Insights shows how enterprise product design turns complex data, workflow architecture, and automation into decisions GTM teams can trust and act on.",
   },
   {
     id: "seller-agent",
@@ -2029,6 +2030,25 @@ function CaseStudyImagePlaceholder({ accent }: { accent: string }) {
   );
 }
 
+function CaseStudyProblemFrameVisual({ study }: { study: CaseStudy }) {
+  if (study.id !== "sales-insights") {
+    return <CaseStudyImagePlaceholder accent={study.accent} />;
+  }
+
+  return (
+    <section id="problem-frame-visual" aria-label="Sales Insights product preview" className="scroll-mt-32 border-b border-black/12 pb-12">
+      <div className="grid aspect-[16/9] place-items-center overflow-hidden rounded-lg border border-black/12 bg-[var(--accent)]" style={getCaseStudyThumbnailFrameStyle(study)}>
+        <img
+          src="/projects/sales-insights/Sales-Insights-thumbnail-md.png"
+          alt="LinkedIn Sales Insights report interface with account filters, personas, market sizing, and account table"
+          className="block h-full w-full object-contain"
+          loading="lazy"
+        />
+      </div>
+    </section>
+  );
+}
+
 function CaseStudyStoryView({ study }: { study: CaseStudy }) {
   const isPhoneCase = phoneCaseIds.has(study.id);
   const metaRef = useRef<HTMLDivElement>(null);
@@ -2040,6 +2060,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
   };
   const whySection = caseStudyWhySections[study.id];
   const primaryImpact = study.impact.slice(0, 3);
+  const showProblemFrameRole = study.id !== "sales-insights";
 
   useEffect(() => {
     function updateMetaStickyState() {
@@ -2123,14 +2144,16 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                 eyebrow="Problem frame"
                 title={brief.question}
               />
-              <div className="grid gap-6 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">My role</p>
-                  <p className="mt-2 text-base font-semibold leading-7 text-black/82">{study.role}</p>
-                  {study.id === "campglint" ? null : (
-                    <p className="mt-2 text-sm leading-6 text-black/62">{study.platform} / {study.status}</p>
-                  )}
-                </div>
+              <div className={showProblemFrameRole ? "grid gap-6 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]" : "grid gap-6"}>
+                {showProblemFrameRole ? (
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">My role</p>
+                    <p className="mt-2 text-base font-semibold leading-7 text-black/82">{study.role}</p>
+                    {study.id === "campglint" ? null : (
+                      <p className="mt-2 text-sm leading-6 text-black/62">{study.platform} / {study.status}</p>
+                    )}
+                  </div>
+                ) : null}
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">What I focused on</p>
                   <div className="mt-3 grid gap-4">
@@ -2145,7 +2168,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
               </div>
             </section>
 
-            <CaseStudyImagePlaceholder accent={study.accent} />
+            <CaseStudyProblemFrameVisual study={study} />
 
             <section id="scope" className="grid gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
               <StorySectionLabel
@@ -3745,7 +3768,7 @@ export function PortfolioPage() {
         <div className="mx-auto grid max-w-6xl gap-9 lg:grid-cols-[minmax(0,0.95fr)_minmax(20rem,0.72fr)] lg:items-center">
           <div>
             <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
-              Turning complex product mandates into trusted workflows.
+              I design and build product systems that turn complex signals into clear decisions.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
               Senior product designer with 10+ years at LinkedIn, focused on enterprise systems, AI-assisted selling, GTM workflows, and founder-led product building.
