@@ -3459,7 +3459,7 @@ function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
           <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(21rem,0.46fr)] lg:items-start">
             <LockedCaseStudyPreview study={study} />
 
-            <div className="order-first lg:sticky lg:top-[calc(var(--portfolio-header-height)+1rem)] lg:order-none">
+            <div className="lg:sticky lg:top-[calc(var(--portfolio-header-height)+1rem)]">
               <div className="overflow-hidden rounded-xl border border-[rgb(var(--accent-rgb)/0.22)] bg-white shadow-[0_26px_72px_-58px_rgb(var(--accent-rgb)/0.8)]">
                 <div className="bg-[var(--accent)] p-5 text-white">
                   <div className="flex items-center gap-3">
