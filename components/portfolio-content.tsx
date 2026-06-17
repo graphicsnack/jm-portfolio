@@ -736,6 +736,8 @@ export const caseStudies: CaseStudy[] = [
     },
     heroImage: "/projects/Sales%20Nav/sn-home.png",
     heroAlt: "Sales Navigator product system mockups",
+    thumbnailImage: "/projects/Sales%20Nav/sales-nav-thumbnail.png",
+    thumbnailAlt: "LinkedIn Sales Navigator workspace and CRM-connected product surfaces",
     thumbnailBackground: "#E7EEF5",
     accent: "bg-[#0a66c2]",
     activeClass: "border-[#0a66c2] bg-[#0a66c2] text-white",
@@ -912,21 +914,21 @@ export const caseStudies: CaseStudy[] = [
     platform: "Paid recruiting and talent-brand product",
     headline: "LinkedIn Career Pages for employer storytelling and candidate action",
     summary:
-      "LinkedIn Career Pages helped companies turn employer storytelling into credible candidate-facing experiences. As the primary designer across member and admin surfaces, I shaped tools for publishing Life Page content and experiences that helped job seekers evaluate companies, create alerts, and signal interest.",
-    role: "Primary product designer across member and admin experiences",
+      "LinkedIn Career Pages helped companies turn employer storytelling into credible candidate-facing experiences. As the primary designer across member, admin, and analytics surfaces, I shaped the overall admin and analytics experience for Talent Brand teams, plus candidate experiences that helped passive and active job seekers evaluate companies, create alerts, and signal interest.",
+    role: "Primary product designer across member, admin, and analytics experiences",
     status: "Shipped LinkedIn recruiting product",
     contribution: {
       owned: [
-        "Owned member-facing and admin-facing Career Pages experiences as the primary product designer.",
+        "Owned member-facing Career Pages, the overall admin experience, and analytics experiences as the primary product designer.",
         "Designed authoring, editing, preview, targeting, publishing, Life Page modules, job alerts, and candidate action paths.",
         "Connected paid Career Pages value to the broader free Company Pages ecosystem.",
       ],
       partnered: [
         "Partnered with two PMs, PMM, UXR, and mobile and web engineering teams.",
-        "Balanced Talent Brand admin needs with job seeker research, trust, and action paths.",
+        "Balanced passive and active job seeker needs with company goals for attracting talent through credible employer storytelling.",
       ],
       proof: [
-        "Admin publishing tools and Life Pages",
+        "Admin publishing tools, analytics, and Life Pages",
         "Team tabs, employee stories, photos, and testimonials",
         "Jobs tab, saved job alerts, and interest signals",
       ],
@@ -941,13 +943,13 @@ export const caseStudies: CaseStudy[] = [
       { label: "Company", value: "LinkedIn" },
       { label: "Product", value: "Career Pages" },
       { label: "Audience", value: "Talent Brand managers, company admins, job seekers" },
-      { label: "Role", value: "Primary designer with 2 PMs, PMM, UXR, and mobile/web engineers" },
+      { label: "Role", value: "Primary designer across member, admin, and analytics experiences" },
     ],
     impact: [
       {
-        title: "Admin publishing system",
+        title: "Admin and analytics for employer storytelling",
         detail:
-          "Designed shipped admin experiences for building, editing, previewing, and publishing Life Page content across media, leaders, custom modules, photos, employee perspectives, and testimonials.",
+          "Designed the admin and analytics experiences that helped Talent Brand teams create, target, publish, and understand the performance of employer stories across Life Pages, media, leaders, custom modules, photos, employee perspectives, and testimonials.",
       },
       {
         title: "Employee-experience storytelling",
@@ -997,9 +999,9 @@ export const caseStudies: CaseStudy[] = [
     ],
     surfaces: [
       {
-        title: "Admin authoring and publishing",
+        title: "Admin authoring, analytics, and publishing",
         detail:
-          "Page editors, media modules, leader cards, spotlight modules, photos, employee perspectives, testimonials, visibility controls, targeting, preview, save, and publish flows.",
+          "Page editors, analytics experiences, media modules, leader cards, spotlight modules, photos, employee perspectives, testimonials, visibility controls, targeting, preview, save, and publish flows.",
         icon: FileText,
       },
       {
@@ -1022,7 +1024,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     systemBuild: [
-      "Owned the member-facing and admin-facing Career Pages experience as the primary product designer.",
+      "Owned the member-facing Career Pages experience, overall admin experience, and analytics experiences as the primary product designer.",
       "Also owned related free Company Pages experiences across member and admin surfaces while Career Pages remained the paid product tier.",
       "Partnered with two product managers, one product marketing manager, one user researcher, and mobile and web engineering teams.",
       "Designed shipped Life Page employee-experience features for employer storytelling through people, teams, media, perspectives, and testimonials.",
@@ -1041,9 +1043,9 @@ export const caseStudies: CaseStudy[] = [
           "Life Pages were stronger when the story came from recognizable employees, teams, photos, perspectives, and testimonials rather than broad company claims.",
       },
       {
-        title: "Keep jobs and interest contextual",
+        title: "Balance passive research and active job intent",
         detail:
-          "Job alerts and interest signals were most useful when they appeared after candidates had enough company context to understand why the company was worth following or pursuing.",
+          "Passive job seekers needed credible company context before following or signaling interest, while active candidates needed fast paths to relevant jobs and alerts. The experience had to support both without turning employer storytelling into a detached marketing surface.",
       },
       {
         title: "Preserve coherence across paid and free pages",
@@ -1098,26 +1100,26 @@ export const caseStudies: CaseStudy[] = [
       "Launched saved job alerts for company pages so job seekers could follow future opportunities from companies they cared about.",
       "Launched ways for job seekers to signal interest in working at a company, connecting company research to recruiting intent.",
       "Launched employee-experience features in Life Pages, including richer storytelling surfaces for teams, people, photos, perspectives, and testimonials.",
-      "Gave Talent Brand managers and company admins shipped tools for authoring, previewing, publishing, and maintaining paid Career Pages content.",
+      "Gave Talent Brand managers and company admins shipped tools for authoring, previewing, publishing, measuring, and maintaining paid Career Pages content.",
       "Connected paid Career Pages value to the broader free Company Pages ecosystem across member-facing and admin-facing surfaces.",
     ],
     takeaway:
-      "Career Pages shows product design across a two-sided recruiting system: admin tools for credible employer storytelling and member experiences that help candidates move from company research into jobs, alerts, and interest.",
+      "Career Pages shows product design across a two-sided recruiting system: admin and analytics tools for companies trying to attract talent, and member experiences that help passive and active job seekers move from company research into jobs, alerts, and interest.",
   },
   {
     id: "company-pages",
     shortLabel: "Employee Experience",
     product: "LinkedIn Employee Experience",
-    platform: "UGC pilot for Company Pages and Career Pages",
+    platform: "Desktop and mobile UGC pilot for Company Pages and Career Pages",
     headline: "Employee-generated company review system",
     summary:
-      "LinkedIn Employee Experience explored how verified employee perspectives could become trusted company research for job seekers. I led design and research across contribution flows, privacy states, question systems, review concepts, and integration paths that informed later Career Pages features.",
-    role: "Design and research lead",
+      "LinkedIn Employee Experience explored how verified employee perspectives could become trusted company research for job seekers. I led design and research across desktop and mobile contribution flows, privacy states, question systems, review concepts, and integration paths that informed later Career Pages features.",
+    role: "Led design and collaborated with PM and PMM on strategy",
     status: "Pilot validated, patterns informed Career Pages launches",
     contribution: {
       owned: [
         "Led design and research for the employee-generated company review pilot.",
-        "Designed the initial Company Pages collection model, privacy states, question system, skip and completion states, and aggregation patterns.",
+        "Designed the initial desktop and mobile Company Pages collection model, privacy states, question system, skip and completion states, and aggregation patterns.",
         "Explored how ratings, reviews, and employee signals could travel into Company Pages, Jobs, feed, recommendations, and Career Pages.",
       ],
       partnered: [
@@ -1140,7 +1142,7 @@ export const caseStudies: CaseStudy[] = [
       { label: "Company", value: "LinkedIn" },
       { label: "Business line", value: "LinkedIn Talent Solutions" },
       { label: "Audience", value: "Job seekers, employees, Talent Brand teams" },
-      { label: "Role", value: "Designer and researcher with PM, PMM, and mobile/web engineers" },
+      { label: "Role", value: "Led design and collaborated with PM and PMM on strategy" },
     ],
     impact: [
       {
@@ -1533,17 +1535,19 @@ export const caseStudies: CaseStudy[] = [
     platform: "AI agent exploration on LinkedIn.com",
     headline: "An in-context AI agent for seller prospecting on LinkedIn",
     summary:
-      "Seller Agent explored how AI could bring Sales Navigator value directly into the LinkedIn workflow. As the sole designer, I shaped an in-context agent concept that used social signals, relationship paths, account context, and guided prompts to help sellers move from research to outreach.",
-    role: "Sole designer with product and AI Agent partners",
+      "Seller Agent explored how AI could bring Sales Navigator value directly into the LinkedIn workflow. I led the early design work with my PM, defining the opportunity, validating concepts, and identifying an in-context agent as the strongest path forward. As the work expanded, I partnered with another designer and cross-company agent teams to align the experience around social signals, relationship paths, account context, and guided prompts.",
+    role: "Led definition, validation, concept testing, and stakeholder alignment",
     status: "Foundational LinkedIn AI Agent exploration",
     contribution: {
       owned: [
-        "Defined the 0-to-1 in-context AI agent concept for seller prospecting on LinkedIn.com.",
+        "Led early opportunity framing and 0-to-1 concept validation with my PM.",
+        "Identified the in-context AI agent direction for seller prospecting on LinkedIn.com.",
         "Mapped the feed-to-lead-to-outreach storyboard and translated seller research signals into guided prompts.",
         "Explored agent UI patterns that balanced free-form questions, structured prompts, source-backed context, and seller control.",
       ],
       partnered: [
-        "Worked with product, research, engineering, and AI Agent platform partners.",
+        "Worked with product, research, engineering, AI Agent platform partners, and two teams building agentic products across LinkedIn.",
+        "Partnered with another designer during the next phase to align Seller Agent with emerging company-wide agentic experience patterns.",
         "Used internal seller feedback to tighten trust, prompt density, relationship-path visibility, and action control.",
       ],
       proof: [
@@ -1562,7 +1566,7 @@ export const caseStudies: CaseStudy[] = [
       { label: "Company", value: "LinkedIn" },
       { label: "Product area", value: "Sales Navigator, LinkedIn.com, AI Agents" },
       { label: "Audience", value: "Sellers researching leads and accounts" },
-      { label: "Role", value: "Sole designer partnered with product, research, and agent teams" },
+      { label: "Role", value: "Led definition, validation, concept testing, and stakeholder alignment" },
     ],
     impact: [
       {
@@ -1750,9 +1754,9 @@ function getCaseStudyThumbnailFrameStyle(study: CaseStudy): CSSProperties {
   };
 }
 
-const featuredCaseStudyIds = ["sales-insights", "campglint", "seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"];
+const featuredCaseStudyIds = ["sales-insights", "sales-navigator-multiseat", "campglint", "seller-agent", "career-pages", "company-pages"];
 const compactCaseStudyIds: string[] = [];
-const routedCaseStudyIds = ["campglint", "sales-insights", "seller-agent", "company-pages", "career-pages", "sales-navigator-multiseat"];
+const routedCaseStudyIds = ["sales-insights", "sales-navigator-multiseat", "campglint", "seller-agent", "company-pages", "career-pages"];
 
 const resumeSignals = [
   "11+ years at LinkedIn across Sales, Talent, Company Pages, content platforms, and AI agent workflows.",
