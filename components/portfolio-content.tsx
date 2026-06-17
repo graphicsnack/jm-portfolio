@@ -1518,6 +1518,16 @@ export const caseStudies: CaseStudy[] = [
           "The strongest portfolio story is the transition from insight discovery to operational execution. A target-market hypothesis could become a prioritized account list, then move into CRM, ABM campaign planning, or Sales Navigator execution without every team rebuilding the criteria.",
         evidence: "Strategic prioritization, whitespace, territory planning, ABM planning, inbound prioritization, regional expansion, and Sales Navigator handoff.",
       },
+      {
+        phase: "05",
+        label: "Experimentation",
+        title: "Experiments helped test the next product direction",
+        image: "/projects/sales-insights/LSI-redesign.png",
+        alt: "Sales Insights exploratory product redesign and activation concept mocks",
+        story:
+          "Alongside the core experience work, I partnered with engineering and PM to explore experimentation initiatives that could clarify the product's next direction. The main effort was a product redesign: we prioritized the surfaces most likely to affect planning confidence, tested concepts early, and used those learnings while shaping the overall product experience. Other explorations looked at how LinkedIn Campaign Manager could connect Sales Ops account lists to the audience lists Marketing teams used for campaign activation.",
+        evidence: "Product redesign concepts, prioritized surfaces, early concept testing, engineering and PM alignment, Campaign Manager integration exploration, and account-list to audience-list handoff.",
+      },
     ],
     outcomesTitle: "What the work made clearer",
     outcomes: [
