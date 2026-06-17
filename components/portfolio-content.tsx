@@ -715,12 +715,13 @@ export const caseStudies: CaseStudy[] = [
     platform: "Enterprise SaaS",
     headline: "From a standalone seller workspace to a CRM-connected team system",
     summary:
-      "LinkedIn Sales Navigator turned LinkedIn relationship data into a seller product that companies could adopt, manage, measure, and expand. As one of three founding designers, my work spanned admin, usage reporting, team management, onboarding, CRM integrations, Gmail, SSI, mobile discovery, and growth paths across Sales Navigator and LinkedIn.",
-    role: "One of three founding designers across admin, integrations, onboarding, mobile, and growth",
+      "LinkedIn Sales Navigator turned LinkedIn relationship data into a seller product that companies could adopt, manage, measure, and expand. I was one of three founding designers, and I primarily owned admin, integrations, onboarding, mobile, and growth across Sales Navigator and LinkedIn.",
+    role: "One of three founding designers. Primarily owned admin, integrations, onboarding, mobile, and growth",
     status: "LinkedIn Sales Navigator product systems and integrations",
     contribution: {
       owned: [
-        "Started as one of three founding designers, focusing on admin, usage reporting, team management, onboarding, and new-user value paths.",
+        "Started as one of three founding designers for LinkedIn Sales Navigator.",
+        "Primarily owned admin, usage reporting, team management, onboarding, and new-user value paths.",
         "Led CRM integration design from the first Salesforce widgets into a scalable integration model that could extend beyond Salesforce.",
         "Drove Sales Navigator for Gmail, SSI for Sales Navigator, mobile discovery and onboarding, team-feature expansion on mobile, and growth-oriented upsell and funnel work.",
       ],
@@ -746,7 +747,7 @@ export const caseStudies: CaseStudy[] = [
       { label: "Company", value: "LinkedIn" },
       { label: "Product", value: "LinkedIn Sales Navigator" },
       { label: "Audience", value: "Sales leaders, admins, sellers, operations teams" },
-      { label: "Role", value: "One of three founding designers across admin, integrations, onboarding, mobile, and growth" },
+      { label: "Role", value: "One of three founding designers. Primarily owned admin, integrations, onboarding, mobile, and growth" },
     ],
     impact: [
       {
@@ -827,7 +828,8 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     systemBuild: [
-      "Started as one of three founding designers and focused early on the admin, usage reporting, team management, onboarding, and new-user experiences needed for customer adoption.",
+      "Started as one of three founding designers for LinkedIn Sales Navigator.",
+      "Primarily owned admin, usage reporting, team management, onboarding, CRM integrations, mobile, and growth experiences needed for customer adoption and expansion.",
       "Helped establish Sales Navigator as a standalone SaaS workspace for sellers and sales teams, with accounts, leads, saved work, relationship signals, and seller-specific navigation.",
       "Led CRM integration design from the first Salesforce widgets into a scalable model for embedded intelligence, CRM Sync, activity writeback, data controls, and partner-platform expansion.",
       "Extended Sales Navigator value across adjacent seller workflows and core product surfaces: Gmail, CRM, and LinkedIn.com touchpoints, SSI for Sales Navigator, mobile discovery, mobile onboarding, and later team-feature work on mobile.",
@@ -2486,28 +2488,28 @@ function PortfolioFooter() {
 
 const caseStudyBriefs: Record<string, { family: string; question: string }> = {
   campglint: {
-    family: "Founder-led product case",
+    family: "Campsite monitoring system",
     question:
       "How can campground availability shift from stressful manual checking into a calmer trip-planning flow?",
   },
   "sales-navigator-multiseat": {
-    family: "LinkedIn seller workflow system",
+    family: "CRM-connected seller system",
     question: "How do you turn LinkedIn relationship data into a CRM-connected seller workflow?",
   },
   "career-pages": {
-    family: "LinkedIn talent-brand system",
+    family: "Employer storytelling system",
     question: "How do employer stories move candidates from company research into job action?",
   },
   "company-pages": {
-    family: "LinkedIn Talent Solutions UGC initiative",
+    family: "Employee insight system",
     question: "How can employee-generated ratings help job seekers trust what it is really like to work at a company?",
   },
   "sales-insights": {
-    family: "LinkedIn enterprise data product",
+    family: "GTM planning system",
     question: "How can GTM teams identify the right accounts and move that decision into action?",
   },
   "seller-agent": {
-    family: "LinkedIn AI Agent exploration",
+    family: "AI-assisted seller workflow",
     question: "How can Sales Navigator value meet sellers inside the LinkedIn workflow?",
   },
 };
@@ -2768,9 +2770,14 @@ function CaseStudyPreviewMeta({ study, compact = false }: { study: CaseStudy; co
 }
 
 function CaseStudyCardAction({ locked = true, compact = false }: { locked?: boolean; compact?: boolean }) {
+  const actionClassName = [
+    "inline-flex items-center font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]",
+    compact ? "mt-auto w-full gap-1.5 border-t border-black/10 pt-3 text-xs" : "mt-auto gap-2 pt-5 text-sm",
+  ].join(" ");
+
   if (!locked) {
     return (
-      <span className={["mt-auto inline-flex items-center gap-2 font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]", compact ? "pt-3 text-xs" : "pt-5 text-sm"].join(" ")}>
+      <span className={actionClassName}>
         {compact ? "View" : "View case study"}
         <ArrowUpRight className={compact ? "h-3.5 w-3.5" : "h-4 w-4"} />
       </span>
@@ -2778,7 +2785,7 @@ function CaseStudyCardAction({ locked = true, compact = false }: { locked?: bool
   }
 
   return (
-    <span className={["mt-auto inline-flex items-center gap-2 font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]", compact ? "pt-3 text-xs" : "pt-5 text-sm"].join(" ")}>
+    <span className={actionClassName}>
       {compact ? "Passcode" : "Passcode required"}
       <LockKeyhole className={compact ? "h-3.5 w-3.5" : "h-4 w-4"} />
     </span>
@@ -2885,18 +2892,19 @@ function CompactCaseStudyRow() {
 function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
   const thumbnail = getCaseStudyThumbnail(study);
   const locked = !publicCaseStudyIds.has(study.id);
+  const brief = caseStudyBriefs[study.id];
 
   return (
     <Link
       href={"/case-studies/" + study.id}
-      className="group flex h-[20.5rem] min-w-0 flex-col overflow-hidden rounded-lg border border-black/15 bg-[#fffefb]/94 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_54px_-48px_rgb(0_0_0/0.58)]"
+      className="group flex h-[16.25rem] min-w-0 flex-col overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/96 transition duration-300 hover:-translate-y-0.5 hover:border-black/18 hover:shadow-[0_20px_54px_-48px_rgb(0_0_0/0.58)]"
     >
-      <div className="grid h-28 shrink-0 place-items-center overflow-hidden bg-[var(--accent)]" style={getCaseStudyThumbnailFrameStyle(study)}>
+      <div className="grid h-[7.25rem] shrink-0 place-items-center overflow-hidden bg-[var(--accent)]" style={getCaseStudyThumbnailFrameStyle(study)}>
         <img src={thumbnail.src} alt={thumbnail.alt} className={caseStudyThumbnailImageClass} style={caseStudyThumbnailImageStyle} loading="lazy" />
       </div>
-      <div className="flex min-h-0 flex-1 flex-col p-3.5">
-        <p className="text-[0.66rem] font-semibold uppercase text-black/42">{study.platform}</p>
-        <h3 className="text-clamp-2 mt-1.5 text-sm font-semibold leading-5 text-black/88">{study.product}</h3>
+      <div className="flex min-h-0 flex-1 flex-col p-4">
+        <p className="text-clamp-2 text-[0.64rem] font-semibold uppercase leading-[1.35] tracking-[0.08em] text-black/42">{brief?.family ?? study.platform}</p>
+        <h3 className="text-clamp-2 mt-2 text-base font-semibold leading-5 text-black/88">{study.product}</h3>
         <CaseStudyCardAction locked={locked} compact />
       </div>
     </Link>
