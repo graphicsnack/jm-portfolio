@@ -715,26 +715,26 @@ export const caseStudies: CaseStudy[] = [
     platform: "Enterprise SaaS",
     headline: "From a standalone seller workspace to a CRM-connected team system",
     summary:
-      "LinkedIn Sales Navigator turned LinkedIn relationship data into a focused seller workspace connected to CRM and enterprise sales systems. My work spanned early product foundations, seller workflows, integrations, admin controls, sync settings, onboarding, usage reporting, and team expansion paths.",
-    role: "Founding design team member focusing on enterprise and integrations",
+      "LinkedIn Sales Navigator turned LinkedIn relationship data into a seller product that companies could adopt, manage, measure, and expand. As one of three founding designers, my work spanned admin, usage reporting, team management, onboarding, CRM integrations, Gmail, SSI, mobile discovery, and growth paths across Sales Navigator and LinkedIn.",
+    role: "One of three founding designers across admin, integrations, onboarding, mobile, and growth",
     status: "LinkedIn Sales Navigator product systems and integrations",
     contribution: {
       owned: [
-        "Contributed to Sales Navigator's shift from LinkedIn feature set into a standalone seller workspace.",
-        "Designed across seller workflows, CRM widgets, sync settings, admin controls, onboarding, reporting, and team expansion paths.",
-        "Helped make relationship intelligence portable across Sales Navigator, CRM, Gmail, and partner surfaces.",
+        "Started as one of three founding designers, focusing on admin, usage reporting, team management, onboarding, and new-user value paths.",
+        "Led CRM integration design from the first Salesforce widgets into a scalable integration model that could extend beyond Salesforce.",
+        "Drove Sales Navigator for Gmail, SSI for Sales Navigator, mobile discovery and onboarding, team-feature expansion on mobile, and growth-oriented upsell and funnel work.",
       ],
       partnered: [
-        "Balanced seller action with admin trust across sync behavior, field mapping, activity capture, reporting, and governance.",
-        "Extended the product model from individual seller productivity into team and enterprise workflows.",
+        "Balanced seller action with admin trust across sync behavior, field mapping, activity capture, reporting, governance, and team adoption.",
+        "Extended the product model from individual seller productivity into team, enterprise, and cross-surface workflows.",
       ],
       proof: [
-        "Sales Navigator workspace and Lead Builder",
-        "CRM widgets, TeamLink paths, and sync settings",
-        "Salesforce controls, reporting, and multi-seat flows",
+        "Admin, usage reporting, team management, onboarding, and new-user experiences",
+        "Salesforce widgets, scalable CRM integration patterns, sync settings, and data controls",
+        "Gmail, SSI, mobile discovery and onboarding, team mobile features, upsell, and funnel optimization",
       ],
     },
-    heroImage: "/projects/Sales%20Nav/sales-nav-thumbnail.png",
+    heroImage: "/projects/Sales%20Nav/sn-home.png",
     heroAlt: "Sales Navigator product system mockups",
     thumbnailBackground: "#E7EEF5",
     accent: "bg-[#0a66c2]",
@@ -744,98 +744,98 @@ export const caseStudies: CaseStudy[] = [
       { label: "Company", value: "LinkedIn" },
       { label: "Product", value: "LinkedIn Sales Navigator" },
       { label: "Audience", value: "Sales leaders, admins, sellers, operations teams" },
-      { label: "Role", value: "Founding design team member focusing on enterprise and integrations" },
+      { label: "Role", value: "One of three founding designers across admin, integrations, onboarding, mobile, and growth" },
     ],
     impact: [
       {
-        title: "0-to-1 seller workspace",
+        title: "Adoption and admin foundations",
         detail:
-          "Helped shape Sales Navigator as a dedicated sales workspace rather than a generic LinkedIn browsing experience, with accounts, leads, saved work, search, Lead Builder, and timely relationship signals.",
+          "Focused early work on admin, usage reporting, team management, onboarding, and new-user experiences so customers could manage seats, see value, and help sellers become productive faster.",
       },
       {
-        title: "CRM integration systems",
+        title: "CRM integration platform",
         detail:
-          "Worked on surfaces that carried Sales Navigator context into CRM workflows: embedded widgets, profile context, TeamLink paths, account actions, lead recommendations, news, CRM sync settings, and activity writeback patterns.",
+          "Led CRM integration design from the first Salesforce widgets into scalable patterns for embedded intelligence, profile context, TeamLink paths, account actions, recommendations, sync settings, and activity writeback.",
       },
       {
-        title: "Admin and data trust",
+        title: "Seller touchpoints beyond the core app",
         detail:
-          "Designed around the operational layer behind integrations: Salesforce connection state, sync preferences, pipeline-stage mapping, opportunity value mapping, auto-sync, purge, disconnect, and update controls.",
+          "Drove Sales Navigator for Gmail, along with CRM and LinkedIn.com surface work, so relationship intelligence could appear inside the email, CRM, and LinkedIn workflows sellers already used.",
       },
       {
-        title: "Team and enterprise expansion",
+        title: "Team expansion and growth",
         detail:
-          "Extended the product model into team and enterprise workflows: TeamLink, reporting, onboarding, usage visibility, CRM/Gmail adjacency, PointDrive-era buyer engagement, and later multi-seat expansion paths.",
+          "Later work included SSI for Sales Navigator, mobile discovery and onboarding, team-only value on mobile, and growth efforts across Sales Navigator and LinkedIn, including upsell paths and funnel optimization.",
       },
     ],
     journey: [
       {
         phase: "01",
-        title: "Create a dedicated sales product",
+        title: "Make a new sales product adoptable by teams",
         detail:
-          "The first product problem was separation: Sales Navigator needed to become a purpose-built sales workflow with accounts, leads, saved work, alerts, warm paths, and sales-specific navigation instead of another layer inside the general LinkedIn experience.",
-        evidence: "Standalone Sales Navigator launch, v1 product shell, saved leads, suggested leads, Lead Builder, Accounts, Leads, Inbox",
+          "Early Sales Navigator needed more than prospecting workflows. It needed the admin, usage reporting, team management, onboarding, and new-user experiences that would let companies roll it out, manage adoption, and understand whether sellers were reaching value.",
+        evidence: "Admin workflows, usage reporting, team management, onboarding, new-user experiences, seat visibility",
       },
       {
         phase: "02",
         title: "Bring relationship intelligence into CRM",
         detail:
-          "CRM was the system of record, but Sales Navigator had the relationship intelligence. Integration work focused on making profiles, TeamLink paths, recommended leads, account actions, news, and activity useful inside Salesforce and Microsoft Dynamics workflows.",
-        evidence: "Salesforce, Microsoft Dynamics, CRM widgets, top-card states, recommended leads, news, best path in",
+          "CRM was the system of record, but Sales Navigator had the relationship intelligence. I led work from the first Salesforce widgets into a more scalable CRM integration experience for profiles, TeamLink paths, recommended leads, account actions, news, sync, and activity capture.",
+        evidence: "Salesforce widgets, CRM integration model, CRM Sync, top-card states, recommended leads, news, best path in",
       },
       {
         phase: "03",
-        title: "Make integration safe for teams",
+        title: "Meet sellers in CRM, email, and LinkedIn.com",
         detail:
-          "The integration layer also needed admin trust. CRM sync preferences, connection state, field mapping, activity writeback, auto-sync, purge, and disconnect controls made the system governable instead of just useful to individual sellers.",
-        evidence: "CRM sync settings, Salesforce status, pipeline-stage mapping, opportunity value mapping, auto-sync, purge, disconnect",
+          "Sellers did not start every workflow inside Sales Navigator. Relationship intelligence had to appear in CRM records, email workflows, and LinkedIn.com surfaces so sellers could use Sales Navigator value without breaking their existing rhythm.",
+        evidence: "CRM surfaces, Sales Navigator for Gmail, LinkedIn.com entry points, embedded relationship intelligence",
       },
       {
         phase: "04",
         title: "Scale from individual seller to team system",
         detail:
-          "Later work extended the same product model into managed team adoption: onboarding, usage reporting, admin workflows, plan clarity, CRM/Gmail adjacency, and multi-seat paths that helped leaders understand and expand Sales Navigator value.",
-        evidence: "TeamLink, TeamLink Extend, PointDrive-era buyer engagement, CRM Sync, usage reporting, admin workflows, multi-seat research",
+          "As Sales Navigator matured, the design work shifted toward bringing team-only features into mobile and improving the growth paths that helped customers expand: upsells, funnel optimization, plan clarity, and team-value proof across Sales Navigator and LinkedIn.",
+        evidence: "Team mobile features, TeamLink, usage reporting, plan clarity, upsell paths, funnel optimization, multi-seat research",
       },
     ],
     surfaces: [
       {
-        title: "Standalone seller workspace",
+        title: "Admin, reporting, and onboarding",
         detail:
-          "Home, Accounts, Leads, Inbox, Lead Builder, saved accounts, saved leads, suggested leads, filters, account lists, relationship signals, and seller search workflows.",
+          "Admin setup, team management, usage reporting, onboarding, new-user education, seat visibility, and value-discovery paths for sellers and managers.",
         icon: Layers3,
       },
       {
         title: "CRM widgets and sync",
         detail:
-          "Embedded CRM modules, profile top cards, save account, save lead, get introduced, recommended leads, news, TeamLink paths, CRM Sync, activity writeback, and partner-widget patterns.",
+          "First Salesforce widgets, embedded CRM modules, profile top cards, save account, save lead, get introduced, recommended leads, news, TeamLink paths, CRM Sync, activity writeback, and partner-widget patterns.",
         icon: Link2,
       },
       {
-        title: "Admin settings and data controls",
+        title: "Gmail, SSI, and mobile",
         detail:
-          "Sales preferences, CRM connection status, pipeline-stage mapping, opportunity value mapping, auto-sync for seat holders, email preferences, purge CRM data, and disconnect controls.",
+          "Sales Navigator for Gmail, Social Selling Index for Sales Navigator, mobile discovery, mobile onboarding, and later team-feature expansion on the mobile app.",
         icon: ShieldCheck,
       },
       {
         title: "Team growth and reporting",
         detail:
-          "TeamLink, usage reporting, onboarding, chooser and switcher flows, plan clarity, seat expansion, mobile chooser, simplification studies, and growth-oriented team adoption surfaces.",
+          "TeamLink, usage reporting, chooser and switcher flows, plan clarity, seat expansion, mobile chooser, simplification studies, upsell paths, and funnel optimization.",
         icon: MonitorCheck,
       },
     ],
     systemBuild: [
-      "Contributed to Sales Navigator's shift from LinkedIn feature set into a standalone SaaS workspace for sellers and sales teams.",
-      "Worked across early account and lead workflows: saved leads, suggested leads, account lists, filters, search, Lead Builder, relationship signals, and TeamLink paths.",
-      "Designed integration surfaces that made Sales Navigator useful inside CRM records, including embedded widgets, profile context, recommended leads, news, save actions, and introduction paths.",
-      "Supported the operational side of integrations through CRM sync preferences, Salesforce connection state, field mapping, activity writeback patterns, auto-sync, purge, disconnect, and update settings.",
-      "Extended the product model into team and enterprise workflows across CRM, Gmail, onboarding, usage visibility, reporting, plan clarity, and multi-seat expansion.",
+      "Started as one of three founding designers and focused early on the admin, usage reporting, team management, onboarding, and new-user experiences needed for customer adoption.",
+      "Helped establish Sales Navigator as a standalone SaaS workspace for sellers and sales teams, with accounts, leads, saved work, relationship signals, and seller-specific navigation.",
+      "Led CRM integration design from the first Salesforce widgets into a scalable model for embedded intelligence, CRM Sync, activity writeback, data controls, and partner-platform expansion.",
+      "Extended Sales Navigator value across adjacent seller workflows and core product surfaces: Gmail, CRM, and LinkedIn.com touchpoints, SSI for Sales Navigator, mobile discovery, mobile onboarding, and later team-feature work on mobile.",
+      "Supported growth efforts across Sales Navigator and LinkedIn through upsell paths, funnel optimization, plan clarity, usage visibility, reporting, and multi-seat expansion.",
     ],
     decisions: [
       {
-        title: "Separate the sales workflow from generic LinkedIn browsing",
+        title: "Make the product manageable before it scaled",
         detail:
-          "Sales Navigator needed its own information architecture because sellers were managing accounts, leads, alerts, saved work, relationship paths, and outreach. That workflow could not feel like ordinary member browsing with extra filters.",
+          "A team product needed more than useful seller screens. Admins and managers needed setup, usage visibility, team management, onboarding, and reporting before Sales Navigator could become an enterprise habit.",
       },
       {
         title: "Treat CRM as the system of record",
@@ -843,36 +843,36 @@ export const caseStudies: CaseStudy[] = [
           "The design challenge was to make Sales Navigator's relationship intelligence available inside CRM without pretending CRM stopped being the operational home for account, contact, opportunity, and activity management.",
       },
       {
-        title: "Make relationship intelligence portable",
+        title: "Design integrations as a platform pattern",
         detail:
-          "CRM widgets had to carry a consistent Sales Navigator model into different partner surfaces: identity, profile context, TeamLink, warm paths, recommendations, news, save actions, and next steps.",
+          "The first Salesforce widgets had to prove value in one CRM while establishing a model that could travel: identity, profile context, TeamLink, warm paths, recommendations, news, save actions, sync, and next steps.",
       },
       {
-        title: "Balance seller action with admin trust",
+        title: "Meet sellers where they already worked",
         detail:
-          "Integrations had to serve the rep in the moment while giving admins and sales leaders confidence in sync behavior, field mapping, activity capture, data boundaries, reporting, and team adoption.",
+          "CRM, email, and LinkedIn.com surfaces reduced the burden of asking sellers to start every workflow inside Sales Navigator.",
       },
     ],
     story: [
       {
         phase: "01",
-        label: "0-to-1 workspace",
-        title: "Sales Navigator became a dedicated seller workspace",
-        image: "/projects/Sales%20Nav/Sales%20Navigator%20version%201/%20Sales%20Navigator%20Suggested_leads_crm.png",
+        label: "Team adoption",
+        title: "A new sales product needed admin, reporting, and onboarding foundations",
+        image: "/projects/Sales%20Nav/sn-home.png",
         alt: "Early Sales Navigator suggested leads workflow with CRM sync and TeamLink signals",
         story:
-          "The first product move was to give sellers a purpose-built workspace: Home, Accounts, Leads, Inbox, Lead Builder, saved leads, suggested leads, filters, relationship signals, and paths back to LinkedIn. The experience turned LinkedIn network data into a focused sales workflow instead of asking sellers to assemble that context manually.",
-        evidence: "Standalone product shell, saved leads, suggested leads, Salesforce sync indicator, TeamLink, filters, Lead Builder, Accounts, Leads, and Inbox.",
+          "As one of three founding designers, my early work focused on making Sales Navigator adoptable by teams, not just useful to individual sellers. Admin, usage reporting, team management, onboarding, and new-user paths helped customers understand seats, behavior, and early value.",
+        evidence: "Admin workflows, usage reporting, team management, onboarding, new-user experiences, seat visibility, and value-discovery paths.",
       },
       {
         phase: "02",
         label: "CRM widgets",
         title: "Sales Navigator relationship intelligence moved into CRM records",
-        image: "/projects/Sales%20Nav/Sales%20Navigator%20for%20CRM%20-%20CRM%20widgets/widgets-crm.jpg",
+        image: "/projects/Sales%20Nav/SN-CRM-Integration.png",
         alt: "Sales Navigator CRM widgets embedded in Salesforce account and contact records",
         story:
-          "CRM was where sellers and sales operations teams managed accounts, contacts, opportunities, and activity. The integration work brought Sales Navigator context into that environment: profile cards, employee insights, best paths in, recommended leads, news, save actions, message actions, and relationship context inside Salesforce and Microsoft Dynamics-like records.",
-        evidence: "2016 CRM widgets, profile top cards, account actions, lead recommendations, news, icebreakers, related leads, TeamLink, and get-introduced flows.",
+          "CRM was where sellers and sales operations teams managed accounts, contacts, opportunities, and activity. I led the first Salesforce widget work and then helped extend that into a scalable CRM integration model for profile cards, employee insights, best paths in, recommended leads, news, save actions, message actions, and relationship context.",
+        evidence: "First Salesforce widgets, scalable CRM integration model, profile top cards, account actions, lead recommendations, news, icebreakers, related leads, TeamLink, and get-introduced flows.",
       },
       {
         phase: "03",
@@ -886,24 +886,24 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         phase: "04",
-        label: "Team platform",
-        title: "The product scaled from seller productivity into team and enterprise workflows",
+        label: "Expansion",
+        title: "Sales Navigator matured through SSI, mobile, and growth paths",
         image: "/projects/Sales%20Nav/sn-home.png",
         alt: "Sales Navigator home surface with alerts, personas, book of business, and priority accounts",
         story:
-          "As Sales Navigator matured, the product model expanded beyond individual seller productivity. TeamLink, CRM Sync, activity writeback, Gmail adjacency, PointDrive-era buyer engagement, reporting, onboarding, and later multi-seat work all pushed the product toward a managed team system with clearer value proof.",
-        evidence: "TeamLink, TeamLink Extend, PointDrive-era buyer engagement, CRM Sync, activity writeback, Gmail extension, usage reporting, onboarding, and multi-seat expansion research.",
+          "As Sales Navigator matured, my work expanded into product depth and growth loops: SSI for Sales Navigator, mobile discovery and onboarding, team-only features on mobile, upsell paths, and funnel optimization across Sales Navigator and LinkedIn.",
+        evidence: "SSI for Sales Navigator, mobile discovery, mobile onboarding, team mobile features, TeamLink, usage reporting, upsell paths, funnel optimization, and multi-seat expansion research.",
       },
     ],
     outcomesTitle: "What this body of work shows",
     outcomes: [
-      "0-to-1 product thinking for a standalone Sales Navigator workspace built around accounts, leads, saved work, relationship signals, search, and seller-specific navigation.",
-      "Integration design across CRM widgets, Salesforce and Microsoft Dynamics surfaces, CRM Sync, activity writeback patterns, Gmail adjacency, and partner-platform direction.",
-      "Systems design across both sides of enterprise SaaS: seller productivity in the moment and admin trust in setup, sync, governance, reporting, and team adoption.",
-      "A credible public-safe story for launch-era and later Sales Navigator work without blending it into later AI-agent work or overclaiming confidential metrics.",
+      "Founding product design work across the adoption layer: admin, usage reporting, team management, onboarding, and new-user value paths.",
+      "Integration design from first Salesforce widgets into scalable CRM patterns for embedded intelligence, sync, activity writeback, and data controls.",
+      "Product and adjacent-surface design across Gmail, CRM, and LinkedIn.com touchpoints, SSI for Sales Navigator, mobile discovery, mobile onboarding, and team-feature expansion on mobile.",
+      "Growth-oriented design across upsell paths, funnel optimization, plan clarity, usage visibility, reporting, and multi-seat expansion.",
     ],
     takeaway:
-      "This case study shows how Sales Navigator grew from a focused seller workspace into a CRM-connected team system: relationship intelligence, prospecting, integrations, admin controls, and team adoption all had to work together.",
+      "This case study shows how Sales Navigator became more than a prospecting workspace: adoption, admin trust, CRM integration, seller touchpoints, mobile access, and growth loops all had to work together for the product to scale as a team business.",
   },
   {
     id: "career-pages",
@@ -1522,7 +1522,6 @@ export const caseStudies: CaseStudy[] = [
       "Sales Insights is framed as a planning system for turning LinkedIn data into accountable GTM decisions, not a dashboard of interesting signals.",
       "The narrative centers trust as part of the experience: source visibility, match confidence, review states, and exception handling had to be designed into the workflow.",
       "Core reports and integrations are presented as one connected system across sources, account lists, exports, CRM, Marketing, and Sales Navigator activation.",
-      "The case study stays grounded in product decisions and public-safe evidence, with room for deeper internal metrics or artifacts if they become available.",
     ],
     takeaway:
       "Sales Insights shows how enterprise product design turns complex data, workflow architecture, and automation into decisions GTM teams can trust and act on.",
@@ -1730,6 +1729,7 @@ export const caseStudies: CaseStudy[] = [
 
 const phoneCaseIds = new Set(["campglint", "graphicsnack-ios"]);
 const lightPreviewCaseStudyIds = new Set(["sales-insights", "campglint", "seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"]);
+const publicCaseStudyIds = new Set(["sales-insights", "sales-navigator-multiseat"]);
 const caseStudyPasscode = "JM-8Q4-TZ9-LP2";
 const caseStudyPasscodeLength = caseStudyPasscode.length;
 const legacyCaseStudyUnlockStorageKey = "jm-case-studies-unlocked";
@@ -1975,8 +1975,17 @@ function StoryProductMedia({
     );
   }
 
+  const productStoryMedia = !maxHeightClass;
+
   return (
-    <MaxHeightImageViewport src={src} alt={alt} priority={priority} maxHeightClass={maxHeightClass} />
+    <MaxHeightImageViewport
+      src={src}
+      alt={alt}
+      priority={priority}
+      maxHeightClass={maxHeightClass ?? "max-h-none"}
+      className={productStoryMedia ? "aspect-[16/10] w-full" : undefined}
+      imageClassName={productStoryMedia ? "h-full object-cover" : undefined}
+    />
   );
 }
 
@@ -2041,6 +2050,21 @@ function CaseStudyImagePlaceholder({ accent }: { accent: string }) {
 }
 
 function CaseStudyProblemFrameVisual({ study }: { study: CaseStudy }) {
+  if (study.id === "sales-navigator-multiseat") {
+    return (
+      <section id="problem-frame-visual" aria-label="Sales Navigator product preview" className="scroll-mt-32 border-b border-black/12 pb-12">
+        <div className="grid aspect-[16/9] place-items-center overflow-hidden rounded-lg border border-black/12 bg-[var(--accent)]" style={getCaseStudyThumbnailFrameStyle(study)}>
+          <img
+            src="/projects/Sales%20Nav/sales-nav-thumbnail.png"
+            alt="LinkedIn Sales Navigator workspace and CRM-connected product surfaces"
+            className="block h-full w-full object-contain"
+            loading="lazy"
+          />
+        </div>
+      </section>
+    );
+  }
+
   if (study.id !== "sales-insights") {
     return <CaseStudyImagePlaceholder accent={study.accent} />;
   }
@@ -2227,7 +2251,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                 title="Selected product moments"
               />
               {study.story.map((chapter, index) => (
-                <article key={chapter.phase} className="grid gap-6 border-t border-black/12 pt-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-9">
+                <article key={chapter.phase} className="grid gap-6 border-t border-black/12 pt-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-start lg:gap-9">
                   <div className="lg:pt-3">
                     <div className="flex items-center gap-3">
                       <span className={`grid h-9 w-9 place-items-center text-xs font-semibold text-white ${study.accent}`}>
@@ -2237,7 +2261,10 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                     </div>
                     <h3 className="mt-4 max-w-xl text-2xl font-semibold leading-tight text-balance text-black/88">{chapter.title}</h3>
                     <p className="mt-4 max-w-2xl text-base leading-7 text-black/68">{chapter.story}</p>
-                    <p className="mt-5 border-l border-black/24 pl-4 text-sm leading-6 text-black/58">{chapter.evidence}</p>
+                    <div className="mt-5 border-l border-black/24 pl-4">
+                      <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-black/38">Key surfaces</p>
+                      <p className="mt-1.5 text-sm leading-6 text-black/58">{chapter.evidence}</p>
+                    </div>
                   </div>
                   <StoryProductMedia src={chapter.image} alt={chapter.alt} priority={index < 2} phone={isPhoneCase} />
                 </article>
@@ -2585,22 +2612,22 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   "sales-navigator-multiseat": {
     title: "The opportunity",
     body:
-      "Sales Navigator had to grow from a focused seller workspace into a CRM-connected team system. The opportunity was to make LinkedIn relationship intelligence useful inside account, lead, CRM, admin, and team adoption workflows without losing trust in the systems of record.",
+      "Sales Navigator had to become more than a place to find leads. The opportunity was to make LinkedIn relationship intelligence adoptable by sales teams: easy for sellers to understand, manageable for admins, measurable for leaders, and available inside the CRM, email, and LinkedIn.com workflows where sellers already worked.",
     points: [
       {
-        title: "Sellers needed a dedicated workspace",
+        title: "Adoption had to be managed",
         detail:
-          "Accounts, leads, saved work, search, TeamLink paths, alerts, and relationship signals needed to feel purpose-built for sales rather than ordinary LinkedIn browsing with extra filters.",
+          "Team customers needed onboarding, team management, usage reporting, and admin controls that made seat value visible and helped sellers get to useful behavior sooner.",
       },
       {
-        title: "CRM was still the operating home",
+        title: "Sales intelligence had to travel",
         detail:
-          "Sales Navigator context had to travel into Salesforce and Microsoft Dynamics-style workflows while respecting CRM as the source of record for contacts, accounts, opportunities, and activity.",
+          "Relationship context was strongest when it appeared inside the systems sellers already used, from Salesforce widgets and scalable CRM integrations to Gmail and LinkedIn.com entry points.",
       },
       {
-        title: "Teams needed admin trust",
+        title: "Team value needed proof",
         detail:
-          "Sync preferences, connection states, field mapping, activity writeback, usage reporting, onboarding, and data controls made the product scalable beyond individual seller productivity.",
+          "SSI, reporting, team-only mobile capabilities, upsell paths, and funnel optimization helped connect individual seller behavior to broader team adoption and expansion.",
       },
     ],
   },
@@ -2726,17 +2753,27 @@ function CaseStudyPreviewMeta({ study, compact = false }: { study: CaseStudy; co
   );
 }
 
-function CaseStudyCardAction() {
+function CaseStudyCardAction({ locked = true, compact = false }: { locked?: boolean; compact?: boolean }) {
+  if (!locked) {
+    return (
+      <span className={["mt-auto inline-flex items-center gap-2 font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]", compact ? "pt-3 text-xs" : "pt-5 text-sm"].join(" ")}>
+        {compact ? "View" : "View case study"}
+        <ArrowUpRight className={compact ? "h-3.5 w-3.5" : "h-4 w-4"} />
+      </span>
+    );
+  }
+
   return (
-    <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
-      Passcode required
-      <LockKeyhole className="h-4 w-4" />
+    <span className={["mt-auto inline-flex items-center gap-2 font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]", compact ? "pt-3 text-xs" : "pt-5 text-sm"].join(" ")}>
+      {compact ? "Passcode" : "Passcode required"}
+      <LockKeyhole className={compact ? "h-3.5 w-3.5" : "h-4 w-4"} />
     </span>
   );
 }
 
 function CaseStudyGridCard({ study, light = false }: { study: CaseStudy; light?: boolean }) {
   const brief = caseStudyBriefs[study.id];
+  const locked = !publicCaseStudyIds.has(study.id);
 
   return (
     <Link
@@ -2765,7 +2802,7 @@ function CaseStudyGridCard({ study, light = false }: { study: CaseStudy; light?:
           </>
         )}
 
-        <CaseStudyCardAction />
+        <CaseStudyCardAction locked={locked} />
       </div>
     </Link>
   );
@@ -2794,6 +2831,8 @@ function CompactCaseStudyThumbnail({ study }: { study: CaseStudy }) {
 }
 
 function CompactCaseStudyCard({ study }: { study: CaseStudy }) {
+  const locked = !publicCaseStudyIds.has(study.id);
+
   return (
     <Link
       href={"/case-studies/" + study.id}
@@ -2802,7 +2841,7 @@ function CompactCaseStudyCard({ study }: { study: CaseStudy }) {
       <CompactCaseStudyThumbnail study={study} />
       <div className="flex flex-1 flex-col p-4">
         <h4 className="text-lg font-semibold leading-tight text-black/88">{study.product}</h4>
-        <CaseStudyCardAction />
+        <CaseStudyCardAction locked={locked} />
       </div>
     </Link>
   );
@@ -2831,6 +2870,7 @@ function CompactCaseStudyRow() {
 
 function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
   const thumbnail = getCaseStudyThumbnail(study);
+  const locked = !publicCaseStudyIds.has(study.id);
 
   return (
     <Link
@@ -2843,10 +2883,7 @@ function RelatedCaseStudyCard({ study }: { study: CaseStudy }) {
       <div className="flex min-h-0 flex-1 flex-col p-3.5">
         <p className="text-[0.66rem] font-semibold uppercase text-black/42">{study.platform}</p>
         <h3 className="text-clamp-2 mt-1.5 text-sm font-semibold leading-5 text-black/88">{study.product}</h3>
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-xs font-semibold text-[var(--accent)] group-hover:text-[var(--accent-strong)]">
-          Passcode
-          <LockKeyhole className="h-3.5 w-3.5" />
-        </span>
+        <CaseStudyCardAction locked={locked} compact />
       </div>
     </Link>
   );
@@ -3596,6 +3633,10 @@ export function FullCaseStudyPage({ studyId }: { studyId: string }) {
         </section>
       </main>
     );
+  }
+
+  if (publicCaseStudyIds.has(study.id)) {
+    return <CaseStudyUnlockedPage study={study} />;
   }
 
   return <LockedCaseStudyPage study={study} />;

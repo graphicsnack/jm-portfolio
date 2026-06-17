@@ -16,7 +16,7 @@ export function MaxHeightImageViewport({
   imageClassName,
 }: MaxHeightImageViewportProps) {
   return (
-    <figure className={["overflow-hidden rounded-lg border border-black/12 bg-white", maxHeightClass, className ?? ""].filter(Boolean).join(" ")}>
+    <figure className={["self-start overflow-hidden rounded-lg border border-black/12 bg-white", maxHeightClass, className ?? ""].filter(Boolean).join(" ")}>
       <img
         src={src}
         alt={alt}
