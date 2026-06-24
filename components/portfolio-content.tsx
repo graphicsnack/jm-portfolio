@@ -2981,12 +2981,8 @@ function OtherCaseStudiesSection({ currentStudyId }: { currentStudyId: string })
   return (
     <section aria-labelledby="more-case-studies-heading" className="border-t border-black/12 bg-[#fbfaf7] px-5 py-10 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-5">
           <h2 id="more-case-studies-heading" className="text-2xl font-semibold leading-tight text-black/88">More case studies</h2>
-          <Link href="/#case-studies" className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-strong)]">
-            All featured work
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
         </div>
         <div className="-mx-5 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8 lg:mx-0 lg:overflow-visible lg:px-0">
           <div className="grid w-max grid-flow-col auto-cols-[13.25rem] gap-4 lg:w-full lg:grid-flow-row lg:grid-cols-5 lg:auto-cols-auto lg:gap-4 xl:gap-5">
