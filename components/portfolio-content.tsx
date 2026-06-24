@@ -44,6 +44,12 @@ type DetailItem = {
   icon?: LucideIcon;
 };
 
+type PersonaItem = {
+  audience: string;
+  job: string;
+  needed: string;
+};
+
 type JourneyItem = {
   phase: string;
   title: string;
@@ -97,24 +103,24 @@ export type CaseStudy = {
   takeaway: string;
 };
 
-const fourPartJourneyCues: Array<{ label: string; icon: LucideIcon }> = [
-  { label: "Signal", icon: Compass },
-  { label: "Frame", icon: Target },
-  { label: "System", icon: Layers3 },
-  { label: "Outcome", icon: ArrowUpRight },
+const fourPartJourneyCues: Array<{ label: string }> = [
+  { label: "Signal" },
+  { label: "Frame" },
+  { label: "System" },
+  { label: "Outcome" },
 ];
 
-const fivePartJourneyCues: Array<{ label: string; icon: LucideIcon }> = [
-  { label: "Signal", icon: Compass },
-  { label: "Frame", icon: Target },
-  { label: "System", icon: Layers3 },
-  { label: "Expand", icon: Route },
-  { label: "Outcome", icon: ArrowUpRight },
+const fivePartJourneyCues: Array<{ label: string }> = [
+  { label: "Signal" },
+  { label: "Frame" },
+  { label: "System" },
+  { label: "Expand" },
+  { label: "Outcome" },
 ];
 
 function getJourneyCue(index: number, total: number) {
   const cues = total >= 5 ? fivePartJourneyCues : fourPartJourneyCues;
-  return cues[index] ?? { label: "Thread", icon: Route };
+  return cues[index] ?? { label: "Thread" };
 }
 
 function getCaseStudyThumbnail(study: CaseStudy) {
@@ -512,13 +518,13 @@ export const caseStudies: CaseStudy[] = [
         evidence: "Confirmed Upper Pines trip, date and site detail, readiness section, packing/tasks, and past-trip empty state.",
       },
     ],
-    outcomesTitle: "Native iOS product evidence",
+    outcomesTitle: "What the product now supports",
     outcomes: [
-      "The SwiftUI app demonstrates the core native experience across monitors, discovery, trip readiness, and settings.",
-      "Monitors, Create Monitor, Discover, and Trips now read as one connected iOS product loop.",
-      "The native foundation includes auth, session restore, bottom navigation, monitor and trip workflows, discovery, settings, notification scaffolding, deep links, App Intents, and shared visual assets.",
-      "Availability remains framed as an actionable signal, with official campground booking systems preserved as the final reservation endpoint.",
-      "Launch readiness is framed around production services, APNs validation, privacy and permissions, release configuration, App Store metadata, device QA, and accessibility QA.",
+      "Campers can save campground monitors, track availability signals, and return to the same monitor loop instead of repeatedly checking booking sites manually.",
+      "Monitor creation, discovery recommendations, and trip readiness now work as one native iOS flow from search to post-booking preparation.",
+      "The product keeps official campground systems as the reservation endpoint while making availability signals easier to watch and act on.",
+      "The native foundation supports auth, session restore, bottom navigation, notifications scaffolding, deep links, App Intents, settings, and shared SwiftUI components.",
+      "Launch readiness is focused on production services, permissions, App Store metadata, device QA, accessibility QA, and release configuration.",
     ],
     takeaway:
       "CampGlint demonstrates native iOS product design judgment across problem framing, mobile information architecture, SwiftUI interaction systems, visual design, platform integrations, and launch readiness.",
@@ -697,13 +703,13 @@ export const caseStudies: CaseStudy[] = [
         evidence: "Required gates, release sequence, build checklist, App Store readiness, and done state.",
       },
     ],
-    outcomesTitle: "Beta readiness",
+    outcomesTitle: "What the beta needed to support",
     outcomes: [
-      "Deploy the beta API behind HTTPS and remove local defaults before TestFlight.",
-      "Replace local file storage with managed database and object storage.",
-      "Validate account lifecycle, sessions, URL critique, screenshot critique, and backend-down states.",
-      "Confirm bundle IDs, app group, share extension, signing, privacy policy, terms, and support URL.",
-      "Run device QA across light mode, dark mode, Dynamic Type, VoiceOver, contrast, focus order, and Reduce Motion.",
+      "Users could bring critique into the product from a URL, screenshot, or share extension instead of starting from a blank mobile workspace.",
+      "Project memory, report status, critique score, and version history made mobile critique feel like an ongoing product loop.",
+      "Launch readiness surfaces kept backend state, store requirements, QA, privacy, and release gates visible before TestFlight.",
+      "The product model required durable storage, session handling, account lifecycle, critique generation, and backend-down states to behave predictably.",
+      "Device QA needed to cover light mode, dark mode, Dynamic Type, VoiceOver, contrast, focus order, and Reduce Motion before beta release.",
     ],
     takeaway:
       "GraphicSnack iOS shows the product moving from critique output into critique operations: source capture, context, project memory, handoff, and validation.",
@@ -899,12 +905,12 @@ export const caseStudies: CaseStudy[] = [
         evidence: "SSI for Sales Navigator, mobile discovery, mobile onboarding, team mobile features, TeamLink, usage reporting, upsell paths, funnel optimization, and multi-seat expansion research.",
       },
     ],
-    outcomesTitle: "What this body of work shows",
+    outcomesTitle: "What the product scaled into",
     outcomes: [
-      "Founding product design work across the adoption layer: admin, usage reporting, team management, onboarding, and new-user value paths.",
-      "Integration design from first Salesforce widgets into scalable CRM patterns for embedded intelligence, sync, activity writeback, and data controls.",
-      "Product and adjacent-surface design across Gmail, CRM, and LinkedIn.com touchpoints, SSI for Sales Navigator, mobile discovery, mobile onboarding, and team-feature expansion on mobile.",
-      "Growth-oriented design across upsell paths, funnel optimization, plan clarity, usage visibility, reporting, and multi-seat expansion.",
+      "Sales Navigator expanded from an individual seller workspace into a team product with admin, onboarding, usage visibility, team management, and new-user value paths.",
+      "CRM integrations moved from early Salesforce widgets toward scalable patterns for embedded intelligence, sync, activity writeback, and data controls.",
+      "Sales Navigator value extended into adjacent seller surfaces, including Gmail, CRM, LinkedIn.com, SSI, mobile discovery, and mobile onboarding.",
+      "Growth and team expansion workflows gave organizations clearer paths to understand plan value, seat usage, reporting, and multi-seat adoption.",
     ],
     takeaway:
       "This case study shows how Sales Navigator became more than a prospecting workspace: adoption, admin trust, CRM integration, seller touchpoints, mobile access, and growth loops all had to work together for the product to scale as a team business.",
@@ -1031,7 +1037,7 @@ export const caseStudies: CaseStudy[] = [
       "Partnered with two product managers, one product marketing manager, one user researcher, and mobile and web engineering teams.",
       "Designed shipped Life Page employee-experience features for employer storytelling through people, teams, media, perspectives, and testimonials.",
       "Launched saved job alerts for company pages and job seeker interest signals tied to company research and opportunity discovery.",
-      "Kept the work public-safe by using marketing-safe entities and LinkedIn design-system patterns from the production-era surfaces.",
+      "Grounded the work in shipped Talent Brand workflows, admin controls, member-facing surfaces, and LinkedIn design-system patterns.",
     ],
     decisions: [
       {
@@ -1243,7 +1249,7 @@ export const caseStudies: CaseStudy[] = [
       "Designed the initial Company Pages pilot for private employee responses, aggregate feedback, skip behavior, completion states, and privacy reassurance.",
       "Explored expanded collection mechanics across binary prompts, star ratings, steppers, sliders, benefit tags, free-form reviews, and coworker invitations.",
       "Mapped integration paths for Company Pages, Jobs, JYMBII-style recommendations, feed discovery, SEO-oriented company research, and Career Pages.",
-      "Kept the story public-safe by using anonymized company examples, concept mocks, and strategic product framing instead of confidential launch metrics.",
+      "Grounded the pilot in anonymized company examples, concept mocks, structured rating flows, privacy states, and strategic product framing.",
     ],
     decisions: [
       {
@@ -1272,7 +1278,7 @@ export const caseStudies: CaseStudy[] = [
         phase: "01",
         label: "Pilot placement",
         title: "The first experience lived inside Company Pages",
-        image: "/projects/Employee%20experience/Desktop%20-%20For%20internal%20launch%20email@2x.png",
+        image: "/projects/Employee%20experience/employee-experience-desktop-preview@2x.png",
         alt: "Desktop Company Page with Employee Experience private rating module",
         story:
           "The initial Company Page module was intentionally lightweight. It asked a single private question in a familiar company research context, surrounded by jobs, company info, employee connections, updates, and other signals a job seeker already used to evaluate fit.",
@@ -1398,7 +1404,7 @@ export const caseStudies: CaseStudy[] = [
         phase: "01",
         title: "Move beyond insight availability",
         detail:
-          "By the 2022 product phase, the opportunity was not simply giving teams access to market data. Sales Insights needed to become usable, scalable, and trusted inside real enterprise planning cycles.",
+          "The opportunity was not simply giving teams access to market data. Sales Insights needed to become usable, scalable, and trusted inside real enterprise planning cycles.",
         evidence: "Product maturity, Sales Ops planning, territory and account decisions",
       },
       {
@@ -1453,9 +1459,8 @@ export const caseStudies: CaseStudy[] = [
       "Partnered with two product managers: one focused on core experience and one focused on integrations.",
       "Improved the product's usability and coherence during the maturity phase after launch, when Sales Insights needed to move from promise to repeatable planning workflows.",
       "Designed across reports, sources, personas, account lists, exports, CRM-connected workflows, and Marketing/Sales handoffs.",
-      "Used public and product context around strategic account prioritization, whitespace, territory planning, ABM, inbound prioritization, and regional expansion to stress-test the experience model.",
+      "Used public and product context around strategic account prioritization, whitespace, territory planning, ABM, inbound prioritization, and regional expansion to stress-test the experience.",
       "Framed integrations as first-class UX, including setup, permissions, matching, field mapping, progress, exception handling, and completion states.",
-      "Kept the case-study narrative public-safe by grounding market context in public sources and reserving internal metrics or final screenshots for later approval.",
     ],
     decisions: [
       {
@@ -1497,7 +1502,7 @@ export const caseStudies: CaseStudy[] = [
         image: "/projects/sales-insights/LSI-Buyer-Intent.png",
         alt: "Sales Insights product mockups showing report, source matching, CRM status, and export surfaces",
         story:
-          "The public research reconstructs Sales Insights around connected layers: sources, reports and insights, account lists, and exports or integrations. My case-study narrative now centers that architecture because it explains how planning outputs became operational assets.",
+          "Sales Insights worked best when its layers felt connected: sources shaped reports and insights, reports produced account lists, and account lists moved into exports or integrations. The architecture mattered because planning outputs needed to become operational assets.",
         evidence: "Reports, Sources, Exports, CRM match rate, account matching, review states, and source-connected report creation.",
       },
       {
@@ -1517,7 +1522,7 @@ export const caseStudies: CaseStudy[] = [
         image: "/projects/sales-insights/lsi-report-view.png",
         alt: "Sales Insights account list and report view used for GTM planning and activation handoff",
         story:
-          "The strongest portfolio story is the transition from insight discovery to operational execution. A target-market hypothesis could become a prioritized account list, then move into CRM, ABM campaign planning, or Sales Navigator execution without every team rebuilding the criteria.",
+          "The strongest product value came from connecting insight discovery to operational execution. A target-market hypothesis could become a prioritized account list, then move into CRM, ABM campaign planning, or Sales Navigator execution without every team rebuilding the criteria.",
         evidence: "Strategic prioritization, whitespace, territory planning, ABM planning, inbound prioritization, regional expansion, and Sales Navigator handoff.",
       },
       {
@@ -1528,14 +1533,14 @@ export const caseStudies: CaseStudy[] = [
         alt: "Sales Insights exploratory product redesign and activation concept mocks",
         story:
           "Alongside the core experience work, I partnered with engineering and PM to explore experimentation initiatives that could clarify the product's next direction. The main effort was a product redesign: we prioritized the surfaces most likely to affect planning confidence, tested concepts early, and used those learnings while shaping the overall product experience. Other explorations looked at how LinkedIn Campaign Manager could connect Sales Ops account lists to the audience lists Marketing teams used for campaign activation.",
-        evidence: "Product redesign concepts, prioritized surfaces, early concept testing, engineering and PM alignment, Campaign Manager integration exploration, and account-list to audience-list handoff.",
+        evidence: "Prioritized product surfaces, early concept testing, engineering and PM alignment, Campaign Manager integration exploration, and account-list to audience-list handoff.",
       },
     ],
-    outcomesTitle: "What the work made clearer",
+    outcomesTitle: "What the product made possible",
     outcomes: [
-      "Sales Insights is framed as a planning system for turning LinkedIn data into accountable GTM decisions, not a dashboard of interesting signals.",
-      "The narrative centers trust as part of the experience: source visibility, match confidence, review states, and exception handling had to be designed into the workflow.",
-      "Core reports and integrations are presented as one connected system across sources, account lists, exports, CRM, Marketing, and Sales Navigator activation.",
+      "GTM teams could turn LinkedIn data into accountable planning decisions instead of treating signals as standalone dashboard insights.",
+      "Sales Ops and RevOps users had clearer ways to evaluate source quality, match confidence, review states, and exceptions before data moved downstream.",
+      "Reports, account lists, exports, CRM workflows, Marketing activation, and Sales Navigator handoffs became parts of one connected planning system.",
     ],
     takeaway:
       "Sales Insights shows how enterprise product design turns complex data, workflow architecture, and automation into decisions GTM teams can trust and act on.",
@@ -1560,7 +1565,7 @@ export const caseStudies: CaseStudy[] = [
       partnered: [
         "Worked with product, research, engineering, AI Agent platform partners, and two teams building agentic products across LinkedIn.",
         "Partnered with another designer during the next phase to align Seller Agent with emerging company-wide agentic experience patterns.",
-        "Used internal seller feedback to tighten trust, prompt density, relationship-path visibility, and action control.",
+        "Used seller validation feedback to tighten trust, prompt density, relationship-path visibility, and action control.",
       ],
       proof: [
         "Explorations and early learnings",
@@ -1594,7 +1599,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Validated integration value",
         detail:
-          "Internal seller feedback showed strong excitement for pulling Sales Navigator value into LinkedIn.com, while clarifying risks around trust, prompt density, and extra work.",
+          "Seller concept validation showed strong excitement for pulling Sales Navigator value into LinkedIn.com, while clarifying risks around trust, prompt density, and extra work.",
       },
       {
         title: "Foundational agent patterns",
@@ -1629,7 +1634,7 @@ export const caseStudies: CaseStudy[] = [
         title: "Use feedback to sharpen trust",
         detail:
           "Feedback made clear that AI had to feel lighter than the seller's current workflow, with compact prompts, visible rationale, and actions the seller could control.",
-        evidence: "Internal seller validation, trust cues, prompt iteration, handoff",
+        evidence: "Seller validation, trust cues, prompt iteration, handoff",
       },
     ],
     surfaces: [
@@ -1663,7 +1668,7 @@ export const caseStudies: CaseStudy[] = [
       "Mapped seller research pain points across LinkedIn.com, Sales Navigator, CRM, account research, and outreach preparation.",
       "Created the feed-to-lead-to-outreach storyboard used with stakeholders and research participants.",
       "Explored conversational flows that balanced free-form questions with guided prompts and structured product UI.",
-      "Used internal seller feedback to sharpen trust, prompt density, relationship-path visibility, and seller control.",
+      "Used seller validation feedback to sharpen trust, prompt density, relationship-path visibility, and seller control.",
       "Partnered with product, research, engineering, and emerging AI Agent platform teams as agent efforts became more centralized.",
     ],
     decisions: [
@@ -1730,13 +1735,13 @@ export const caseStudies: CaseStudy[] = [
         evidence: "Company page, lead profile, Sales Navigator guidance panel, decision-maker signal, draft message, save lead, and find more decision makers actions.",
       },
     ],
-    outcomesTitle: "What the exploration produced",
+    outcomesTitle: "What the product direction clarified",
     outcomes: [
-      "A clear in-context Seller Agent concept for extending Sales Navigator value into LinkedIn.com.",
-      "A storyboard and prototype flow from feed digest to account change, lead context, warm path, drafted outreach, and Sales Navigator follow-up.",
-      "Validation themes from internal sellers: strong pull for seamless integration, stronger relationship visibility, less tool switching, and clearer Sales Navigator value.",
-      "Design implications for AI adoption: compact prompts, visible rationale, source-backed context, and seller-controlled action.",
-      "Foundational pattern learning that fed into broader LinkedIn AI Agent conversations without overstating shipped-product metrics.",
+      "Seller Agent clarified how Sales Navigator value could appear directly inside LinkedIn workflows instead of requiring sellers to switch products.",
+      "The concept connected feed signals, account changes, lead context, warm paths, drafted outreach, and Sales Navigator follow-up into one seller flow.",
+      "Seller validation reinforced the need for seamless integration, stronger relationship visibility, less tool switching, and clearer Sales Navigator value.",
+      "The agent model centered compact prompts, visible rationale, source-backed context, and seller-controlled action as adoption requirements.",
+      "The exploration helped align Seller Agent with broader agentic experience patterns while keeping the product grounded in seller workflow needs.",
     ],
     takeaway:
       "Seller Agent shows 0-to-1 AI product design grounded in a real workflow: meet users where they already work, turn scattered context into decisions, and keep the human in control of action.",
@@ -2050,7 +2055,7 @@ function ExactContributionModule({
 
 function CaseStudyImagePlaceholder({ accent }: { accent: string }) {
   return (
-    <section id="problem-frame-visual" aria-label="Image placeholder" className="scroll-mt-32 border-b border-black/12 pb-12">
+    <section id="problem-frame-visual" aria-label="Project visual preview" className="scroll-mt-32 border-b border-black/12 pb-12">
       <div className="relative min-h-[13rem] overflow-hidden rounded-lg border border-black/12 bg-[#f3f0e8] sm:aspect-[16/7]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(0_0_0/0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgb(0_0_0/0.04)_1px,transparent_1px)] bg-[size:44px_44px]" />
         <div className="absolute inset-x-6 bottom-6 top-6 rounded-md border border-dashed border-black/18 bg-[#fffefb]/36 sm:inset-x-8 sm:bottom-8 sm:top-8" />
@@ -2094,6 +2099,35 @@ function CaseStudyProblemFrameVisual({ study }: { study: CaseStudy }) {
           className="block h-full w-full object-contain"
           loading="lazy"
         />
+      </div>
+    </section>
+  );
+}
+
+function SalesInsightsPersonasSection() {
+  return (
+    <section id="personas" className="grid gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
+      <StorySectionLabel
+        eyebrow="Personas"
+        title="The same account model had to support multiple GTM teams"
+        body="Each team entered through a different job, but they all needed to trust the same account logic before moving into planning, CRM, Marketing, or seller execution."
+      />
+      <div className="grid gap-4 sm:grid-cols-2">
+        {salesInsightsPersonas.map((persona) => (
+          <article key={persona.audience} className="rounded-lg border border-black/12 bg-[#fffefb]/72 p-4">
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{persona.audience}</p>
+            <div className="mt-4 grid gap-4">
+              <div>
+                <h3 className="text-sm font-semibold leading-5 text-black/84">Planning job</h3>
+                <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.job}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold leading-5 text-black/84">What they needed</h3>
+                <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.needed}</p>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -2218,6 +2252,8 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
               </div>
             </section>
 
+            {study.id === "sales-insights" ? <SalesInsightsPersonasSection /> : null}
+
             <CaseStudyProblemFrameVisual study={study} />
 
             <section id="scope" className="grid gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
@@ -2242,19 +2278,12 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
               <ol className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                 {study.journey.map((item, index) => {
                   const cue = getJourneyCue(index, study.journey.length);
-                  const CueIcon = cue.icon;
 
                   return (
                     <li key={item.phase} className="group relative flex min-h-[13.5rem] flex-col overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/72 p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_58px_-50px_rgb(0_0_0/0.55)]">
-                      <div className="flex items-center gap-2.5">
-                        <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-md text-white ${study.accent}`}>
-                          <CueIcon className="h-4 w-4" aria-hidden="true" />
-                        </span>
-                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{cue.label}</p>
-                        <span className="h-px flex-1 bg-black/12" />
-                      </div>
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{cue.label}</p>
                       <h3 className="mt-4 text-base font-semibold leading-6 text-balance text-black/86">{item.title}</h3>
-                      <p className="text-clamp-3 mt-2.5 text-sm leading-6 text-black/62">{item.detail}</p>
+                      <p className="mt-2.5 text-sm leading-6 text-black/62">{item.detail}</p>
                     </li>
                   );
                 })}
@@ -2269,12 +2298,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
               {study.story.map((chapter, index) => (
                 <article key={chapter.phase} className="grid gap-6 border-t border-black/12 pt-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-start lg:gap-9">
                   <div className="lg:pt-3">
-                    <div className="flex items-center gap-3">
-                      <span className={`grid h-9 w-9 place-items-center text-xs font-semibold text-white ${study.accent}`}>
-                        {chapter.phase}
-                      </span>
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">{chapter.label}</p>
-                    </div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">{chapter.label}</p>
                     <h3 className="mt-4 max-w-xl text-2xl font-semibold leading-tight text-balance text-black/88">{chapter.title}</h3>
                     <p className="mt-4 max-w-2xl text-base leading-7 text-black/68">{chapter.story}</p>
                     <div className="mt-5 border-l border-black/24 pl-4">
@@ -2333,6 +2357,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
 function PortfolioHeader({ caseStudy = false }: { caseStudy?: boolean }) {
   const pathname = usePathname();
   const isCaseStudiesActive = pathname === "/" || pathname.startsWith("/case-studies");
+  const isAboutActive = pathname === "/about";
   const isResumeActive = pathname === "/resume";
   const navLinkBase =
     "inline-flex min-h-10 items-center rounded-md px-3 py-2 text-[0.82rem] font-medium hover:text-[var(--accent)]";
@@ -2358,6 +2383,13 @@ function PortfolioHeader({ caseStudy = false }: { caseStudy?: boolean }) {
             className={`${navLinkBase} ${isCaseStudiesActive ? "text-[var(--accent)]" : "text-black/64"}`}
           >
             Case studies
+          </Link>
+          <Link
+            href="/about"
+            aria-current={isAboutActive ? "page" : undefined}
+            className={`${navLinkBase} ${isAboutActive ? "text-[var(--accent)]" : "text-black/64"}`}
+          >
+            About
           </Link>
           <Link
             href="/resume"
@@ -2513,6 +2545,33 @@ const caseStudyBriefs: Record<string, { family: string; question: string }> = {
     question: "How can Sales Navigator value meet sellers inside the LinkedIn workflow?",
   },
 };
+
+const salesInsightsPersonas: PersonaItem[] = [
+  {
+    audience: "Sales Ops and RevOps",
+    job: "Define territories, whitespace, account priority, and forecasts from market and account signals.",
+    needed:
+      "Source quality, freshness, account rationale, match status, and criteria they could defend.",
+  },
+  {
+    audience: "Marketing and ABM teams",
+    job: "Turn account strategy into campaign audiences without rebuilding the same list logic in another tool.",
+    needed:
+      "Shared definitions, clean export paths, and confidence that Sales and Marketing were acting from the same target-account model.",
+  },
+  {
+    audience: "CRM admins and operations owners",
+    job: "Protect systems of record while using LinkedIn data to improve matching, field mapping, and sync quality.",
+    needed:
+      "Visible review states, exception handling, permissions, match confidence, and proof of what would change downstream.",
+  },
+  {
+    audience: "GTM and Sales leaders",
+    job: "Align teams around which accounts mattered, why they mattered, and where sellers should focus.",
+    needed:
+      "Readable summaries, comparable segments, decision rationale, and handoff paths into seller workflows.",
+  },
+];
 
 const caseStudyWhySections: Record<string, { title: string; body: string; points: DetailItem[] }> = {
   campglint: {
@@ -3110,7 +3169,7 @@ function HomepageStoryNotableWork() {
     <div className="mt-14">
       <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] sm:items-end">
         <h3 className="text-2xl font-semibold leading-tight text-black/88">More product systems</h3>
-        <p className="text-sm leading-6 text-black/62">Smaller public-safe previews that show the same pattern across enterprise systems, talent products, and admin workflows.</p>
+        <p className="text-sm leading-6 text-black/62">Concise previews that show the same pattern across enterprise systems, talent products, and admin workflows.</p>
       </div>
       <div className="mt-6 border-t border-black/12">
         {compactStudies.map((study) => {
@@ -3670,6 +3729,198 @@ export function ResumePage() {
       <PortfolioHeader />
       <ResumeSnapshot standalone />
       <HomeClosingSection />
+      <PortfolioFooter />
+    </main>
+  );
+}
+
+const aboutNotes: DetailItem[] = [
+  {
+    title: "Sketchbooks",
+    detail: "A way to find the shape of a messy thought.",
+    icon: FileText,
+  },
+  {
+    title: "Prototypes",
+    detail: "A way to make ideas answer to reality.",
+    icon: Wrench,
+  },
+  {
+    title: "Camp setups",
+    detail: "A way to design around weather, timing, gear, and people.",
+    icon: Tent,
+  },
+];
+
+const aboutThroughlines: DetailItem[] = [
+  {
+    title: "Workarounds",
+    detail:
+      "The small fixes people invent show where a system is unclear, too slow, or missing trust.",
+  },
+  {
+    title: "Constraints",
+    detail:
+      "Weather, timing, gear, business rules, and attention all shape what a useful design can ask of people.",
+  },
+  {
+    title: "Momentum",
+    detail:
+      "I look for the point where enough clarity helps someone choose the next step.",
+  },
+];
+
+const aboutWorkHabits: DetailItem[] = [
+  {
+    title: "Sketch to align",
+    detail:
+      "Turn abstract product conversations into something a team can point at, question, and improve.",
+  },
+  {
+    title: "Build to learn",
+    detail:
+      "Use prototypes and working UI to expose edge cases, interaction costs, and technical constraints.",
+  },
+  {
+    title: "Design for real context",
+    detail:
+      "Keep the experience honest about timing, trust, handoffs, and the people using it.",
+  },
+];
+
+function AboutHeroVisual() {
+  return (
+    <figure className="relative isolate overflow-hidden border-y border-black/12 bg-[var(--accent)]" aria-label="Mountain landscape and personal field notes">
+      <div className="relative isolate h-[13.5rem] overflow-hidden sm:h-[15.5rem] lg:h-[16rem]">
+        <img
+          src="/brand/background.JPG"
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          decoding="async"
+          className="absolute inset-0 -z-30 h-full w-full object-cover object-[center_13%] opacity-90 saturate-[0.86] contrast-110"
+        />
+        <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgb(24_32_112/0.86)_0%,rgb(24_32_112/0.52)_46%,rgb(24_32_112/0.20)_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.08)_1px,transparent_1px)] bg-[size:48px_48px] opacity-40 [mask-image:linear-gradient(to_right,rgb(24_32_112),transparent_82%)]" />
+        <div className="absolute left-5 top-5 flex items-center gap-3 sm:left-8 sm:top-8">
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-[#fbfaf7]/94 shadow-[0_18px_48px_-34px_rgb(0_0_0/0.55)]">
+            <img src="/brand/JM_logo_icon_transparent.png" alt="" aria-hidden="true" className="h-8 w-8 object-contain" />
+          </span>
+          <div className="text-white">
+            <p className="text-sm font-semibold leading-5">Away from the screen</p>
+            <p className="text-xs leading-5 text-white/68">Mountains, desert roads, beach days</p>
+          </div>
+        </div>
+        <div className="absolute bottom-5 right-5 hidden max-w-xs grid-cols-3 gap-2 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-white/72 sm:bottom-8 sm:right-8 sm:grid">
+          {["Sketch", "Build", "Explore"].map((item) => (
+            <span key={item} className="border-t border-white/26 pt-2">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className="portfolio-grid-pattern grid gap-5 border-t border-white/20 bg-[#fbfaf7]/96 p-5 sm:grid-cols-3 sm:gap-6 sm:p-7 lg:px-8 lg:py-8">
+        {aboutNotes.map((item) => {
+          const Icon = item.icon ?? Compass;
+
+          return (
+            <div key={item.title} className="border-l border-black/16 pl-4">
+              <Icon className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" />
+              <h2 className="mt-3 text-sm font-semibold leading-5 text-black/86">{item.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-black/62">{item.detail}</p>
+            </div>
+          );
+        })}
+      </div>
+    </figure>
+  );
+}
+
+function AboutPageHero() {
+  return (
+    <section id="top" className="portfolio-grid-pattern px-5 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+      <div className="mx-auto max-w-6xl">
+        <AboutHeroVisual />
+      </div>
+    </section>
+  );
+}
+function AboutInspirationSection() {
+  return (
+    <section className="border-t border-black/12 bg-[#fbfaf7] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/42">What I notice</p>
+          <h2 className="mt-3 max-w-sm text-2xl font-semibold leading-tight text-balance text-black/88 sm:text-3xl">
+            I’m drawn to the details that show how people actually use things.
+          </h2>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {aboutThroughlines.map((item) => (
+            <div key={item.title} className="border-t border-black/12 pt-4">
+              <h3 className="text-base font-semibold leading-6 text-black/86">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-black/62">{item.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutFieldNotesSection() {
+  return (
+    <section className="border-t border-black/12 bg-[#f2efe7] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(18rem,0.42fr)] lg:items-start">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/42">In the work</p>
+          <h2 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight text-balance text-black/88 sm:text-4xl">
+            That shows up as a practical way of working.
+          </h2>
+        </div>
+        <div className="divide-y divide-black/12 border-y border-black/12">
+          {aboutWorkHabits.map((item) => (
+            <div key={item.title} className="grid gap-2 py-4 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">{item.title}</h3>
+              <p className="text-sm leading-6 text-black/64">{item.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutClosingSection() {
+  return (
+    <section className="border-t border-black/12 bg-[#fbfaf7] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+      <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,0.9fr)_auto] lg:items-center">
+        <h2 className="max-w-4xl text-3xl font-semibold leading-tight text-balance text-black/88 sm:text-4xl">
+          The throughline is simple: notice carefully, make ideas real, and help people move with confidence.
+        </h2>
+        <div className="flex flex-wrap gap-3 lg:justify-end">
+          <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
+            Read case studies
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+          <Link href="/resume" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
+            View resume
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function AboutPage() {
+  return (
+    <main id="top" className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
+      <PortfolioHeader />
+      <AboutPageHero />
+      <AboutInspirationSection />
+      <AboutFieldNotesSection />
+      <AboutClosingSection />
       <PortfolioFooter />
     </main>
   );
