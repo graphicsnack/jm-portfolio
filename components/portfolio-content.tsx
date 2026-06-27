@@ -50,6 +50,13 @@ type PersonaItem = {
   needed: string;
 };
 
+type PersonaSectionContent = {
+  title: string;
+  body: string;
+  jobLabel: string;
+  items: PersonaItem[];
+};
+
 type JourneyItem = {
   phase: string;
   title: string;
@@ -2104,21 +2111,21 @@ function CaseStudyProblemFrameVisual({ study }: { study: CaseStudy }) {
   );
 }
 
-function SalesInsightsPersonasSection() {
+function CaseStudyPersonasSection({ section }: { section: PersonaSectionContent }) {
   return (
     <section id="personas" className="grid gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
       <StorySectionLabel
         eyebrow="Personas"
-        title="The same account model had to support multiple GTM teams"
-        body="Each team entered through a different job, but they all needed to trust the same account logic before moving into planning, CRM, Marketing, or seller execution."
+        title={section.title}
+        body={section.body}
       />
       <div className="grid gap-4 sm:grid-cols-2">
-        {salesInsightsPersonas.map((persona) => (
+        {section.items.map((persona) => (
           <article key={persona.audience} className="rounded-lg border border-black/12 bg-[#fffefb]/72 p-4">
             <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{persona.audience}</p>
             <div className="mt-4 grid gap-4">
               <div>
-                <h3 className="text-sm font-semibold leading-5 text-black/84">Planning job</h3>
+                <h3 className="text-sm font-semibold leading-5 text-black/84">{section.jobLabel}</h3>
                 <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.job}</p>
               </div>
               <div>
@@ -2143,6 +2150,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
     question: study.headline,
   };
   const whySection = caseStudyWhySections[study.id];
+  const personasSection = caseStudyPersonaSections[study.id];
   const primaryImpact = study.impact.slice(0, 3);
   const showProblemFrameRole = study.id !== "sales-insights";
 
@@ -2252,7 +2260,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
               </div>
             </section>
 
-            {study.id === "sales-insights" ? <SalesInsightsPersonasSection /> : null}
+            {personasSection ? <CaseStudyPersonasSection section={personasSection} /> : null}
 
             <CaseStudyProblemFrameVisual study={study} />
 
@@ -2357,7 +2365,6 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
 function PortfolioHeader({ caseStudy = false }: { caseStudy?: boolean }) {
   const pathname = usePathname();
   const isCaseStudiesActive = pathname === "/" || pathname.startsWith("/case-studies");
-  const isAboutActive = pathname === "/about";
   const isResumeActive = pathname === "/resume";
   const navLinkBase =
     "inline-flex min-h-10 items-center rounded-md px-3 py-2 text-[0.82rem] font-medium hover:text-[var(--accent)]";
@@ -2383,13 +2390,6 @@ function PortfolioHeader({ caseStudy = false }: { caseStudy?: boolean }) {
             className={`${navLinkBase} ${isCaseStudiesActive ? "text-[var(--accent)]" : "text-black/64"}`}
           >
             Case studies
-          </Link>
-          <Link
-            href="/about"
-            aria-current={isAboutActive ? "page" : undefined}
-            className={`${navLinkBase} ${isAboutActive ? "text-[var(--accent)]" : "text-black/64"}`}
-          >
-            About
           </Link>
           <Link
             href="/resume"
@@ -2572,6 +2572,48 @@ const salesInsightsPersonas: PersonaItem[] = [
       "Readable summaries, comparable segments, decision rationale, and handoff paths into seller workflows.",
   },
 ];
+
+const salesNavigatorPersonas: PersonaItem[] = [
+  {
+    audience: "Sellers and account executives",
+    job: "Find the right accounts and people, understand relationship paths, and move from research to action across LinkedIn, CRM, email, and mobile.",
+    needed:
+      "Relevant lead and account signals, warm paths, recommendations, saved work, and lightweight actions inside the workflows they already used.",
+  },
+  {
+    audience: "Sales managers and leaders",
+    job: "Roll out Sales Navigator as a team habit, understand whether sellers were reaching value, and coach teams toward stronger selling behaviors.",
+    needed:
+      "Onboarding paths, usage visibility, team reporting, plan clarity, and proof that the product was creating value beyond individual prospecting.",
+  },
+  {
+    audience: "Admins and Sales Ops",
+    job: "Configure teams, manage seats, support onboarding, and keep the product governable as adoption expanded across a sales organization.",
+    needed:
+      "Clear admin controls, seat and team management, settings, usage reporting, permissions, and recovery paths for setup or account changes.",
+  },
+  {
+    audience: "CRM and RevOps partners",
+    job: "Connect Sales Navigator relationship intelligence to systems of record without disrupting CRM ownership, data quality, or sales operations workflows.",
+    needed:
+      "Connection state, sync controls, field mapping, activity writeback, data controls, partner-platform patterns, and visible integration status.",
+  },
+];
+
+const caseStudyPersonaSections: Record<string, PersonaSectionContent> = {
+  "sales-insights": {
+    title: "The same account model had to support multiple GTM teams",
+    body: "Each team entered through a different job, but they all needed to trust the same account logic before moving into planning, CRM, Marketing, or seller execution.",
+    jobLabel: "Planning job",
+    items: salesInsightsPersonas,
+  },
+  "sales-navigator-multiseat": {
+    title: "Who Sales Navigator had to work for",
+    body: "Sales Navigator had to serve sellers directly while giving the people who bought, rolled out, measured, and governed it enough confidence to make it a team system.",
+    jobLabel: "Workflow job",
+    items: salesNavigatorPersonas,
+  },
+};
 
 const caseStudyWhySections: Record<string, { title: string; body: string; points: DetailItem[] }> = {
   campglint: {
@@ -3725,198 +3767,6 @@ export function ResumePage() {
       <PortfolioHeader />
       <ResumeSnapshot standalone />
       <HomeClosingSection />
-      <PortfolioFooter />
-    </main>
-  );
-}
-
-const aboutNotes: DetailItem[] = [
-  {
-    title: "Sketchbooks",
-    detail: "A way to find the shape of a messy thought.",
-    icon: FileText,
-  },
-  {
-    title: "Prototypes",
-    detail: "A way to make ideas answer to reality.",
-    icon: Wrench,
-  },
-  {
-    title: "Camp setups",
-    detail: "A way to design around weather, timing, gear, and people.",
-    icon: Tent,
-  },
-];
-
-const aboutThroughlines: DetailItem[] = [
-  {
-    title: "Workarounds",
-    detail:
-      "The small fixes people invent show where a system is unclear, too slow, or missing trust.",
-  },
-  {
-    title: "Constraints",
-    detail:
-      "Weather, timing, gear, business rules, and attention all shape what a useful design can ask of people.",
-  },
-  {
-    title: "Momentum",
-    detail:
-      "I look for the point where enough clarity helps someone choose the next step.",
-  },
-];
-
-const aboutWorkHabits: DetailItem[] = [
-  {
-    title: "Sketch to align",
-    detail:
-      "Turn abstract product conversations into something a team can point at, question, and improve.",
-  },
-  {
-    title: "Build to learn",
-    detail:
-      "Use prototypes and working UI to expose edge cases, interaction costs, and technical constraints.",
-  },
-  {
-    title: "Design for real context",
-    detail:
-      "Keep the experience honest about timing, trust, handoffs, and the people using it.",
-  },
-];
-
-function AboutHeroVisual() {
-  return (
-    <figure className="relative isolate overflow-hidden border-y border-black/12 bg-[var(--accent)]" aria-label="Mountain landscape and personal field notes">
-      <div className="relative isolate h-[13.5rem] overflow-hidden sm:h-[15.5rem] lg:h-[16rem]">
-        <img
-          src="/brand/background.JPG"
-          alt=""
-          aria-hidden="true"
-          loading="eager"
-          decoding="async"
-          className="absolute inset-0 -z-30 h-full w-full object-cover object-[center_13%] opacity-90 saturate-[0.86] contrast-110"
-        />
-        <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgb(24_32_112/0.86)_0%,rgb(24_32_112/0.52)_46%,rgb(24_32_112/0.20)_100%)]" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.08)_1px,transparent_1px)] bg-[size:48px_48px] opacity-40 [mask-image:linear-gradient(to_right,rgb(24_32_112),transparent_82%)]" />
-        <div className="absolute left-5 top-5 flex items-center gap-3 sm:left-8 sm:top-8">
-          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-[#fbfaf7]/94 shadow-[0_18px_48px_-34px_rgb(0_0_0/0.55)]">
-            <img src="/brand/JM_logo_icon_transparent.png" alt="" aria-hidden="true" className="h-8 w-8 object-contain" />
-          </span>
-          <div className="text-white">
-            <p className="text-sm font-semibold leading-5">Away from the screen</p>
-            <p className="text-xs leading-5 text-white/68">Mountains, desert roads, beach days</p>
-          </div>
-        </div>
-        <div className="absolute bottom-5 right-5 hidden max-w-xs grid-cols-3 gap-2 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-white/72 sm:bottom-8 sm:right-8 sm:grid">
-          {["Sketch", "Build", "Explore"].map((item) => (
-            <span key={item} className="border-t border-white/26 pt-2">
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className="portfolio-grid-pattern grid gap-5 border-t border-white/20 bg-[#fbfaf7]/96 p-5 sm:grid-cols-3 sm:gap-6 sm:p-7 lg:px-8 lg:py-8">
-        {aboutNotes.map((item) => {
-          const Icon = item.icon ?? Compass;
-
-          return (
-            <div key={item.title} className="border-l border-black/16 pl-4">
-              <Icon className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" />
-              <h2 className="mt-3 text-sm font-semibold leading-5 text-black/86">{item.title}</h2>
-              <p className="mt-2 text-sm leading-6 text-black/62">{item.detail}</p>
-            </div>
-          );
-        })}
-      </div>
-    </figure>
-  );
-}
-
-function AboutPageHero() {
-  return (
-    <section id="top" className="portfolio-grid-pattern px-5 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
-      <div className="mx-auto max-w-6xl">
-        <AboutHeroVisual />
-      </div>
-    </section>
-  );
-}
-function AboutInspirationSection() {
-  return (
-    <section className="border-t border-black/12 bg-[#fbfaf7] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/42">What I notice</p>
-          <h2 className="mt-3 max-w-sm text-2xl font-semibold leading-tight text-balance text-black/88 sm:text-3xl">
-            I’m drawn to the details that show how people actually use things.
-          </h2>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {aboutThroughlines.map((item) => (
-            <div key={item.title} className="border-t border-black/12 pt-4">
-              <h3 className="text-base font-semibold leading-6 text-black/86">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-black/62">{item.detail}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AboutFieldNotesSection() {
-  return (
-    <section className="border-t border-black/12 bg-[#f2efe7] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(18rem,0.42fr)] lg:items-start">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/42">In the work</p>
-          <h2 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight text-balance text-black/88 sm:text-4xl">
-            That shows up as a practical way of working.
-          </h2>
-        </div>
-        <div className="divide-y divide-black/12 border-y border-black/12">
-          {aboutWorkHabits.map((item) => (
-            <div key={item.title} className="grid gap-2 py-4 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">{item.title}</h3>
-              <p className="text-sm leading-6 text-black/64">{item.detail}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AboutClosingSection() {
-  return (
-    <section className="border-t border-black/12 bg-[#fbfaf7] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-      <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,0.9fr)_auto] lg:items-center">
-        <h2 className="max-w-4xl text-3xl font-semibold leading-tight text-balance text-black/88 sm:text-4xl">
-          The throughline is simple: notice carefully, make ideas real, and help people move with confidence.
-        </h2>
-        <div className="flex flex-wrap gap-3 lg:justify-end">
-          <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
-            Read case studies
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-          <Link href="/resume" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
-            View resume
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function AboutPage() {
-  return (
-    <main id="top" className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
-      <PortfolioHeader />
-      <AboutPageHero />
-      <AboutInspirationSection />
-      <AboutFieldNotesSection />
-      <AboutClosingSection />
       <PortfolioFooter />
     </main>
   );
