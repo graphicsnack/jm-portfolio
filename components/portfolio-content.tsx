@@ -333,7 +333,7 @@ export const caseStudies: CaseStudy[] = [
       ],
       proof: [
         "Monitors list and monitor detail",
-        "Create Monitor sheet and discovery recommendations",
+        "Create Monitor sheet and discovery profile",
         "Trip readiness flow and native system integrations",
       ],
     },
@@ -426,7 +426,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Discover",
         detail:
-          "Recommendation surface that helps campers find nearby or alternate campgrounds to watch based on starting points and travel intent.",
+          "Discovery profile and recommendation surface that help campers shape backup options around terrain, drive range, camp style, and travel intent.",
         icon: Compass,
       },
       {
@@ -446,7 +446,7 @@ export const caseStudies: CaseStudy[] = [
       "Auth-gated SwiftUI shell with session restore, signed-in state, and a native bottom-tab navigation model.",
       "Monitors flow with saved watch cards, provider labels, scan timing, alert state, booking handoff, and a rescan action.",
       "Create Monitor sheet with starting points, campground selection, trip window, stay length, flexible-date controls, and disabled-state validation.",
-      "Discover flow with active discovery profile, campground recommendations, provider context, availability cues, and watch actions.",
+      "Discover flow with active discovery profile, terrain preferences, drive-range signals, camp-style inputs, campground recommendations, and watch actions.",
       "Trips flow with confirmed-trip details, readiness progress, packing and task counts, site details, and empty/past-trip states.",
       "Native system integrations for notification scaffolding, deep links, App Intents, monitor/trip entities, and shortcut-ready actions.",
       "Shared SwiftUI visual system covering color, type, card treatments, empty states, controls, app icon, and reusable campground imagery.",
@@ -488,8 +488,8 @@ export const caseStudies: CaseStudy[] = [
         phase: "02",
         label: "Monitor detail",
         title: "Monitor detail turns a saved watch into a clear action surface",
-        image: "/projects/CampGlint/iOS%20app%20screens/02-monitor-detail-portola.png",
-        alt: "CampGlint iOS monitor detail screen",
+        image: "/projects/CampGlint/iOS%20app%20screens/02-monitor-detail-hal-moon-bay-1.PNG",
+        alt: "CampGlint iOS Half Moon Bay monitor detail screen",
         story:
           "The detail screen keeps campground context, trip timing, scan status, and booking handoff close to the saved monitor.",
         evidence: "Campground detail, reservation window, monitor status, provider context, availability signals, and booking handoff.",
@@ -498,7 +498,7 @@ export const caseStudies: CaseStudy[] = [
         phase: "03",
         label: "Create monitor",
         title: "Monitor creation keeps setup focused and reversible",
-        image: "/screenshots/campglint-case-study/ios-create-monitor.jpg",
+        image: "/projects/CampGlint/iOS%20app%20screens/03-create-monitor-1.PNG",
         alt: "CampGlint iOS create monitor sheet",
         story:
           "The setup flow keeps campground selection, trip timing, stay length, and flexible-date controls in one native sheet so users can start a watch without committing to every detail upfront.",
@@ -507,22 +507,22 @@ export const caseStudies: CaseStudy[] = [
       {
         phase: "04",
         label: "Discover",
-        title: "Discovery gives users backup options worth watching",
-        image: "/projects/CampGlint/iOS%20app%20screens/05-discover-recommendations.png",
-        alt: "CampGlint iOS discover recommendations screen",
+        title: "Discovery uses camper preferences to shape backup options",
+        image: "/projects/CampGlint/iOS%20app%20screens/07-discovery-profile.PNG",
+        alt: "CampGlint iOS discovery profile preferences screen",
         story:
-          "Discover supports the moment before a user has a fixed destination by recommending alternate campgrounds that can become monitors.",
-        evidence: "Starting points, discovery profile, recommendation card, campground image, provider context, and watch-oriented next step.",
+          "Discover supports the moment before a user has a fixed destination by letting campers tune the kinds of backup campgrounds the product should prioritize.",
+        evidence: "Discovery profile state, terrain preferences, drive-range signals, camp-style inputs, and preference-based backup discovery.",
       },
       {
         phase: "05",
         label: "Trips",
         title: "After a booking, the app shifts into readiness",
-        image: "/projects/CampGlint/iOS%20app%20screens/04-trip-detail-new-brighton.png",
-        alt: "CampGlint iOS trip detail screen",
+        image: "/projects/CampGlint/iOS%20app%20screens/04-trip-details.PNG",
+        alt: "CampGlint iOS Fernwood trip detail screen",
         story:
           "Trips keeps confirmed reservation details and preparation tasks close to the same product loop that helped the user find availability.",
-        evidence: "Confirmed Upper Pines trip, date and site detail, readiness section, packing/tasks, and past-trip empty state.",
+        evidence: "Confirmed trip details, dates, site number, readiness progress, packing status, tasks, and camp-plan notes.",
       },
     ],
     outcomesTitle: "What the product now supports",
@@ -1908,7 +1908,7 @@ const storyMetaLogos: Record<string, { src: string; alt: string }> = {
     alt: "LinkedIn",
   },
   CampGlint: {
-    src: "/screenshots/campglint-case-study/campglint-app-icon.png",
+    src: "/screenshots/campglint-case-study/CampGlint-Icon-Light.png",
     alt: "CampGlint",
   },
   GraphicSnack: {
@@ -2753,8 +2753,8 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
 const campGlintPreviewScreens = [
   {
     label: "Discover",
-    src: "/projects/CampGlint/iOS%20app%20screens/05-discover-recommendations.png",
-    alt: "CampGlint iOS discover recommendations screen",
+    src: "/projects/CampGlint/iOS%20app%20screens/07-discovery-profile.PNG",
+    alt: "CampGlint iOS discovery profile preferences screen",
   },
   {
     label: "Monitors",
@@ -2763,7 +2763,7 @@ const campGlintPreviewScreens = [
   },
   {
     label: "Trips",
-    src: "/projects/CampGlint/iOS%20app%20screens/04-trip-detail-new-brighton.png",
+    src: "/projects/CampGlint/iOS%20app%20screens/04-trip-details.PNG",
     alt: "CampGlint iOS trip detail screen",
   },
 ];
