@@ -3938,7 +3938,7 @@ export function PortfolioPage() {
         <div className="mx-auto grid max-w-6xl gap-9 lg:grid-cols-[minmax(0,0.95fr)_minmax(20rem,0.72fr)] lg:items-center">
           <div>
             <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
-              I design and build product systems that turn complex signals into clear decisions.
+              I design complex products that help people understand what matters, take the next step, and build confidence.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
               Senior product designer with 10+ years at LinkedIn, focused on enterprise systems, AI-assisted selling, GTM workflows, and founder-led product building.
