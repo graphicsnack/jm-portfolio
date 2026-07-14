@@ -54,6 +54,7 @@ type PersonaSectionContent = {
   title: string;
   body: string;
   jobLabel: string;
+  useRowLayout?: boolean;
   items: PersonaItem[];
 };
 
@@ -80,6 +81,11 @@ type CaseStudyContribution = {
   proof: string[];
 };
 
+type CaseStudyTimelineItem = {
+  date: string;
+  detail: string;
+};
+
 export type CaseStudy = {
   id: string;
   shortLabel: string;
@@ -87,6 +93,7 @@ export type CaseStudy = {
   platform: string;
   headline: string;
   summary: string;
+  cardSummary?: string;
   role: string;
   status: string;
   contribution?: CaseStudyContribution;
@@ -107,6 +114,10 @@ export type CaseStudy = {
   story: StoryItem[];
   outcomesTitle: string;
   outcomes: string[];
+  outcomeTimeline?: {
+    title: string;
+    items: CaseStudyTimelineItem[];
+  };
   takeaway: string;
 };
 
@@ -316,9 +327,11 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "CampGlint",
     product: "CampGlint",
     platform: "Native iOS app",
-    headline: "Native iOS app for campsite signals, booking handoff, and trip readiness",
+    headline: "Campsite monitoring from cancellation to trip readiness",
     summary:
-      "CampGlint is a native iOS app that helps campers track cancelled campsites without manually checking campground availability. I designed and built the product around saved monitors, fast monitor creation, backup discovery, booking handoff, and trip readiness.",
+      "I designed and built a native iOS app that helps campers find cancelled campsites, complete bookings, and prepare for their trips.",
+    cardSummary:
+      "Designed and built a native iOS app that helps campers track cancellations, book campsites, and get ready for their trip.",
     role: "Founder, product designer, iOS builder",
     status: "Native build, launch readiness active",
     contribution: {
@@ -378,35 +391,35 @@ export const caseStudies: CaseStudy[] = [
         phase: "01",
         title: "Define the iOS job",
         detail:
-          "The core job is simple: watch campground availability, surface trustworthy signals, and help campers act before a site disappears.",
+          "Watch availability, surface trustworthy signals, and help campers act before a site disappears.",
         evidence: "Core product job",
       },
       {
         phase: "02",
-        title: "Make Monitors the home base",
+        title: "Make monitors home",
         detail:
-          "The app opens on saved watches because that is where users need status, confidence, and next actions after setup.",
+          "Saved monitors became the home for status, confidence, and next actions.",
         evidence: "Monitors tab",
       },
       {
         phase: "03",
-        title: "Keep creation lightweight",
+        title: "Keep setup lightweight",
         detail:
-          "Monitor creation separates campground choice, trip window, and flexibility so users can start watching even when plans are not final.",
+          "Campground, dates, and flexibility stay separate so monitoring can start before plans are final.",
         evidence: "Create Monitor sheet",
       },
       {
         phase: "04",
-        title: "Add discovery before commitment",
+        title: "Add backup discovery",
         detail:
-          "Discover gives users backup campgrounds worth watching instead of forcing them to know every destination before using the product.",
+          "Discovery suggests backup campgrounds without requiring campers to know every option upfront.",
         evidence: "Discover tab",
       },
       {
         phase: "05",
-        title: "Close the loop after booking",
+        title: "Continue after booking",
         detail:
-          "Trips turns a successful reservation into a lightweight readiness space for packing, tasks, dates, and site details.",
+          "Trips carries a successful booking into dates, tasks, packing, and site readiness.",
         evidence: "Trips tab",
       },
     ],
@@ -726,9 +739,11 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "Sales Navigator",
     product: "LinkedIn Sales Navigator",
     platform: "Enterprise SaaS",
-    headline: "From a standalone seller workspace to a CRM-connected team system",
+    headline: "From seller workspace to CRM-connected team system",
     summary:
-      "LinkedIn Sales Navigator turned LinkedIn relationship data into a seller product that companies could adopt, manage, measure, and expand. I was one of three founding designers, and I primarily owned admin, integrations, onboarding, mobile, and growth across Sales Navigator and LinkedIn.",
+      "As one of three founding designers, I helped scale Sales Navigator across admin, integrations, onboarding, mobile, and growth.",
+    cardSummary:
+      "Helped take Sales Navigator from an individual seller workspace to a CRM-connected system that teams could adopt, manage, and measure.",
     role: "One of three founding designers. Primarily owned admin, integrations, onboarding, mobile, and growth",
     status: "LinkedIn Sales Navigator product systems and integrations",
     contribution: {
@@ -736,16 +751,16 @@ export const caseStudies: CaseStudy[] = [
         "Started as one of three founding designers for LinkedIn Sales Navigator.",
         "Primarily owned admin, usage reporting, team management, onboarding, and new-user value paths.",
         "Led CRM integration design from the first Salesforce widgets into a scalable integration model that could extend beyond Salesforce.",
-        "Drove Sales Navigator for Gmail, SSI for Sales Navigator, mobile discovery and onboarding, team-feature expansion on mobile, and growth-oriented upsell and funnel work.",
+        "Drove Sales Navigator for Gmail, Social Selling Index for Sales Navigator, mobile discovery and onboarding, team-feature expansion on mobile, and growth-oriented upsell and funnel work.",
       ],
       partnered: [
-        "Balanced seller action with admin trust across sync behavior, field mapping, activity capture, reporting, governance, and team adoption.",
+        "Balanced seller action with admin trust across sync behavior, field mapping, activity capture, reporting, administration, and team adoption.",
         "Extended the product model from individual seller productivity into team, enterprise, and cross-surface workflows.",
       ],
       proof: [
         "Admin, usage reporting, team management, onboarding, and new-user experiences",
         "Salesforce widgets, scalable CRM integration patterns, sync settings, and data controls",
-        "Gmail, SSI, mobile discovery and onboarding, team mobile features, upsell, and funnel optimization",
+        "Gmail, Social Selling Index, mobile discovery and onboarding, team mobile features, upsell, and funnel optimization",
       ],
     },
     heroImage: "/projects/Sales%20Nav/sn-home.png",
@@ -781,36 +796,36 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Team expansion and growth",
         detail:
-          "Later work included SSI for Sales Navigator, mobile discovery and onboarding, team-only value on mobile, and growth efforts across Sales Navigator and LinkedIn, including upsell paths and funnel optimization.",
+          "Later work included Social Selling Index for Sales Navigator, mobile discovery and onboarding, team-only value on mobile, and growth efforts across Sales Navigator and LinkedIn, including upsell paths and funnel optimization.",
       },
     ],
     journey: [
       {
         phase: "01",
-        title: "Make a new sales product adoptable by teams",
+        title: "Build for team adoption",
         detail:
-          "Early Sales Navigator needed more than prospecting workflows. It needed the admin, usage reporting, team management, onboarding, and new-user experiences that would let companies roll it out, manage adoption, and understand whether sellers were reaching value.",
+          "Admin, reporting, onboarding, and team management made the new seller product adoptable by companies.",
         evidence: "Admin workflows, usage reporting, team management, onboarding, new-user experiences, seat visibility",
       },
       {
         phase: "02",
-        title: "Bring relationship intelligence into CRM",
+        title: "Bring intelligence into CRM",
         detail:
-          "CRM was the system of record, but Sales Navigator had the relationship intelligence. I led work from the first Salesforce widgets into a more scalable CRM integration experience for profiles, TeamLink paths, recommended leads, account actions, news, sync, and activity capture.",
+          "CRM integrations brought relationship intelligence into profiles, account actions, sync, and activity capture.",
         evidence: "Salesforce widgets, CRM integration model, CRM Sync, top-card states, recommended leads, news, best path in",
       },
       {
         phase: "03",
-        title: "Meet sellers in CRM, email, and LinkedIn.com",
+        title: "Meet sellers in their workflow",
         detail:
-          "Sellers did not start every workflow inside Sales Navigator. Relationship intelligence had to appear in CRM records, email workflows, and LinkedIn.com surfaces so sellers could use Sales Navigator value without breaking their existing rhythm.",
+          "CRM, email, and LinkedIn.com delivered Sales Navigator value inside existing seller workflows.",
         evidence: "CRM surfaces, Sales Navigator for Gmail, LinkedIn.com entry points, embedded relationship intelligence",
       },
       {
         phase: "04",
-        title: "Scale from individual seller to team system",
+        title: "Scale into a team system",
         detail:
-          "As Sales Navigator matured, the design work shifted toward bringing team-only features into mobile and improving the growth paths that helped customers expand: upsells, funnel optimization, plan clarity, and team-value proof across Sales Navigator and LinkedIn.",
+          "Mobile support for team features, plan clarity, reporting, and growth paths turned individual value into a team system.",
         evidence: "Team mobile features, TeamLink, usage reporting, plan clarity, upsell paths, funnel optimization, multi-seat research",
       },
     ],
@@ -828,7 +843,7 @@ export const caseStudies: CaseStudy[] = [
         icon: Link2,
       },
       {
-        title: "Gmail, SSI, and mobile",
+        title: "Gmail, Social Selling Index, and mobile",
         detail:
           "Sales Navigator for Gmail, Social Selling Index for Sales Navigator, mobile discovery, mobile onboarding, and later team-feature expansion on the mobile app.",
         icon: ShieldCheck,
@@ -841,18 +856,17 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     systemBuild: [
-      "Started as one of three founding designers for LinkedIn Sales Navigator.",
-      "Primarily owned admin, usage reporting, team management, onboarding, CRM integrations, mobile, and growth experiences needed for customer adoption and expansion.",
+      "Primarily owned admin, usage reporting, team management, onboarding, CRM integrations, and growth experiences across web and mobile needed for customer expansion.",
       "Helped establish Sales Navigator as a standalone SaaS workspace for sellers and sales teams, with accounts, leads, saved work, relationship signals, and seller-specific navigation.",
-      "Led CRM integration design from the first Salesforce widgets into a scalable model for embedded intelligence, CRM Sync, activity writeback, data controls, and partner-platform expansion.",
-      "Extended Sales Navigator value across adjacent seller workflows and core product surfaces: Gmail, CRM, and LinkedIn.com touchpoints, SSI for Sales Navigator, mobile discovery, mobile onboarding, and later team-feature work on mobile.",
-      "Supported growth efforts across Sales Navigator and LinkedIn through upsell paths, funnel optimization, plan clarity, usage visibility, reporting, and multi-seat expansion.",
+      "Led CRM integration design from the first Salesforce widgets into a scalable model for embedded intelligence, sync behavior, field mapping, activity capture, reporting, governance, and team adoption.",
+      "Extended Sales Navigator value across adjacent seller workflows and core product surfaces: Gmail, CRM, and LinkedIn.com touchpoints, Social Selling Index, mobile discovery, mobile onboarding, and later team-feature work on mobile.",
+      "Supported growth efforts across Sales Navigator and LinkedIn through upsell paths, funnel optimization, plan clarity, usage visibility, reporting, and multi-seat adoption.",
     ],
     decisions: [
       {
         title: "Make the product manageable before it scaled",
         detail:
-          "A team product needed more than useful seller screens. Admins and managers needed setup, usage visibility, team management, onboarding, and reporting before Sales Navigator could become an enterprise habit.",
+          "A team product needed more than useful seller screens. Admins and managers needed setup, usage visibility, team management, onboarding, and reporting before Sales Navigator could become an established part of the sales workflow.",
       },
       {
         title: "Treat CRM as the system of record",
@@ -862,7 +876,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Design integrations as a platform pattern",
         detail:
-          "The first Salesforce widgets had to prove value in one CRM while establishing a model that could travel: identity, profile context, TeamLink, warm paths, recommendations, news, save actions, sync, and next steps.",
+          "The first Salesforce widgets had to prove value in one CRM while establishing a reusable integration model for identity, profile context, warm paths, recommendations, news, save actions, and next steps.",
       },
       {
         title: "Meet sellers where they already worked",
@@ -878,18 +892,18 @@ export const caseStudies: CaseStudy[] = [
         image: "/projects/Sales%20Nav/sn-home.png",
         alt: "Early Sales Navigator suggested leads workflow with CRM sync and TeamLink signals",
         story:
-          "As one of three founding designers, my early work focused on making Sales Navigator adoptable by teams, not just useful to individual sellers. Admin, usage reporting, team management, onboarding, and new-user paths helped customers understand seats, behavior, and early value.",
-        evidence: "Admin workflows, usage reporting, team management, onboarding, new-user experiences, seat visibility, and value-discovery paths.",
+          "My early work focused on making Sales Navigator adoptable by teams, not just useful to individual sellers. Admin, usage reporting, team management, onboarding, and new-user paths helped customers see how licenses were assigned and used, how sellers were engaging, and where early value was emerging.",
+        evidence: "Seat management, usage reporting, CRM Sync, admin onboarding, settings, and email communications.",
       },
       {
         phase: "02",
         label: "CRM widgets",
-        title: "Sales Navigator relationship intelligence moved into CRM records",
+        title: "Sales Navigator relationship intelligence expanded into CRM records",
         image: "/projects/Sales%20Nav/SN-CRM-Integration.png",
         alt: "Sales Navigator CRM widgets embedded in Salesforce account and contact records",
         story:
-          "CRM was where sellers and sales operations teams managed accounts, contacts, opportunities, and activity. I led the first Salesforce widget work and then helped extend that into a scalable CRM integration model for profile cards, employee insights, best paths in, recommended leads, news, save actions, message actions, and relationship context.",
-        evidence: "First Salesforce widgets, scalable CRM integration model, profile top cards, account actions, lead recommendations, news, icebreakers, related leads, TeamLink, and get-introduced flows.",
+          "CRM was where sellers manage accounts, contacts, opportunities, and activity. I led the first Salesforce widget work and then helped extend that into a scalable CRM integration model for profile cards, employee insights, best paths in, recommended leads, news, save actions, message actions, and relationship context across additional key CRMs.",
+        evidence: "First Salesforce widgets, scalable CRM integration model, profile top cards, account actions, lead recommendations, news, icebreakers, related leads, and get-introduced flows.",
       },
       {
         phase: "03",
@@ -898,38 +912,65 @@ export const caseStudies: CaseStudy[] = [
         image: "/projects/Sales%20Nav/Sales%20Navigator%20version%201/First%20version%20of%20Sales%20Navigator%20Settings%20page.png",
         alt: "Early Sales Navigator settings page with sales preferences and CRM sync preferences",
         story:
-          "The CRM work had an operations layer. Admins and sales leaders needed to understand connection state, field mapping, opportunity value mapping, auto-sync behavior, update preferences, and when to purge or disconnect CRM data. These controls made the integration governable, not just convenient.",
-        evidence: "Salesforce connection state, last sync date, pipeline-stage mapping, opportunity value mapping, auto-sync for seat holders, purge CRM data, disconnect CRM, sales preferences, and email preferences.",
+          "The CRM work had an operations layer. Admins and sales leaders needed to understand connection state, field mapping, opportunity value mapping, auto-sync behavior, update preferences, and when to disconnect CRM data. These controls made the integration easier to manage, not just convenient.",
+        evidence: "CRM connection state, pipeline-stage mapping, opportunity mapping, auto-sync, disconnect CRM, sales preferences, and email preferences.",
       },
       {
         phase: "04",
         label: "Expansion",
-        title: "Sales Navigator matured through SSI, mobile, and growth paths",
+        title: "Sales Navigator matured through Social Selling Index, mobile, and growth paths",
         image: "/projects/Sales%20Nav/sn-home.png",
         alt: "Sales Navigator home surface with alerts, personas, book of business, and priority accounts",
         story:
-          "As Sales Navigator matured, my work expanded into product depth and growth loops: SSI for Sales Navigator, mobile discovery and onboarding, team-only features on mobile, upsell paths, and funnel optimization across Sales Navigator and LinkedIn.",
-        evidence: "SSI for Sales Navigator, mobile discovery, mobile onboarding, team mobile features, TeamLink, usage reporting, upsell paths, funnel optimization, and multi-seat expansion research.",
+          "As Sales Navigator matured, my work expanded into product depth and growth loops: Social Selling Index for Sales Navigator, mobile discovery and onboarding, team-only features on mobile, upsell paths, and funnel optimization across Sales Navigator and LinkedIn.",
+        evidence: "Social Selling Index for Sales Navigator, mobile discovery, mobile onboarding, team mobile features, TeamLink, upsell paths, funnel optimization, and multi-seat expansion research.",
       },
     ],
     outcomesTitle: "What the product scaled into",
     outcomes: [
       "Sales Navigator expanded from an individual seller workspace into a team product with admin, onboarding, usage visibility, team management, and new-user value paths.",
       "CRM integrations moved from early Salesforce widgets toward scalable patterns for embedded intelligence, sync, activity writeback, and data controls.",
-      "Sales Navigator value extended into adjacent seller surfaces, including Gmail, CRM, LinkedIn.com, SSI, mobile discovery, and mobile onboarding.",
+      "Sales Navigator value extended into adjacent seller surfaces, including Gmail, CRM, LinkedIn.com, Social Selling Index, mobile discovery, and mobile onboarding.",
       "Growth and team expansion workflows gave organizations clearer paths to understand plan value, seat usage, reporting, and multi-seat adoption.",
     ],
+    outcomeTimeline: {
+      title: "Product growth milestones",
+      items: [
+        {
+          date: "July 2014",
+          detail: "Sales Navigator launched as a standalone SaaS product.",
+        },
+        {
+          date: "2018",
+          detail: "LinkedIn described Sales Navigator as one of the industry's fastest-growing enterprise-grade SaaS applications.",
+        },
+        {
+          date: "2021",
+          detail: "LinkedIn Sales Solutions surpassed $1 billion in annual revenue.",
+        },
+        {
+          date: "2023–2024",
+          detail: "Sales Navigator added generative AI and expanded into deeper CRM and LinkedIn.com experiences.",
+        },
+        {
+          date: "2026",
+          detail: "Sales Navigator reaches $1.5 billion in annual revenue.",
+        },
+      ],
+    },
     takeaway:
-      "This case study shows how Sales Navigator became more than a prospecting workspace: adoption, admin trust, CRM integration, seller touchpoints, mobile access, and growth loops all had to work together for the product to scale as a team business.",
+      "Sales Navigator became more than a workspace for our various seller personas: adoption, admin trust, CRM integration, seller touchpoints, mobile access, and growth loops all had to work together for the product to scale as a team business.",
   },
   {
     id: "career-pages",
     shortLabel: "Career Pages",
     product: "LinkedIn Career Pages",
     platform: "Paid recruiting and talent-brand product",
-    headline: "LinkedIn Career Pages for employer storytelling and candidate action",
+    headline: "Employer storytelling connected to candidate action",
     summary:
-      "LinkedIn Career Pages helped companies turn employer storytelling into credible candidate-facing experiences. As the primary designer across member, admin, and analytics surfaces, I shaped the overall admin and analytics experience for Talent Brand teams, plus candidate experiences that helped passive and active job seekers evaluate companies, create alerts, and signal interest.",
+      "I designed member, admin, and analytics experiences that connected employer stories with candidate research and job action.",
+    cardSummary:
+      "Designed tools for companies to tell their story and for candidates to follow jobs and show interest.",
     role: "Primary product designer across member, admin, and analytics experiences",
     status: "Shipped LinkedIn recruiting product",
     contribution: {
@@ -985,30 +1026,30 @@ export const caseStudies: CaseStudy[] = [
     journey: [
       {
         phase: "01",
-        title: "Own paid and free surfaces together",
+        title: "Connect paid and free",
         detail:
-          "Career Pages added paid employer-branding value, but it still had to fit the broader Company Pages system that admins and members already understood.",
+          "Paid Career Pages had to fit the Company Pages system that admins and members already understood.",
         evidence: "Career Pages, Company Pages, admin tools, and member-facing company surfaces.",
       },
       {
         phase: "02",
-        title: "Make employer stories publishable",
+        title: "Make stories publishable",
         detail:
-          "Talent Brand managers needed controls for creating pages, adding media, managing modules, targeting audiences, previewing changes, and publishing with confidence.",
+          "Authoring, targeting, preview, and publishing controls made employer stories manageable for Talent Brand teams.",
         evidence: "Admin editor states, page settings, visibility controls, targeting, preview, save, and publish.",
       },
       {
         phase: "03",
-        title: "Turn Life Pages into proof",
+        title: "Use employee proof",
         detail:
-          "The candidate-facing experience needed to show what working at a company felt like through teams, employees, photos, articles, and testimonials instead of generic marketing copy.",
+          "Employee stories, photos, teams, and testimonials made Life Pages more credible than generic recruiting copy.",
         evidence: "Life Page modules, employee perspectives, company photos, team tabs, and testimonials.",
       },
       {
         phase: "04",
-        title: "Connect research to job action",
+        title: "Connect research to action",
         detail:
-          "Company research became more useful when candidates could create job alerts, browse recommended jobs, find employees to contact, and signal interest in the company.",
+          "Jobs, alerts, employee connections, and interest signals moved company research toward action.",
         evidence: "Jobs tab, saved job alerts, recommended jobs, employee connection cards, and interest signals.",
       },
     ],
@@ -1126,9 +1167,11 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "Employee Experience",
     product: "LinkedIn Employee Experience",
     platform: "Desktop and mobile UGC pilot for Company Pages and Career Pages",
-    headline: "Employee-generated company review system",
+    headline: "Employee perspectives for more credible company research",
     summary:
-      "LinkedIn Employee Experience explored how verified employee perspectives could become trusted company research for job seekers. I led design and research across desktop and mobile contribution flows, privacy states, question systems, review concepts, and integration paths that informed later Career Pages features.",
+      "I led an exploration into how LinkedIn could give job seekers credible insight into what it is like to work at a company.",
+    cardSummary:
+      "Explored how LinkedIn could solve a major job-seeker pain point: understanding what it is like to work at a company.",
     role: "Led design and collaborated with PM and PMM on strategy",
     status: "Pilot validated, patterns informed Career Pages launches",
     contribution: {
@@ -1184,37 +1227,37 @@ export const caseStudies: CaseStudy[] = [
     journey: [
       {
         phase: "01",
-        title: "Start with the job seeker pain point",
+        title: "Start with job-seeker need",
         detail:
-          "Member research across more than 30K professionals showed that not knowing what it is really like to work at a company was the top pain point in the job-seeking process.",
+          "Research with 30K+ professionals identified company-insight gaps as a leading job-seeker pain point.",
         evidence: "Member research",
       },
       {
         phase: "02",
-        title: "Choose ratings over narrower formats",
+        title: "Choose ratings",
         detail:
-          "Q&A had unclear member value and interview-question concepts served too narrow an audience, so the team focused on ratings as a broader, clearer starting point.",
+          "Ratings offered broader member value than Q&A or interview-question concepts.",
         evidence: "Concept evaluation",
       },
       {
         phase: "03",
-        title: "Test contribution willingness first",
+        title: "Test contribution first",
         detail:
-          "The initial pilot used lightweight private questions on Company Pages and feed entry points to validate whether employees would participate before expanding the content model.",
+          "Private, lightweight questions tested willingness to contribute before expanding the content model.",
         evidence: "Give-and-get pilot",
       },
       {
         phase: "04",
-        title: "Expand from scores into employee voice",
+        title: "Add employee voice",
         detail:
-          "Later explorations added rating scales, structured attributes, free-form reviews, discovery cards, and conversation patterns for job seekers researching a company.",
+          "Ratings, attributes, reviews, and discovery patterns added depth to the employee perspective.",
         evidence: "Ratings and reviews",
       },
       {
         phase: "05",
-        title: "Turn insights into recruiting product value",
+        title: "Connect to recruiting",
         detail:
-          "The long-term product direction connected employee-generated insights to Company Pages, Jobs, candidate recommendations, and Career Pages features centered on authentic employee experience.",
+          "Employee insights became more useful across Company Pages, Jobs, recommendations, and Career Pages.",
         evidence: "Career Pages path",
       },
     ],
@@ -1348,9 +1391,11 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "Sales Insights",
     product: "LinkedIn Sales Insights",
     platform: "Enterprise GTM planning product",
-    headline: "Trusted GTM planning workflows for Sales Operations and Marketing teams",
+    headline: "Turning market signals into trusted GTM decisions",
     summary:
-      "LinkedIn Sales Insights helped revenue teams turn LinkedIn data into clearer market planning, account prioritization, CRM improvement, and GTM alignment. My work focused on making dense enterprise data feel trustworthy, repeatable, and actionable across reports, sources, account lists, automation, and downstream workflows.",
+      "I designed planning workflows that helped GTM teams size markets, prioritize accounts, and act on LinkedIn data with confidence.",
+    cardSummary:
+      "Designed planning workflows that helped GTM teams size markets, prioritize accounts, and act on LinkedIn data with confidence.",
     role: "Lead product designer across core experience and integrations",
     status: "LinkedIn enterprise product",
     contribution: {
@@ -1409,30 +1454,30 @@ export const caseStudies: CaseStudy[] = [
     journey: [
       {
         phase: "01",
-        title: "Move beyond insight availability",
+        title: "Move beyond data access",
         detail:
-          "The opportunity was not simply giving teams access to market data. Sales Insights needed to become usable, scalable, and trusted inside real enterprise planning cycles.",
+          "Sales Insights needed to become trusted inside enterprise planning cycles, not simply expose more data.",
         evidence: "Product maturity, Sales Ops planning, territory and account decisions",
       },
       {
         phase: "02",
-        title: "Clarify the product object model",
+        title: "Clarify the product model",
         detail:
-          "Sources, reports, personas, filters, insights, account lists, exports, and CRM sync states had to feel like one connected planning system instead of separate tools.",
+          "Sources, reports, personas, account lists, exports, and sync states had to feel like one planning system.",
         evidence: "Sources, reports, personas, account lists, exports, CRM sync",
       },
       {
         phase: "03",
-        title: "Make automation explainable",
+        title: "Explain automation",
         detail:
-          "CRM and CSV workflows required confidence around what was matched, what was unresolved, what would be written downstream, and when refreshed data could be trusted.",
+          "Matching, field mapping, sync status, and exceptions made downstream automation understandable.",
         evidence: "CRM setup, CSV import, account matching, field mapping, sync status",
       },
       {
         phase: "04",
-        title: "Bridge planning to activation",
+        title: "Bridge planning to action",
         detail:
-          "The strongest workflow connected a target-market hypothesis to a validated account list, then carried that list into CRM, Marketing, or Sales Navigator execution.",
+          "Validated account lists carried planning decisions into CRM, Marketing, and Sales Navigator.",
         evidence: "ABM planning, Campaign Manager concepts, CRM export, Sales Navigator handoff",
       },
     ],
@@ -1557,9 +1602,11 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "Seller Agent",
     product: "LinkedIn Seller Agent",
     platform: "AI agent exploration on LinkedIn.com",
-    headline: "An in-context AI agent for seller prospecting on LinkedIn",
+    headline: "An in-context AI agent for seller prospecting",
     summary:
-      "Seller Agent explored how AI could bring Sales Navigator value directly into the LinkedIn workflow. I led the early design work with my PM, defining the opportunity, validating concepts, and identifying an in-context agent as the strongest path forward. As the work expanded, I partnered with another designer and cross-company agent teams to align the experience around social signals, relationship paths, account context, and guided prompts.",
+      "I led opportunity definition and concept validation, then helped align Seller Agent with LinkedIn's broader agentic work.",
+    cardSummary:
+      "Led design from opportunity definition through concept validation, then helped align Seller Agent with LinkedIn's broader agentic work.",
     role: "Led definition, validation, concept testing, and stakeholder alignment",
     status: "Foundational LinkedIn AI Agent exploration",
     contribution: {
@@ -1619,28 +1666,28 @@ export const caseStudies: CaseStudy[] = [
         phase: "01",
         title: "Start with seller behavior",
         detail:
-          "Research showed sellers already used LinkedIn posts, comments, reactions, and profile changes as active prospecting inputs, not passive social content.",
+          "Sellers already treated LinkedIn activity and profile changes as active prospecting signals.",
         evidence: "Social signals, feed behavior, targeted search, manual research",
       },
       {
         phase: "02",
-        title: "Bring Sales Navigator into LinkedIn.com",
+        title: "Bring value into LinkedIn.com",
         detail:
-          "The opportunity was to expose Sales Navigator value where sellers already spent time, reducing tool switching between LinkedIn.com, Sales Navigator, CRM, and manual research.",
+          "Bringing Sales Navigator into LinkedIn.com reduced switching across research, CRM, and seller tools.",
         evidence: "LinkedIn.com workflow, Sales Navigator data, CRM handoffs",
       },
       {
         phase: "03",
-        title: "Design the feed-to-lead arc",
+        title: "Connect feed to lead",
         detail:
-          "The storyboard followed a seller from a digest in the feed, into account changes, lead context, best paths in, and finally AI-assisted outreach.",
+          "The flow connected feed signals, account changes, lead context, warm paths, and assisted outreach.",
         evidence: "Digest, account updates, lead profile, warm paths, message draft",
       },
       {
         phase: "04",
-        title: "Use feedback to sharpen trust",
+        title: "Build trust through control",
         detail:
-          "Feedback made clear that AI had to feel lighter than the seller's current workflow, with compact prompts, visible rationale, and actions the seller could control.",
+          "Compact prompts, visible rationale, and seller-controlled actions made the agent easier to trust.",
         evidence: "Seller validation, trust cues, prompt iteration, handoff",
       },
     ],
@@ -2017,37 +2064,42 @@ function StoryProductMedia({
   );
 }
 
-function ExactContributionModule({
-  contribution,
-  compact = false,
-}: {
-  contribution: CaseStudyContribution;
-  compact?: boolean;
-}) {
+function CaseStudyRoleAndScope({ study }: { study: CaseStudy }) {
+  if (study.id === "sales-navigator-multiseat") {
+    return (
+      <section id="scope" className="grid scroll-mt-32 gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
+        <StorySectionLabel eyebrow="Role and scope" title="My role and scope" />
+        <ul className="grid gap-4">
+          {study.systemBuild.map((item) => (
+            <li key={item} className="border-l border-black/18 pl-4 text-sm leading-6 text-black/66">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  }
+
+  const ownership = study.contribution?.owned.slice(0, 2) ?? study.impact.slice(0, 2).map((item) => item.detail);
+  const collaboration = study.contribution?.partnered.slice(0, 2) ?? [];
   const groups = [
-    {
-      title: "I personally owned",
-      items: contribution.owned,
-    },
-    {
-      title: "I shaped with partners",
-      items: contribution.partnered,
-    },
-    {
-      title: "Where this shows up",
-      items: contribution.proof,
-    },
+    { title: "Primary ownership", items: ownership },
+    { title: "Product scope", items: study.surfaces.slice(0, 4).map((item) => item.title) },
+    ...(collaboration.length > 0 ? [{ title: "Collaboration", items: collaboration }] : []),
   ];
 
   return (
-    <section className={compact ? "grid gap-5 border-t border-black/12 pt-7" : "grid gap-6 border-b border-black/12 pb-12"}>
-      <StorySectionLabel eyebrow="Contribution" title="What I owned and shaped" />
-      <div className={compact ? "grid gap-4" : "grid gap-4 lg:grid-cols-3"}>
+    <section id="scope" className="grid scroll-mt-32 gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
+      <div>
+        <StorySectionLabel eyebrow="Role and scope" title="My role and scope" />
+        <p className="mt-3 max-w-sm text-base font-semibold leading-7 text-black/78">{study.role}</p>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {groups.map((group) => (
-          <div key={group.title} className="border-l border-black/14 pl-4">
+          <div key={group.title} className="border-l border-black/16 pl-4">
             <h3 className="text-sm font-semibold leading-5 text-black/78">{group.title}</h3>
-            <ul className="mt-3 grid gap-2">
-              {group.items.slice(0, 2).map((item) => (
+            <ul className="mt-3 grid gap-2.5">
+              {group.items.map((item) => (
                 <li key={item} className="text-sm leading-6 text-black/62">
                   {item}
                 </li>
@@ -2119,23 +2171,41 @@ function CaseStudyPersonasSection({ section }: { section: PersonaSectionContent 
         title={section.title}
         body={section.body}
       />
-      <div className="grid gap-4 sm:grid-cols-2">
-        {section.items.map((persona) => (
-          <article key={persona.audience} className="rounded-lg border border-black/12 bg-[#fffefb]/72 p-4">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{persona.audience}</p>
-            <div className="mt-4 grid gap-4">
+      {section.useRowLayout ? (
+        <div className="border-t border-black/14">
+          {section.items.map((persona) => (
+            <article key={persona.audience} className="grid gap-4 border-b border-black/14 py-5 sm:grid-cols-[minmax(9rem,0.42fr)_minmax(0,1fr)] sm:gap-x-6 xl:grid-cols-[minmax(9rem,0.42fr)_minmax(0,1fr)_minmax(0,1fr)]">
+              <h3 className="text-lg font-semibold leading-6 text-black/86">{persona.audience}</h3>
               <div>
-                <h3 className="text-sm font-semibold leading-5 text-black/84">{section.jobLabel}</h3>
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{section.jobLabel}</p>
                 <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.job}</p>
               </div>
-              <div>
-                <h3 className="text-sm font-semibold leading-5 text-black/84">What they needed</h3>
+              <div className="sm:col-start-2 xl:col-start-auto">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">What they needed</p>
                 <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.needed}</p>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {section.items.map((persona) => (
+            <article key={persona.audience} className="rounded-lg border border-black/12 bg-[#fffefb]/72 p-4">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{persona.audience}</p>
+              <div className="mt-4 grid gap-4">
+                <div>
+                  <h3 className="text-sm font-semibold leading-5 text-black/84">{section.jobLabel}</h3>
+                  <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.job}</p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold leading-5 text-black/84">What they needed</h3>
+                  <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.needed}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -2151,8 +2221,6 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
   };
   const whySection = caseStudyWhySections[study.id];
   const personasSection = caseStudyPersonaSections[study.id];
-  const primaryImpact = study.impact.slice(0, 3);
-  const showProblemFrameRole = study.id !== "sales-insights";
 
   useEffect(() => {
     function updateMetaStickyState() {
@@ -2176,13 +2244,13 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
 
   return (
     <section id="case-study-view" className="border-t border-black/12 bg-[#fbfaf7]">
-      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 lg:px-10">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(20rem,0.58fr)] lg:items-center">
+      <div className="mx-auto max-w-6xl px-5 py-7 sm:px-8 sm:py-10 lg:px-10">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(20rem,0.58fr)] lg:items-center">
           <div>
-            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.06] text-balance text-black/90 sm:text-5xl lg:text-[3.45rem]">
+            <h1 className="max-w-4xl text-3xl font-semibold leading-[1.08] text-balance text-black/90 sm:text-5xl sm:leading-[1.06] lg:text-[3.45rem]">
               {study.headline}
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-black/68">{study.summary}</p>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-black/68 sm:mt-5 sm:text-lg sm:leading-8">{study.summary}</p>
           </div>
 
           <div className="justify-self-center lg:justify-self-end">
@@ -2199,7 +2267,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
         <div
           ref={metaRef}
           className={[
-            "sticky top-0 z-30 -mx-5 mt-10 bg-[#fbfaf7]/92 px-5 backdrop-blur-sm transition-[background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-screen after:-translate-x-1/2 after:bg-black/12 after:content-[''] sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10",
+            "sticky top-0 z-30 -mx-5 mt-8 bg-[#fbfaf7]/92 px-5 backdrop-blur-sm transition-[background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-screen after:-translate-x-1/2 after:bg-black/12 after:content-[''] sm:-mx-8 sm:mt-10 sm:px-8 lg:-mx-10 lg:px-10",
             isMetaStuck ? "bg-[#fbfaf7]/98 shadow-[0_18px_42px_-40px_rgb(var(--accent-rgb)/0.62)]" : "",
           ].join(" ")}
         >
@@ -2218,8 +2286,15 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                 <StorySectionLabel
                   eyebrow="Why"
                   title={whySection.title}
-                  body={whySection.body}
+                  body={study.id === "sales-navigator-multiseat" ? undefined : whySection.body}
                 />
+                {study.id === "sales-navigator-multiseat" ? (
+                  <blockquote className="max-w-4xl border-l-2 border-[#182070]/45 py-0.5 pl-5 sm:pl-6">
+                    <p className="text-lg font-normal leading-7 text-pretty text-black/72 sm:text-xl sm:leading-8">
+                      {whySection.body}
+                    </p>
+                  </blockquote>
+                ) : null}
                 <div className="grid gap-5 sm:grid-cols-3">
                   {whySection.points.map((point) => (
                     <div key={point.title} className="border-l border-black/18 pl-4">
@@ -2236,62 +2311,29 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                 eyebrow="Problem frame"
                 title={brief.question}
               />
-              <div className={showProblemFrameRole ? "grid gap-6 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]" : "grid gap-6"}>
-                {showProblemFrameRole ? (
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">My role</p>
-                    <p className="mt-2 text-base font-semibold leading-7 text-black/82">{study.role}</p>
-                    {study.id === "campglint" ? null : (
-                      <p className="mt-2 text-sm leading-6 text-black/62">{study.platform} / {study.status}</p>
-                    )}
-                  </div>
-                ) : null}
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">What I focused on</p>
-                  <div className="mt-3 grid gap-4">
-                    {primaryImpact.map((item) => (
-                      <div key={item.title} className="border-l border-black/18 pl-4">
-                        <h3 className="text-base font-semibold leading-6 text-black/84">{item.title}</h3>
-                        <p className="mt-1.5 text-sm leading-6 text-black/64">{item.detail}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
             </section>
 
             {personasSection ? <CaseStudyPersonasSection section={personasSection} /> : null}
 
             <CaseStudyProblemFrameVisual study={study} />
 
-            <section id="scope" className="grid gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
-              <StorySectionLabel
-                eyebrow="Scope"
-                title="What the work covered"
-              />
-              <ul className="grid gap-4 sm:grid-cols-2">
-                {study.systemBuild.map((item) => (
-                  <li key={item} className="border-l border-black/18 pl-4 text-sm leading-6 text-black/66">{item}</li>
-                ))}
-              </ul>
-            </section>
-
-            {study.contribution ? <ExactContributionModule contribution={study.contribution} /> : null}
+            <CaseStudyRoleAndScope study={study} />
 
             <section id="how-it-unfolded" className="grid scroll-mt-32 gap-7 border-b border-black/12 pb-12">
               <StorySectionLabel
                 eyebrow="How it unfolded"
                 title="From ambiguity to product direction"
               />
-              <ol className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <ol className={`grid gap-4 sm:grid-cols-2 ${study.journey.length >= 5 ? "xl:grid-cols-5" : "xl:grid-cols-4"}`}>
                 {study.journey.map((item, index) => {
                   const cue = getJourneyCue(index, study.journey.length);
+                  const showCue = study.id !== "sales-navigator-multiseat";
 
                   return (
-                    <li key={item.phase} className="group relative flex min-h-[13.5rem] flex-col overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/72 p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_58px_-50px_rgb(0_0_0/0.55)]">
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{cue.label}</p>
-                      <h3 className="mt-4 text-base font-semibold leading-6 text-balance text-black/86">{item.title}</h3>
-                      <p className="mt-2.5 text-sm leading-6 text-black/62">{item.detail}</p>
+                    <li key={item.phase} className="group relative flex min-h-[9.5rem] flex-col overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/72 p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_58px_-50px_rgb(0_0_0/0.55)]">
+                      {showCue ? <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{cue.label}</p> : null}
+                      <h3 className={`${showCue ? "mt-3" : ""} text-base font-semibold leading-6 text-balance text-black/86`}>{item.title}</h3>
+                      <p className="mt-2 text-sm leading-5 text-black/62">{item.detail}</p>
                     </li>
                   );
                 })}
@@ -2353,6 +2395,19 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                   <p className="mt-3 text-base font-semibold leading-7 text-black/82">{study.takeaway}</p>
                 </div>
               </div>
+              {study.outcomeTimeline ? (
+                <div className="border-t border-black/12 pt-7">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">{study.outcomeTimeline.title}</p>
+                  <ol className="relative mt-5 grid gap-0 pl-7 before:absolute before:bottom-0 before:left-[3px] before:top-0 before:w-0.5 before:bg-[#182070]/25 before:content-[''] md:grid-cols-5 md:pl-0 md:before:bottom-auto md:before:left-0 md:before:right-0 md:before:top-0 md:before:h-0.5 md:before:w-auto">
+                    {study.outcomeTimeline.items.map((item) => (
+                      <li key={item.date} className="relative pb-6 pr-6 before:absolute before:left-[-1.75rem] before:top-1 before:h-2 before:w-2 before:rounded-full before:bg-[#182070] before:content-[''] md:pb-5 md:pt-5 md:before:-top-[3px] md:before:left-0">
+                        <p className="text-sm font-semibold leading-5 text-[#182070]">{item.date}</p>
+                        <p className="mt-2 text-sm leading-6 text-black/66">{item.detail}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ) : null}
             </section>
           </div>
         </div>
@@ -2582,18 +2637,18 @@ const salesNavigatorPersonas: PersonaItem[] = [
   },
   {
     audience: "Sales managers and leaders",
-    job: "Roll out Sales Navigator as a team habit, understand whether sellers were reaching value, and coach teams toward stronger selling behaviors.",
+    job: "Roll out Sales Navigator as a team habit, understand whether sellers were achieving value, and coach teams toward stronger selling behaviors.",
     needed:
       "Onboarding paths, usage visibility, team reporting, plan clarity, and proof that the product was creating value beyond individual prospecting.",
   },
   {
     audience: "Admins and Sales Ops",
-    job: "Configure teams, manage seats, support onboarding, and keep the product governable as adoption expanded across a sales organization.",
+    job: "Configure teams, manage seats, support onboarding, and keep the product manageable as adoption expanded across a sales organization.",
     needed:
       "Clear admin controls, seat and team management, settings, usage reporting, permissions, and recovery paths for setup or account changes.",
   },
   {
-    audience: "CRM and RevOps partners",
+    audience: "CRM",
     job: "Connect Sales Navigator relationship intelligence to systems of record without disrupting CRM ownership, data quality, or sales operations workflows.",
     needed:
       "Connection state, sync controls, field mapping, activity writeback, data controls, partner-platform patterns, and visible integration status.",
@@ -2609,8 +2664,9 @@ const caseStudyPersonaSections: Record<string, PersonaSectionContent> = {
   },
   "sales-navigator-multiseat": {
     title: "Who Sales Navigator had to work for",
-    body: "Sales Navigator had to serve sellers directly while giving the people who bought, rolled out, measured, and governed it enough confidence to make it a team system.",
-    jobLabel: "Workflow job",
+    body: "",
+    jobLabel: "Workflow",
+    useRowLayout: true,
     items: salesNavigatorPersonas,
   },
 };
@@ -2619,7 +2675,7 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   campglint: {
     title: "The opportunity",
     body:
-      "Campground availability is scarce, fragmented, and time-sensitive. CampGlint could turn the repeated manual checking campers already do into a native monitoring loop that watches availability, clarifies next action, and keeps the trip moving after booking.",
+      "Campground availability is scarce, fragmented, and time-sensitive. CampGlint turns the repeated manual checking campers already do into a native monitoring loop built around saved monitors, fast setup, backup discovery, and a clear handoff to official booking systems. After booking, the product shifts into lightweight trip readiness.",
     points: [
       {
         title: "Manual checking is the hidden workflow",
@@ -2641,7 +2697,7 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   "sales-insights": {
     title: "The opportunity",
     body:
-      "Revenue teams had access to more market, company, and relationship data than they could reliably operationalize. Sales Insights could turn that data into a trusted planning workflow for sizing markets, prioritizing accounts, improving CRM quality, and aligning Sales and Marketing around the same account logic.",
+      "Revenue teams had access to more market, company, and relationship data than they could reliably operationalize. Sales Insights could turn that data into a trusted planning workflow across reports, sources, account lists, matching, CRM automation, and downstream Sales and Marketing workflows.",
     points: [
       {
         title: "Planning needed confidence",
@@ -2663,7 +2719,7 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   "seller-agent": {
     title: "The opportunity",
     body:
-      "Sellers were already using LinkedIn activity, profile changes, relationship paths, Sales Navigator, and CRM context to decide who to contact and how to engage. Seller Agent could turn that scattered research into in-context guidance without forcing sellers into a separate AI destination.",
+      "Sellers were already using LinkedIn activity, profile changes, relationship paths, Sales Navigator, and CRM context to decide who to contact and how to engage. Seller Agent could turn that scattered research into in-context guidance without forcing sellers into a separate AI destination. After validating the direction, the work expanded to align with broader LinkedIn agentic experience patterns.",
     points: [
       {
         title: "Seller research was fragmented",
@@ -2685,7 +2741,7 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   "company-pages": {
     title: "The opportunity",
     body:
-      "Job seekers needed a more credible way to understand what it was like to work at a company, while employees needed trust before answering sensitive employer-related questions. Employee Experience could turn verified employee signals into useful company research without compromising member privacy.",
+      "Job seekers needed a more credible way to understand what it was like to work at a company, while employees needed trust before answering sensitive employer-related questions. The exploration covered desktop and mobile contribution flows, visible privacy states, a reusable question system, review concepts, and ways to carry employee signals into Company Pages, Jobs, recommendations, and Career Pages.",
     points: [
       {
         title: "Company research lacked employee proof",
@@ -2707,7 +2763,7 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   "career-pages": {
     title: "The opportunity",
     body:
-      "Companies needed better ways to tell credible employer stories, and candidates needed clearer paths from company research to job action. Career Pages could connect admin-authored content, employee proof, and candidate workflows across LinkedIn's paid and free company presence.",
+      "Companies needed better ways to tell credible employer stories, and candidates needed clearer paths from company research to job action. Career Pages could connect admin authoring, publishing, and analytics with employee proof, Life Pages, jobs, alerts, and interest signals across LinkedIn's paid and free company presence.",
     points: [
       {
         title: "Employer branding needed proof",
@@ -2729,7 +2785,7 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   "sales-navigator-multiseat": {
     title: "The opportunity",
     body:
-      "Sales Navigator had to become more than a place to find leads. The opportunity was to make LinkedIn relationship intelligence adoptable by sales teams: easy for sellers to understand, manageable for admins, measurable for leaders, and available inside the CRM, email, and LinkedIn.com workflows where sellers already worked.",
+      "Sales Navigator had to become more than a place to find leads. The opportunity was to make LinkedIn relationship intelligence adoptable by sales teams: easy for sellers to understand, manageable for admins, measurable for leaders, and available inside CRM, email, and LinkedIn.com. That required onboarding, administration, reporting, and growth paths to work as one connected system.",
     points: [
       {
         title: "Adoption had to be managed",
@@ -2737,14 +2793,14 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
           "Team customers needed onboarding, team management, usage reporting, and admin controls that made seat value visible and helped sellers get to useful behavior sooner.",
       },
       {
-        title: "Sales intelligence had to travel",
+        title: "Bring sales intelligence into seller workflows",
         detail:
           "Relationship context was strongest when it appeared inside the systems sellers already used, from Salesforce widgets and scalable CRM integrations to Gmail and LinkedIn.com entry points.",
       },
       {
         title: "Team value needed proof",
         detail:
-          "SSI, reporting, team-only mobile capabilities, upsell paths, and funnel optimization helped connect individual seller behavior to broader team adoption and expansion.",
+          "Social Selling Index, reporting, upsell paths, and funnel optimization helped connect individual seller behavior to broader team adoption and expansion.",
       },
     ],
   },
@@ -2907,7 +2963,7 @@ function CaseStudyGridCard({ study, light = false }: { study: CaseStudy; light?:
         <h4 className={light ? "text-xl font-semibold leading-tight text-balance" : "text-2xl font-semibold leading-tight text-balance"}>{study.product}</h4>
 
         {light ? (
-          <p className="text-clamp-3 mt-3 text-sm leading-6 text-black/58">{study.summary}</p>
+          <p className="mt-3 text-sm leading-6 text-black/58">{study.cardSummary ?? study.summary}</p>
         ) : brief ? (
           <div className="mt-5 border-t border-black/12 pt-4">
             <p className="text-[0.68rem] font-semibold uppercase text-black/42">Product question</p>
