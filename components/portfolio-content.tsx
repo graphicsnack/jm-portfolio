@@ -952,7 +952,7 @@ export const caseStudies: CaseStudy[] = [
           detail: "Sales Navigator added generative AI and expanded into deeper CRM and LinkedIn.com experiences.",
         },
         {
-          date: "2026",
+          date: "2025",
           detail: "Sales Navigator reaches $1.5 billion in annual revenue.",
         },
       ],
