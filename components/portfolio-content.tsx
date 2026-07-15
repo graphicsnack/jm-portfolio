@@ -54,7 +54,6 @@ type PersonaSectionContent = {
   title: string;
   body: string;
   jobLabel: string;
-  useRowLayout?: boolean;
   items: PersonaItem[];
 };
 
@@ -857,10 +856,10 @@ export const caseStudies: CaseStudy[] = [
     ],
     systemBuild: [
       "Primarily owned admin, usage reporting, team management, onboarding, CRM integrations, and growth experiences across web and mobile needed for customer expansion.",
-      "Helped establish Sales Navigator as a standalone SaaS workspace for sellers and sales teams, with accounts, leads, saved work, relationship signals, and seller-specific navigation.",
       "Led CRM integration design from the first Salesforce widgets into a scalable model for embedded intelligence, sync behavior, field mapping, activity capture, reporting, governance, and team adoption.",
       "Extended Sales Navigator value across adjacent seller workflows and core product surfaces: Gmail, CRM, and LinkedIn.com touchpoints, Social Selling Index, mobile discovery, mobile onboarding, and later team-feature work on mobile.",
       "Supported growth efforts across Sales Navigator and LinkedIn through upsell paths, funnel optimization, plan clarity, usage visibility, reporting, and multi-seat adoption.",
+      "Helped establish Sales Navigator as a standalone SaaS workspace for sellers and sales teams, with accounts, leads, saved work, relationship signals, and seller-specific navigation.",
     ],
     decisions: [
       {
@@ -959,7 +958,7 @@ export const caseStudies: CaseStudy[] = [
       ],
     },
     takeaway:
-      "Sales Navigator became more than a workspace for our various seller personas: adoption, admin trust, CRM integration, seller touchpoints, mobile access, and growth loops all had to work together for the product to scale as a team business.",
+      "Sales Navigator scaled individual seller value into a team product by making it manageable, measurable, and available across everyday sales tools.",
   },
   {
     id: "career-pages",
@@ -1511,24 +1510,23 @@ export const caseStudies: CaseStudy[] = [
       "Partnered with two product managers: one focused on core experience and one focused on integrations.",
       "Improved the product's usability and coherence during the maturity phase after launch, when Sales Insights needed to move from promise to repeatable planning workflows.",
       "Designed across reports, sources, personas, account lists, exports, CRM-connected workflows, and Marketing/Sales handoffs.",
-      "Used public and product context around strategic account prioritization, whitespace, territory planning, ABM, inbound prioritization, and regional expansion to stress-test the experience.",
       "Framed integrations as first-class UX, including setup, permissions, matching, field mapping, progress, exception handling, and completion states.",
     ],
     decisions: [
       {
         title: "Design for planning confidence, not data density",
         detail:
-          "Revenue teams were making decisions that affected territories, campaigns, CRM records, and rep focus. The interface needed to show source, recency, rationale, and match confidence so dense data could become a decision teams trusted.",
+          "Sales and Revenue teams were making decisions that affected territories, campaigns, CRM records, and rep focus. The interface needed to show source, recency, rationale, and match confidence so dense data could become a decision teams trusted.",
       },
       {
-        title: "Make the product model legible",
+        title: "Make the product model clear",
         detail:
           "Sales Insights could easily feel like disconnected dashboards. The experience needed a clear model: sources feed reports, reports create account lists, and account lists move into exports, syncs, campaigns, and seller workflows.",
       },
       {
         title: "Treat integrations as core UX",
         detail:
-          "CRM connection, CSV import, field mapping, permissions, refresh, sync failure, and unresolved matches were not setup details. They were trust moments where users decided whether automation could safely write to operational systems.",
+          "CRM connection, CSV import, field mapping, and unresolved account matches were not setup details. They were trust moments where users decided whether automation could safely write to operational systems.",
       },
       {
         title: "Bridge strategy to execution",
@@ -1545,7 +1543,7 @@ export const caseStudies: CaseStudy[] = [
         alt: "Sales Insights report view showing filters, personas, account counts, employee signals, job postings, and connectivity",
         story:
           "The report surface carried the main planning job: define a market, apply account filters, compare personas, review account-level signals, and decide which segments were worth action. The design challenge was making dense company and member data readable enough for high-stakes planning.",
-        evidence: "Sources, filters, personas, TAM sizing, account rows, growth signals, job postings, relationship-strength data, and export entry points.",
+        evidence: "Reports, sources, filters, personas, segment highlights, geographic data, growth signals, relationship-strength data, and export paths.",
       },
       {
         phase: "02",
@@ -1575,7 +1573,7 @@ export const caseStudies: CaseStudy[] = [
         alt: "Sales Insights account list and report view used for GTM planning and activation handoff",
         story:
           "The strongest product value came from connecting insight discovery to operational execution. A target-market hypothesis could become a prioritized account list, then move into CRM, ABM campaign planning, or Sales Navigator execution without every team rebuilding the criteria.",
-        evidence: "Strategic prioritization, whitespace, territory planning, ABM planning, inbound prioritization, regional expansion, and Sales Navigator handoff.",
+        evidence: "Strategic prioritization, whitespace, territory planning, ABM planning, and Sales Navigator handoff.",
       },
       {
         phase: "05",
@@ -1585,7 +1583,7 @@ export const caseStudies: CaseStudy[] = [
         alt: "Sales Insights exploratory product redesign and activation concept mocks",
         story:
           "Alongside the core experience work, I partnered with engineering and PM to explore experimentation initiatives that could clarify the product's next direction. The main effort was a product redesign: we prioritized the surfaces most likely to affect planning confidence, tested concepts early, and used those learnings while shaping the overall product experience. Other explorations looked at how LinkedIn Campaign Manager could connect Sales Ops account lists to the audience lists Marketing teams used for campaign activation.",
-        evidence: "Prioritized product surfaces, early concept testing, engineering and PM alignment, Campaign Manager integration exploration, and account-list to audience-list handoff.",
+        evidence: "Core product experiences and Campaign Manager integration exploration.",
       },
     ],
     outcomesTitle: "What the product made possible",
@@ -1595,7 +1593,7 @@ export const caseStudies: CaseStudy[] = [
       "Reports, account lists, exports, CRM workflows, Marketing activation, and Sales Navigator handoffs became parts of one connected planning system.",
     ],
     takeaway:
-      "Sales Insights shows how enterprise product design turns complex data, workflow architecture, and automation into decisions GTM teams can trust and act on.",
+      "Sales Insights connected market strategy to coordinated Sales and Marketing action through a shared account model.",
   },
   {
     id: "seller-agent",
@@ -2064,15 +2062,23 @@ function StoryProductMedia({
   );
 }
 
+const caseStudyScopeTitles: Partial<Record<string, string[]>> = {
+  "sales-navigator-multiseat": ["Admin workflows", "CRM integrations", "Seller workflow integrations", "Growth", "Support"],
+  "sales-insights": ["Product partnership", "Product maturity", "Experience scope", "Integration workflows"],
+};
+
 function CaseStudyRoleAndScope({ study }: { study: CaseStudy }) {
-  if (study.id === "sales-navigator-multiseat") {
+  const scopeTitles = caseStudyScopeTitles[study.id];
+
+  if (scopeTitles) {
     return (
       <section id="scope" className="grid scroll-mt-32 gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
         <StorySectionLabel eyebrow="Role and scope" title="My role and scope" />
         <ul className="grid gap-4">
-          {study.systemBuild.map((item) => (
-            <li key={item} className="border-l border-black/18 pl-4 text-sm leading-6 text-black/66">
-              {item}
+          {study.systemBuild.map((item, index) => (
+            <li key={item} className="border-l border-black/18 pl-4">
+              <h3 className="text-sm font-semibold leading-5 text-black/82">{scopeTitles[index]}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-black/66">{item}</p>
             </li>
           ))}
         </ul>
@@ -2171,47 +2177,28 @@ function CaseStudyPersonasSection({ section }: { section: PersonaSectionContent 
         title={section.title}
         body={section.body}
       />
-      {section.useRowLayout ? (
-        <div className="border-t border-black/14">
-          {section.items.map((persona) => (
-            <article key={persona.audience} className="grid gap-4 border-b border-black/14 py-5 sm:grid-cols-[minmax(9rem,0.42fr)_minmax(0,1fr)] sm:gap-x-6 xl:grid-cols-[minmax(9rem,0.42fr)_minmax(0,1fr)_minmax(0,1fr)]">
-              <h3 className="text-lg font-semibold leading-6 text-black/86">{persona.audience}</h3>
-              <div>
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{section.jobLabel}</p>
-                <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.job}</p>
-              </div>
-              <div className="sm:col-start-2 xl:col-start-auto">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">What they needed</p>
-                <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.needed}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
-          {section.items.map((persona) => (
-            <article key={persona.audience} className="rounded-lg border border-black/12 bg-[#fffefb]/72 p-4">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{persona.audience}</p>
-              <div className="mt-4 grid gap-4">
-                <div>
-                  <h3 className="text-sm font-semibold leading-5 text-black/84">{section.jobLabel}</h3>
-                  <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.job}</p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold leading-5 text-black/84">What they needed</h3>
-                  <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.needed}</p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      )}
+      <div>
+        {section.items.map((persona) => (
+          <article key={persona.audience} className="grid gap-4 border-b border-black/14 py-5 last:border-b-0 sm:grid-cols-[minmax(9rem,0.42fr)_minmax(0,1fr)] sm:gap-x-6 xl:grid-cols-[minmax(9rem,0.42fr)_minmax(0,1fr)_minmax(0,1fr)]">
+            <h3 className="text-lg font-semibold leading-6 text-black/86">{persona.audience}</h3>
+            <div>
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">{section.jobLabel}</p>
+              <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.job}</p>
+            </div>
+            <div className="sm:col-start-2 xl:col-start-auto">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-black/42">What they needed</p>
+              <p className="mt-1.5 text-sm leading-6 text-black/64">{persona.needed}</p>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
 
 function CaseStudyStoryView({ study }: { study: CaseStudy }) {
   const isPhoneCase = phoneCaseIds.has(study.id);
+  const usesOpportunityPullQuote = study.id === "sales-navigator-multiseat" || study.id === "sales-insights";
   const metaRef = useRef<HTMLDivElement>(null);
   const [isMetaStuck, setIsMetaStuck] = useState(false);
   const [metaHeight, setMetaHeight] = useState(0);
@@ -2286,9 +2273,9 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                 <StorySectionLabel
                   eyebrow="Why"
                   title={whySection.title}
-                  body={study.id === "sales-navigator-multiseat" ? undefined : whySection.body}
+                  body={usesOpportunityPullQuote ? undefined : whySection.body}
                 />
-                {study.id === "sales-navigator-multiseat" ? (
+                {usesOpportunityPullQuote ? (
                   <blockquote className="max-w-4xl border-l-2 border-[#182070]/45 py-0.5 pl-5 sm:pl-6">
                     <p className="text-lg font-normal leading-7 text-pretty text-black/72 sm:text-xl sm:leading-8">
                       {whySection.body}
@@ -2327,7 +2314,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
               <ol className={`grid gap-4 sm:grid-cols-2 ${study.journey.length >= 5 ? "xl:grid-cols-5" : "xl:grid-cols-4"}`}>
                 {study.journey.map((item, index) => {
                   const cue = getJourneyCue(index, study.journey.length);
-                  const showCue = study.id !== "sales-navigator-multiseat";
+                  const showCue = study.id !== "sales-navigator-multiseat" && study.id !== "sales-insights";
 
                   return (
                     <li key={item.phase} className="group relative flex min-h-[9.5rem] flex-col overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/72 p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_58px_-50px_rgb(0_0_0/0.55)]">
@@ -2368,7 +2355,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
               />
               <ol className="grid gap-0 border-t border-black/12">
                 {study.decisions.map((item, index) => (
-                  <li key={item.title} className="grid gap-3 border-b border-black/12 py-5 sm:grid-cols-[4rem_minmax(0,1fr)]">
+                  <li key={item.title} className="grid gap-3 border-b border-black/12 py-5 last:border-b-0 sm:grid-cols-[4rem_minmax(0,1fr)]">
                     <p className="text-sm font-semibold text-black/36">{String(index + 1).padStart(2, "0")}</p>
                     <div>
                       <h3 className="text-lg font-semibold leading-7 text-black/86">{item.title}</h3>
@@ -2396,7 +2383,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
                 </div>
               </div>
               {study.outcomeTimeline ? (
-                <div className="border-t border-black/12 pt-7">
+                <div className="pt-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/42">{study.outcomeTimeline.title}</p>
                   <ol className="relative mt-5 grid gap-0 pl-7 before:absolute before:bottom-0 before:left-[3px] before:top-0 before:w-0.5 before:bg-[#182070]/25 before:content-[''] md:grid-cols-5 md:pl-0 md:before:bottom-auto md:before:left-0 md:before:right-0 md:before:top-0 md:before:h-0.5 md:before:w-auto">
                     {study.outcomeTimeline.items.map((item) => (
@@ -2664,9 +2651,8 @@ const caseStudyPersonaSections: Record<string, PersonaSectionContent> = {
   },
   "sales-navigator-multiseat": {
     title: "Who Sales Navigator had to work for",
-    body: "",
+    body: "Sales Navigator had to serve sellers directly while giving the people who bought, rolled out, measured, and managed it enough confidence to make it a team system.",
     jobLabel: "Workflow",
-    useRowLayout: true,
     items: salesNavigatorPersonas,
   },
 };
@@ -2697,7 +2683,7 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   "sales-insights": {
     title: "The opportunity",
     body:
-      "Revenue teams had access to more market, company, and relationship data than they could reliably operationalize. Sales Insights could turn that data into a trusted planning workflow across reports, sources, account lists, matching, CRM automation, and downstream Sales and Marketing workflows.",
+      "Sales and Revenue teams had access to more market, company, and relationship data than they could reliably operationalize. Sales Insights could turn that data into a trusted planning workflow across reports, sources, account lists, matching, CRM automation, and downstream Sales and Marketing workflows.",
     points: [
       {
         title: "Planning needed confidence",
@@ -2712,7 +2698,7 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
       {
         title: "Insight had to move into action",
         detail:
-          "A report became more valuable when its account logic could travel into exports, CRM workflows, Marketing activation, and Sales Navigator execution without every team rebuilding the criteria.",
+          "A report became more valuable when its account logic could extend into exports, CRM workflows, Marketing activation, and Sales Navigator execution without every team rebuilding the criteria.",
       },
     ],
   },
