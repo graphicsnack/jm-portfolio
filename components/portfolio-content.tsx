@@ -325,7 +325,7 @@ export const caseStudies: CaseStudy[] = [
     shortLabel: "CampGlint",
     product: "CampGlint",
     platform: "Native iOS app",
-    headline: "Campsite monitoring from cancellation to trip readiness",
+    headline: "Campsite monitoring from cancellation signal to trip readiness",
     summary:
       "I designed and built CampGlint to help campers monitor cancellations, act when a site opens, and prepare once a booking is secured.",
     cardSummary:
@@ -345,7 +345,7 @@ export const caseStudies: CaseStudy[] = [
       proof: [
         "Monitoring and availability workflows",
         "Flexible setup and backup discovery",
-        "Booking handoff, trip readiness, and native iOS integrations",
+        "Booking handoff, trip readiness, and native app foundations",
       ],
     },
     heroImage: "/projects/CampGlint/iOS%20app%20screens/01-monitors-list.png",
@@ -455,9 +455,9 @@ export const caseStudies: CaseStudy[] = [
     ],
     systemBuild: [
       "Defined the product loop from saved monitor to availability signal, official booking handoff, and post-booking trip readiness.",
-      "Built the SwiftUI app foundation around authentication, session restore, native tab navigation, shared components, and reusable visual patterns.",
       "Designed monitoring and setup workflows for campground targets, date windows, stay length, flexible timing, status, and next actions.",
       "Extended the product into backup discovery and lightweight trip readiness without distracting from the core monitoring job.",
+      "Built the SwiftUI app foundation around authentication, session restore, native tab navigation, shared components, and reusable visual patterns.",
       "Prepared the native experience for notifications, deep links, App Intents, shortcut-ready actions, device QA, and launch configuration.",
     ],
     decisions: [
@@ -491,7 +491,7 @@ export const caseStudies: CaseStudy[] = [
         alt: "CampGlint iOS monitors list screen",
         story:
           "The signed-in home screen puts saved monitors first, giving campers a quick read on campground targets, scan timing, alert state, and next actions.",
-        evidence: "Saved monitor cards, active status, provider names, last scan timing, rescan action, and bottom-tab navigation.",
+        evidence: "Active Glints, saved monitors, action menus, filters & sorting, rescans.",
       },
       {
         phase: "02",
@@ -501,27 +501,27 @@ export const caseStudies: CaseStudy[] = [
         alt: "CampGlint iOS Half Moon Bay monitor detail screen",
         story:
           "The detail screen keeps campground context, trip timing, scan status, and booking handoff close to the saved monitor.",
-        evidence: "Campground detail, reservation window, monitor status, provider context, availability signals, and booking handoff.",
+        evidence: "Campground detail, reservation window, monitor status, active Glints, site fit, camp photos, and nearby campgrounds.",
       },
       {
         phase: "03",
         label: "Create monitor",
-        title: "Monitor creation keeps setup focused and reversible",
+        title: "Monitor creation keeps setup focused and manageable",
         image: "/projects/CampGlint/iOS%20app%20screens/03-create-monitor-1.PNG",
         alt: "CampGlint iOS create monitor sheet",
         story:
           "The setup flow keeps campground selection, trip timing, stay length, and flexible-date controls in one native sheet so users can start a watch without committing to every detail upfront.",
-        evidence: "Starting points, campground search, booking URL entry, trip window, stay length stepper, flexible-date option, and disabled create state.",
+        evidence: "Starting points, campground search, trip window, alert rules, site fit, trip window, and notes.",
       },
       {
         phase: "04",
-        label: "Discover",
+        label: "Discover and discovery profile",
         title: "Discovery uses camper preferences to shape backup options",
         image: "/projects/CampGlint/iOS%20app%20screens/07-discovery-profile.PNG",
         alt: "CampGlint iOS discovery profile preferences screen",
         story:
           "Discover supports the moment before a user has a fixed destination by letting campers tune the kinds of backup campgrounds the product should prioritize.",
-        evidence: "Discovery profile state, terrain preferences, drive-range signals, camp-style inputs, and preference-based backup discovery.",
+        evidence: "Discover page, discovery profile, terrain preferences, drive-range signals, camp-style inputs, and camp bases.",
       },
       {
         phase: "05",
@@ -530,13 +530,13 @@ export const caseStudies: CaseStudy[] = [
         image: "/projects/CampGlint/iOS%20app%20screens/04-trip-details.PNG",
         alt: "CampGlint iOS Fernwood trip detail screen",
         story:
-          "Trips keeps confirmed reservation details and preparation tasks close to the same product loop that helped the user find availability.",
-        evidence: "Confirmed trip details, dates, site number, readiness progress, packing status, tasks, and camp-plan notes.",
+          "Trip detail brings confirmed reservation information, the camping plan, readiness progress, packing, tasks, notes, photos, and post-trip reflections into one place.",
+        evidence: "Confirmed trip details, camping plan, readiness progress, packing status, tasks, notes, camp photos, and post-trip notes.",
       },
     ],
     outcomesTitle: "What the product now supports",
     outcomes: [
-      "Campers can track high-demand campgrounds through saved monitors instead of repeatedly checking booking sites.",
+      "Campers can track multiple campgrounds through saved monitors instead of repeatedly checking booking sites.",
       "Monitor setup, backup discovery, booking handoff, and trip readiness now work as one native iOS flow.",
       "The product preserves official reservation systems as the source of truth while supporting the native services needed for launch.",
     ],
@@ -2060,7 +2060,7 @@ function StoryProductMedia({
 const caseStudyScopeTitles: Partial<Record<string, string[]>> = {
   "sales-navigator-multiseat": ["Admin workflows", "CRM integrations", "Seller workflow integrations", "Growth", "Support"],
   "sales-insights": ["Product partnership", "Product maturity", "Experience scope", "Integration workflows"],
-  campglint: ["Product direction", "Native app foundation", "Monitoring workflow", "Discovery and trip readiness", "iOS system design"],
+  campglint: ["Product direction", "Monitoring workflow", "Discovery and trip readiness", "Native app foundation", "iOS system design"],
 };
 
 function CaseStudyRoleAndScope({ study }: { study: CaseStudy }) {
@@ -2575,7 +2575,7 @@ const caseStudyBriefs: Record<string, { family: string; question: string }> = {
   campglint: {
     family: "Campsite monitoring system",
     question:
-      "How can campers monitor hard-to-book campsites, act quickly when one opens, and carry a confirmed booking into trip readiness?",
+      "How can campground availability shift from stressful manual checking into a calmer trip-planning flow?",
   },
   "sales-navigator-multiseat": {
     family: "CRM-connected seller system",
@@ -2696,20 +2696,20 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   campglint: {
     title: "The opportunity",
     body:
-      "Popular campgrounds often reopen without warning, leaving campers to repeatedly check fragmented booking sites. CampGlint turns that work into a native monitoring loop: save a campground and date window, act on a cancellation signal, complete the reservation with the official provider, and prepare for the trip once a site is secured.",
+      "Popular campground sites often reopen without warning, leaving campers to repeatedly check fragmented booking sites. CampGlint turns that work into a native monitoring loop: save a campground and date window, act on a cancellation signal, complete the reservation with the official provider, and prepare for the trip once a site is secured.",
     points: [
       {
-        title: "Repeated checking was the real workflow",
+        title: "Repeated checking was workflow",
         detail:
           "Campers already revisit booking sites, compare dates, and watch for cancellations. The product opportunity was to make that behavior explicit and easier to trust.",
       },
       {
-        title: "Booking still belongs to the provider",
+        title: "Booking belongs to official provider",
         detail:
           "CampGlint can surface signals and urgency, but the official provider remains the source of truth for booking, payment, and reservation details.",
       },
       {
-        title: "Finding a site is not the end of the trip",
+        title: "Finding a site is not the end",
         detail:
           "Once a camper finds and books a site, the same product can shift into lightweight readiness: dates, site details, packing, tasks, and trip memory.",
       },
