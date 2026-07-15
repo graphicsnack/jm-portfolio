@@ -10,7 +10,6 @@ import {
   ArrowUpRight,
   BellRing,
   Camera,
-  Check,
   ChevronRight,
   Compass,
   Dribbble,
@@ -328,11 +327,11 @@ export const caseStudies: CaseStudy[] = [
     platform: "Native iOS app",
     headline: "Campsite monitoring from cancellation to trip readiness",
     summary:
-      "I designed and built a native iOS app that helps campers find cancelled campsites, complete bookings, and prepare for their trips.",
+      "I designed and built CampGlint to help campers monitor cancellations, act when a site opens, and prepare once a booking is secured.",
     cardSummary:
       "Designed and built a native iOS app that helps campers track cancellations, book campsites, and get ready for their trip.",
     role: "Founder, product designer, iOS builder",
-    status: "Native build, launch readiness active",
+    status: "Native iOS build, preparing for launch",
     contribution: {
       owned: [
         "Defined the native iOS product loop across Monitors, Create Monitor, Discover, Trips, and Settings.",
@@ -344,9 +343,9 @@ export const caseStudies: CaseStudy[] = [
         "Kept booking handoff transparent by preserving official campground systems as the final reservation endpoint.",
       ],
       proof: [
-        "Monitors list and monitor detail",
-        "Create Monitor sheet and discovery profile",
-        "Trip readiness flow and native system integrations",
+        "Monitoring and availability workflows",
+        "Flexible setup and backup discovery",
+        "Booking handoff, trip readiness, and native iOS integrations",
       ],
     },
     heroImage: "/projects/CampGlint/iOS%20app%20screens/01-monitors-list.png",
@@ -361,18 +360,18 @@ export const caseStudies: CaseStudy[] = [
       { label: "Product", value: "CampGlint" },
       { label: "Platform", value: "Native iOS app" },
       { label: "Role", value: "Founder, product designer, iOS builder" },
-      { label: "Status", value: "Native build, launch readiness active" },
+      { label: "Status", value: "Native iOS build, preparing for launch" },
     ],
     impact: [
       {
-        title: "Native product loop",
+        title: "From monitoring to trip readiness",
         detail:
-          "Structured the app around a bottom-tab loop for Monitors, Trips, Discover, and Settings, with monitor creation always close to the primary job.",
+          "Connected saved monitors, backup discovery, booking handoff, and trip preparation in one native iOS experience.",
       },
       {
-        title: "Monitor clarity",
+        title: "Clear status and next steps",
         detail:
-          "Designed saved-monitor cards around campground, provider, dates, nights, site scope, alert state, and direct access to the official booking source.",
+          "Each saved monitor shows the campground, dates, provider, latest scan, availability state, and the action a camper can take next.",
       },
       {
         title: "Fast setup",
@@ -388,7 +387,7 @@ export const caseStudies: CaseStudy[] = [
     journey: [
       {
         phase: "01",
-        title: "Define the iOS job",
+        title: "Define the monitoring loop",
         detail:
           "Watch availability, surface trustworthy signals, and help campers act before a site disappears.",
         evidence: "Core product job",
@@ -409,7 +408,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         phase: "04",
-        title: "Add backup discovery",
+        title: "Explore backup options",
         detail:
           "Discovery suggests backup campgrounds without requiring campers to know every option upfront.",
         evidence: "Discover tab",
@@ -455,13 +454,11 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     systemBuild: [
-      "Auth-gated SwiftUI shell with session restore, signed-in state, and a native bottom-tab navigation model.",
-      "Monitors flow with saved watch cards, provider labels, scan timing, alert state, booking handoff, and a rescan action.",
-      "Create Monitor sheet with starting points, campground selection, trip window, stay length, flexible-date controls, and disabled-state validation.",
-      "Discover flow with active discovery profile, terrain preferences, drive-range signals, camp-style inputs, campground recommendations, and watch actions.",
-      "Trips flow with confirmed-trip details, readiness progress, packing and task counts, site details, and empty/past-trip states.",
-      "Native system integrations for notification scaffolding, deep links, App Intents, monitor/trip entities, and shortcut-ready actions.",
-      "Shared SwiftUI visual system covering color, type, card treatments, empty states, controls, app icon, and reusable campground imagery.",
+      "Defined the product loop from saved monitor to availability signal, official booking handoff, and post-booking trip readiness.",
+      "Built the SwiftUI app foundation around authentication, session restore, native tab navigation, shared components, and reusable visual patterns.",
+      "Designed monitoring and setup workflows for campground targets, date windows, stay length, flexible timing, status, and next actions.",
+      "Extended the product into backup discovery and lightweight trip readiness without distracting from the core monitoring job.",
+      "Prepared the native experience for notifications, deep links, App Intents, shortcut-ready actions, device QA, and launch configuration.",
     ],
     decisions: [
       {
@@ -539,14 +536,12 @@ export const caseStudies: CaseStudy[] = [
     ],
     outcomesTitle: "What the product now supports",
     outcomes: [
-      "Campers can save campground monitors, track availability signals, and return to the same monitor loop instead of repeatedly checking booking sites manually.",
-      "Monitor creation, discovery recommendations, and trip readiness now work as one native iOS flow from search to post-booking preparation.",
-      "The product keeps official campground systems as the reservation endpoint while making availability signals easier to watch and act on.",
-      "The native foundation supports auth, session restore, bottom navigation, notifications scaffolding, deep links, App Intents, settings, and shared SwiftUI components.",
-      "Launch readiness is focused on production services, permissions, App Store metadata, device QA, accessibility QA, and release configuration.",
+      "Campers can track high-demand campgrounds through saved monitors instead of repeatedly checking booking sites.",
+      "Monitor setup, backup discovery, booking handoff, and trip readiness now work as one native iOS flow.",
+      "The product preserves official reservation systems as the source of truth while supporting the native services needed for launch.",
     ],
     takeaway:
-      "CampGlint demonstrates native iOS product design judgment across problem framing, mobile information architecture, SwiftUI interaction systems, visual design, platform integrations, and launch readiness.",
+      "CampGlint turns a stressful, repeated search into one native loop from monitoring to booking handoff and trip readiness.",
   },
   {
     id: "graphicsnack-ios",
@@ -2065,6 +2060,7 @@ function StoryProductMedia({
 const caseStudyScopeTitles: Partial<Record<string, string[]>> = {
   "sales-navigator-multiseat": ["Admin workflows", "CRM integrations", "Seller workflow integrations", "Growth", "Support"],
   "sales-insights": ["Product partnership", "Product maturity", "Experience scope", "Integration workflows"],
+  campglint: ["Product direction", "Native app foundation", "Monitoring workflow", "Discovery and trip readiness", "iOS system design"],
 };
 
 function CaseStudyRoleAndScope({ study }: { study: CaseStudy }) {
@@ -2136,6 +2132,21 @@ function CaseStudyImagePlaceholder({ accent }: { accent: string }) {
 }
 
 function CaseStudyProblemFrameVisual({ study }: { study: CaseStudy }) {
+  if (study.id === "campglint") {
+    return (
+      <section id="problem-frame-visual" aria-label="CampGlint product preview" className="scroll-mt-32 border-b border-black/12 pb-12">
+        <div className="grid aspect-[16/9] place-items-center overflow-hidden rounded-lg border border-black/12 bg-[var(--accent)]" style={getCaseStudyThumbnailFrameStyle(study)}>
+          <img
+            src="/projects/CampGlint/campglint-ios-current-thumbnail-lg.png"
+            alt="CampGlint monitoring, monitor detail, and setup screens"
+            className="block h-full w-full object-contain"
+            loading="lazy"
+          />
+        </div>
+      </section>
+    );
+  }
+
   if (study.id === "sales-navigator-multiseat") {
     return (
       <section id="problem-frame-visual" aria-label="Sales Navigator product preview" className="scroll-mt-32 border-b border-black/12 pb-12">
@@ -2198,7 +2209,7 @@ function CaseStudyPersonasSection({ section }: { section: PersonaSectionContent 
 
 function CaseStudyStoryView({ study }: { study: CaseStudy }) {
   const isPhoneCase = phoneCaseIds.has(study.id);
-  const usesOpportunityPullQuote = study.id === "sales-navigator-multiseat" || study.id === "sales-insights";
+  const usesOpportunityPullQuote = study.id === "sales-navigator-multiseat" || study.id === "sales-insights" || study.id === "campglint";
   const metaRef = useRef<HTMLDivElement>(null);
   const [isMetaStuck, setIsMetaStuck] = useState(false);
   const [metaHeight, setMetaHeight] = useState(0);
@@ -2314,7 +2325,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
               <ol className={`grid gap-4 sm:grid-cols-2 ${study.journey.length >= 5 ? "xl:grid-cols-5" : "xl:grid-cols-4"}`}>
                 {study.journey.map((item, index) => {
                   const cue = getJourneyCue(index, study.journey.length);
-                  const showCue = study.id !== "sales-navigator-multiseat" && study.id !== "sales-insights";
+                  const showCue = study.id !== "sales-navigator-multiseat" && study.id !== "sales-insights" && study.id !== "campglint";
 
                   return (
                     <li key={item.phase} className="group relative flex min-h-[9.5rem] flex-col overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/72 p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_58px_-50px_rgb(0_0_0/0.55)]">
@@ -2564,7 +2575,7 @@ const caseStudyBriefs: Record<string, { family: string; question: string }> = {
   campglint: {
     family: "Campsite monitoring system",
     question:
-      "How can campground availability shift from stressful manual checking into a calmer trip-planning flow?",
+      "How can campers monitor hard-to-book campsites, act quickly when one opens, and carry a confirmed booking into trip readiness?",
   },
   "sales-navigator-multiseat": {
     family: "CRM-connected seller system",
@@ -2642,7 +2653,31 @@ const salesNavigatorPersonas: PersonaItem[] = [
   },
 ];
 
+const campGlintPersonas: PersonaItem[] = [
+  {
+    audience: "Campers targeting high-demand sites",
+    job: "Watch a specific campground and date window without repeatedly checking booking sites.",
+    needed: "Clear monitor status, trustworthy availability signals, and a direct handoff to the official booking source.",
+  },
+  {
+    audience: "Flexible campers",
+    job: "Keep options open across dates, stay length, and backup campgrounds when the first choice is unavailable.",
+    needed: "Lightweight setup, flexible-date controls, and discovery that helps shape realistic alternatives.",
+  },
+  {
+    audience: "Family trip planners",
+    job: "Move from a successful booking into the practical details needed to get ready for the trip.",
+    needed: "Reservation details, packing and task visibility, site context, and a simple readiness view.",
+  },
+];
+
 const caseStudyPersonaSections: Record<string, PersonaSectionContent> = {
+  campglint: {
+    title: "Who CampGlint is designed for",
+    body: "The same monitoring loop has to support campers with a fixed destination, people still exploring alternatives, and families carrying a confirmed site into trip preparation.",
+    jobLabel: "Workflow",
+    items: campGlintPersonas,
+  },
   "sales-insights": {
     title: "The same account model had to support multiple GTM teams",
     body: "Each team entered through a different job, but they all needed to trust the same account logic before moving into planning, CRM, Marketing, or seller execution.",
@@ -2661,20 +2696,20 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   campglint: {
     title: "The opportunity",
     body:
-      "Campground availability is scarce, fragmented, and time-sensitive. CampGlint turns the repeated manual checking campers already do into a native monitoring loop built around saved monitors, fast setup, backup discovery, and a clear handoff to official booking systems. After booking, the product shifts into lightweight trip readiness.",
+      "Popular campgrounds often reopen without warning, leaving campers to repeatedly check fragmented booking sites. CampGlint turns that work into a native monitoring loop: save a campground and date window, act on a cancellation signal, complete the reservation with the official provider, and prepare for the trip once a site is secured.",
     points: [
       {
-        title: "Manual checking is the hidden workflow",
+        title: "Repeated checking was the real workflow",
         detail:
           "Campers already revisit booking sites, compare dates, and watch for cancellations. The product opportunity was to make that behavior explicit and easier to trust.",
       },
       {
-        title: "Availability needs a clear handoff",
+        title: "Booking still belongs to the provider",
         detail:
           "CampGlint can surface signals and urgency, but the official provider remains the source of truth for booking, payment, and reservation details.",
       },
       {
-        title: "The trip does not end at the alert",
+        title: "Finding a site is not the end of the trip",
         detail:
           "Once a camper finds and books a site, the same product can shift into lightweight readiness: dates, site details, packing, tasks, and trip memory.",
       },
@@ -3524,7 +3559,7 @@ function HomeClosingSection() {
         <div className="grid gap-7 xl:grid-cols-[minmax(0,0.82fr)_auto] xl:items-end">
           <div>
             <h2 id="work-with-me-heading" className="max-w-4xl text-3xl font-semibold leading-tight text-balance text-black/90 sm:text-4xl lg:text-[2.85rem]">
-              Open to startup design roles, AI product work, and opportunities where design and building are tightly connected.
+              Open to startup and AI product design roles where I can partner closely with product, engineering, and cross-functional teams to solve meaningful user and customer challenges.
             </h2>
           </div>
 
@@ -3576,44 +3611,34 @@ function LockedCaseStudyPreview({ study }: { study: CaseStudy }) {
 
   return (
     <div className="min-w-0">
-      <div className="relative grid aspect-[16/9] place-items-center overflow-hidden rounded-lg border border-black/10 bg-[var(--accent)] shadow-[0_28px_84px_-72px_rgb(0_0_0/0.75)] md:aspect-[2.1/1] lg:aspect-[16/9]" style={getCaseStudyThumbnailFrameStyle(study)}>
-        <img src={thumbnail.src} alt={thumbnail.alt} className={caseStudyThumbnailImageClass} style={caseStudyThumbnailImageStyle} loading="eager" />
-        <div className="absolute left-3 top-3 inline-flex items-center gap-2 rounded-md border border-white/55 bg-white/82 px-2.5 py-1.5 text-xs font-semibold text-black/68 backdrop-blur">
-          <ShieldCheck className="h-3.5 w-3.5 text-[var(--accent)]" />
-          Preview available
-        </div>
-      </div>
-
-      <div className="mt-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">{brief?.family ?? study.platform}</p>
-        <h1 id="case-study-lock-title" className="mt-3 max-w-3xl text-4xl font-semibold leading-[1.04] text-balance text-black/90 sm:text-5xl lg:text-[3.25rem]">
-          {study.product}
+      <div>
+        <p className="text-lg font-semibold leading-7 text-[var(--accent)]">{study.product}</p>
+        <h1 id="case-study-lock-title" className="mt-3 max-w-4xl text-4xl font-semibold leading-[1.05] text-balance text-black/90 sm:text-5xl lg:text-[3.25rem]">
+          {study.headline}
         </h1>
-        <p className="mt-4 max-w-2xl text-lg font-semibold leading-8 text-black/74">{study.headline}</p>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-black/62">{study.summary}</p>
+        <p className="mt-4 max-w-3xl text-base leading-7 text-black/66 sm:text-lg sm:leading-8">{study.summary}</p>
       </div>
 
-      <div className="mt-6 grid gap-3 border-t border-black/12 pt-5 sm:grid-cols-2">
-        {study.snapshot.slice(1, 5).map((item) => (
-          <div key={item.label} className="min-w-0">
-            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-black/40">{item.label}</p>
-            <p className="mt-1 text-sm leading-6 text-black/70">{item.value}</p>
-          </div>
-        ))}
+      <div className="mt-5 border-y border-black/12">
+        <StoryMetaList items={study.snapshot} />
+      </div>
+
+      <div className="mt-7 grid aspect-[16/9] place-items-center overflow-hidden rounded-lg border border-black/10 bg-[var(--accent)] md:aspect-[2.1/1] lg:aspect-[16/9]" style={getCaseStudyThumbnailFrameStyle(study)}>
+        <img src={thumbnail.src} alt={thumbnail.alt} className={caseStudyThumbnailImageClass} style={caseStudyThumbnailImageStyle} loading="eager" />
       </div>
 
       {brief ? (
-        <div className="mt-6 rounded-lg border border-black/10 bg-[#f7f4ed] p-4">
-          <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-black/40">Product question</p>
-          <p className="mt-2 text-sm font-semibold leading-6 text-black/74">{brief.question}</p>
+        <div className="mt-7 border-l-2 border-[rgb(var(--accent-rgb)/0.42)] pl-5">
+          <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-black/40">The opportunity</p>
+          <p className="mt-2 max-w-3xl text-lg font-medium leading-8 text-black/76">{brief.question}</p>
         </div>
       ) : null}
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+      <div className="mt-7 grid gap-5 border-t border-black/12 pt-6 sm:grid-cols-2">
         {previewImpact.map((item) => (
-          <div key={item.title} className="rounded-lg border border-black/10 bg-white/72 p-4">
+          <div key={item.title} className="border-l border-black/18 pl-4">
             <p className="text-sm font-semibold leading-6 text-black/82">{item.title}</p>
-            <p className="mt-1 text-sm leading-6 text-black/58">{item.detail}</p>
+            <p className="mt-1.5 text-sm leading-6 text-black/60">{item.detail}</p>
           </div>
         ))}
       </div>
@@ -3633,13 +3658,12 @@ function FullCaseStudyCovers({ study }: { study: CaseStudy }) {
   }
 
   return (
-    <div className="rounded-lg border border-black/10 bg-[#fffefb] p-4">
-      <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-black/40">Full case study covers</p>
-      <div className="mt-3 grid gap-2">
+    <div className="border-t border-black/12 pt-5">
+      <p className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-black/40">Inside the case study</p>
+      <div className="mt-4 grid gap-3">
         {fullCaseSignals.map((item) => (
-          <div key={item} className="flex gap-2 text-sm leading-6 text-black/64">
-            <Check className="mt-1 h-4 w-4 shrink-0 text-[var(--accent)]" />
-            <span>{item}</span>
+          <div key={item} className="border-l border-black/18 pl-3 text-sm leading-6 text-black/64">
+            {item}
           </div>
         ))}
       </div>
@@ -3673,33 +3697,28 @@ function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
   }
 
   return (
-    <main id="top" className="min-h-screen bg-[#f2efe7] text-[#1f2220]">
+    <main id="top" className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
       <PortfolioHeader caseStudy />
-      <section className="px-5 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
-        <div
-          aria-labelledby="case-study-lock-title"
-          className="mx-auto w-full max-w-6xl rounded-xl border border-black/12 bg-[#fffefb]/94 p-4 shadow-[0_28px_80px_-62px_rgb(0_0_0/0.62)] sm:p-5 lg:p-6"
-        >
-          <div className="flex flex-wrap items-center gap-3 border-b border-black/10 pb-4">
-            <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-sm font-semibold text-black/60 hover:bg-[rgb(var(--accent-rgb)/0.08)] hover:text-[var(--accent)]">
-              <ChevronRight className="h-4 w-4 rotate-180" />
-              Back to featured work
-            </Link>
-          </div>
+      <section className="px-5 pb-16 pt-8 sm:px-8 sm:pb-20 sm:pt-10 lg:px-10 lg:pb-24 lg:pt-12">
+        <div aria-labelledby="case-study-lock-title" className="mx-auto w-full max-w-6xl">
+          <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
+            <ChevronRight className="h-4 w-4 rotate-180" />
+            Back to featured work
+          </Link>
 
-          <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(21rem,0.46fr)] lg:items-start">
+          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.42fr)] lg:items-start">
             <LockedCaseStudyPreview study={study} />
 
             <div className="lg:sticky lg:top-[calc(var(--portfolio-header-height)+1rem)]">
-              <div className="overflow-hidden rounded-xl border border-[rgb(var(--accent-rgb)/0.22)] bg-white shadow-[0_26px_72px_-58px_rgb(var(--accent-rgb)/0.8)]">
-                <div className="bg-[var(--accent)] p-5 text-white">
+              <div className="overflow-hidden rounded-lg border border-black/12 bg-[#fffefb] shadow-[0_24px_60px_-54px_rgb(0_0_0/0.62)]">
+                <div className="border-b border-black/10 p-5">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white/12 text-white">
-                      <LockKeyhole className="h-5 w-5" />
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[rgb(var(--accent-rgb)/0.09)] text-[var(--accent)]">
+                      <LockKeyhole className="h-4 w-4" />
                     </div>
                     <div>
-                      <h2 className="text-xl font-semibold leading-7">
-                        Unlock the full story
+                      <h2 className="text-lg font-semibold leading-7 text-black/86">
+                        Read the full case study
                       </h2>
                     </div>
                   </div>
@@ -3722,13 +3741,11 @@ function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
                     setPasscodeError("That passcode does not match. Try again or request access.");
                   }}
                 >
-                  <div className="grid gap-2">
-                    <label htmlFor="case-study-passcode" className="text-sm font-semibold leading-6 text-black/78">
-                      Passcode access
-                    </label>
+                  <div>
                     <input
                       id="case-study-passcode"
                       type="password"
+                      aria-label="Case study passcode"
                       value={passcode}
                       onChange={(event) => {
                         setPasscode(event.target.value.slice(0, caseStudyPasscodeLength));
@@ -3773,6 +3790,7 @@ function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
           </div>
         </div>
       </section>
+      <PortfolioFooter />
     </main>
   );
 }
