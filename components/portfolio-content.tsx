@@ -1597,10 +1597,10 @@ export const caseStudies: CaseStudy[] = [
     platform: "AI agent exploration on LinkedIn.com",
     headline: "An in-context AI agent for seller prospecting",
     summary:
-      "I led opportunity definition and concept validation, then helped align Seller Agent with LinkedIn's broader agentic work.",
+      "I led opportunity definition and concept validation for an agent that helped sellers turn LinkedIn signals, relationship paths, and lead context into clearer prospecting actions.",
     cardSummary:
       "Led design from opportunity definition through concept validation, then helped align Seller Agent with LinkedIn's broader agentic work.",
-    role: "Led definition, validation, concept testing, and stakeholder alignment",
+    role: "Led definition, concept testing, and early stakeholder alignment",
     status: "Foundational LinkedIn AI Agent exploration",
     contribution: {
       owned: [
@@ -1615,33 +1615,35 @@ export const caseStudies: CaseStudy[] = [
         "Used seller validation feedback to tighten trust, prompt density, relationship-path visibility, and action control.",
       ],
       proof: [
-        "Explorations and early learnings",
-        "Profile agent panel, warm paths, and talking points",
-        "Draft outreach and mobile agent flow",
+        "Opportunity framing and seller concept validation",
+        "In-context guidance, relationship paths, and talking points",
+        "Seller-controlled outreach across desktop and mobile",
       ],
     },
-    heroImage: "/projects/seller-agent/Seller-Agent-thumbnail-md.png",
-    heroAlt: "Seller Agent concept embedded beside a LinkedIn profile with prompts, relationship paths, and draft actions",
+    heroImage: "/projects/seller-agent/portfolio-crops/seller-agent-hero.jpg",
+    heroAlt: "Seller Agent concept embedded beside a LinkedIn profile with prompts, relationship paths, and seller-controlled actions",
+    thumbnailImage: "/projects/seller-agent/Seller-Agent-thumbnail-md.png",
+    thumbnailAlt: "LinkedIn Seller Agent wordmark",
     thumbnailBackground: "#D9E1D2",
     accent: "bg-[var(--accent)]",
     activeClass: "border-[var(--accent)] bg-[var(--accent)] text-white",
     icon: Sparkles,
     snapshot: [
       { label: "Company", value: "LinkedIn" },
-      { label: "Product area", value: "Sales Navigator, LinkedIn.com, AI Agents" },
+      { label: "Product", value: "LinkedIn Seller Agent" },
       { label: "Audience", value: "Sellers researching leads and accounts" },
-      { label: "Role", value: "Led definition, validation, concept testing, and stakeholder alignment" },
+      { label: "Role", value: "Led definition, concept testing, and early stakeholder alignment" },
     ],
     impact: [
       {
-        title: "In-context agent strategy",
+        title: "Guidance where sellers already work",
         detail:
-          "Reframed the agent as assistance inside the seller's existing LinkedIn workflow instead of a separate AI destination or generic chat surface.",
+          "Placed agent guidance alongside LinkedIn feed and profile context instead of sending sellers to a separate chat experience.",
       },
       {
-        title: "Sales signals into action",
+        title: "Signals into clear next steps",
         detail:
-          "Translated posts, comments, reactions, executive changes, account priorities, and warm paths into prompts that could help sellers decide who to contact and how to engage.",
+          "Connected account changes, social activity, relationship paths, and lead context to explain who mattered, why now, and what to do next.",
       },
       {
         title: "Validated integration value",
@@ -1711,12 +1713,11 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     systemBuild: [
-      "Defined the initial opportunity for an AI-powered seller assistant inside the LinkedIn.com workflow.",
-      "Mapped seller research pain points across LinkedIn.com, Sales Navigator, CRM, account research, and outreach preparation.",
-      "Created the feed-to-lead-to-outreach storyboard used with stakeholders and research participants.",
-      "Explored conversational flows that balanced free-form questions with guided prompts and structured product UI.",
-      "Used seller validation feedback to sharpen trust, prompt density, relationship-path visibility, and seller control.",
-      "Partnered with product, research, engineering, and emerging AI Agent platform teams as agent efforts became more centralized.",
+      "Defined the opportunity by mapping fragmented seller research across LinkedIn.com, Sales Navigator, CRM, account intelligence, and outreach preparation.",
+      "Created the feed-to-lead-to-outreach concept that connected account signals, lead context, relationship paths, and guided next actions.",
+      "Explored agent interactions that balanced free-form questions, structured prompts, source-backed answers, and seller-controlled actions.",
+      "Used seller concept testing to refine trust cues, prompt density, relationship-path visibility, and the effort required to reach a useful answer.",
+      "Partnered with product, research, engineering, another designer, and LinkedIn agent teams to align Seller Agent with broader company patterns.",
     ],
     decisions: [
       {
@@ -1784,21 +1785,19 @@ export const caseStudies: CaseStudy[] = [
     ],
     outcomesTitle: "What the product direction clarified",
     outcomes: [
-      "Seller Agent clarified how Sales Navigator value could appear directly inside LinkedIn workflows instead of requiring sellers to switch products.",
-      "The concept connected feed signals, account changes, lead context, warm paths, drafted outreach, and Sales Navigator follow-up into one seller flow.",
-      "Seller validation reinforced the need for seamless integration, stronger relationship visibility, less tool switching, and clearer Sales Navigator value.",
-      "The agent model centered compact prompts, visible rationale, source-backed context, and seller-controlled action as adoption requirements.",
-      "The exploration helped align Seller Agent with broader agentic experience patterns while keeping the product grounded in seller workflow needs.",
+      "Seller Agent demonstrated how Sales Navigator context could support prospecting directly inside LinkedIn.com instead of requiring sellers to switch products.",
+      "Concept testing clarified the need for compact, source-backed guidance, stronger relationship visibility, and seller control over each next action.",
+      "Cross-team alignment connected the seller use case to broader LinkedIn agent patterns without losing the workflow-specific value.",
     ],
     takeaway:
-      "Seller Agent shows 0-to-1 AI product design grounded in a real workflow: meet users where they already work, turn scattered context into decisions, and keep the human in control of action.",
+      "Seller Agent brought AI into the seller's existing workflow by connecting timely signals to clear, seller-controlled action.",
   },
 ];
 
 const phoneCaseIds = new Set(["campglint", "graphicsnack-ios"]);
 const lightPreviewCaseStudyIds = new Set(["sales-insights", "campglint", "seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"]);
 const publicCaseStudyIds = new Set(["sales-insights", "sales-navigator-multiseat"]);
-const caseStudyPasscode = "JM-8Q4-TZ9-LP2";
+const caseStudyPasscode = "!mondragon1";
 const caseStudyPasscodeLength = caseStudyPasscode.length;
 const legacyCaseStudyUnlockStorageKey = "jm-case-studies-unlocked";
 const caseStudyUnlockStorageKey = `jm-case-studies-unlocked:${caseStudyPasscode}`;
@@ -2061,6 +2060,7 @@ const caseStudyScopeTitles: Partial<Record<string, string[]>> = {
   "sales-navigator-multiseat": ["Admin workflows", "CRM integrations", "Seller workflow integrations", "Growth", "Support"],
   "sales-insights": ["Product partnership", "Product maturity", "Experience scope", "Integration workflows"],
   campglint: ["Product direction", "Monitoring workflow", "Discovery and trip readiness", "Native app foundation", "iOS system design"],
+  "seller-agent": ["Opportunity definition", "Experience concept", "Agent interaction model", "Concept testing", "Cross-team alignment"],
 };
 
 function CaseStudyRoleAndScope({ study }: { study: CaseStudy }) {
@@ -2114,6 +2114,39 @@ function CaseStudyRoleAndScope({ study }: { study: CaseStudy }) {
   );
 }
 
+const campGlintAiTools = [
+  {
+    title: "Codex",
+    detail:
+      "AI-assisted implementation, codebase navigation, SwiftUI refactoring, and design-system documentation across the app.",
+  },
+  {
+    title: "XcodeBuildMCP",
+    detail:
+      "Xcode builds, simulator checks, diagnostics, and verification that keep AI-assisted changes grounded in the native iOS toolchain.",
+  },
+];
+
+function CampGlintAiBuildWorkflow() {
+  return (
+    <section id="ai-build-workflow" className="grid scroll-mt-32 gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
+      <StorySectionLabel
+        eyebrow="Build workflow"
+        title="How AI supports the build"
+        body="I use AI to accelerate implementation and verification while keeping product direction, interaction decisions, and final quality judgment in my hands."
+      />
+      <div className="grid gap-5 sm:grid-cols-2">
+        {campGlintAiTools.map((tool) => (
+          <div key={tool.title} className="border-l border-black/18 pl-4">
+            <h3 className="text-base font-semibold leading-6 text-black/84">{tool.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-black/64">{tool.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function CaseStudyImagePlaceholder({ accent }: { accent: string }) {
   return (
     <section id="problem-frame-visual" aria-label="Project visual preview" className="scroll-mt-32 border-b border-black/12 pb-12">
@@ -2132,6 +2165,21 @@ function CaseStudyImagePlaceholder({ accent }: { accent: string }) {
 }
 
 function CaseStudyProblemFrameVisual({ study }: { study: CaseStudy }) {
+  if (study.id === "seller-agent") {
+    return (
+      <section id="problem-frame-visual" aria-label="Seller Agent prospecting workflow" className="scroll-mt-32 border-b border-black/12 pb-12">
+        <div className="grid aspect-[16/9] place-items-center overflow-hidden rounded-lg border border-black/12 bg-[#f8ede5]">
+          <img
+            src="/projects/seller-agent/seller-agent-test.png"
+            alt="Seller Agent concept explorations showing guided prompts, relationship paths, source-backed rationale, and outreach actions"
+            className="block h-full w-full object-contain"
+            loading="lazy"
+          />
+        </div>
+      </section>
+    );
+  }
+
   if (study.id === "campglint") {
     return (
       <section id="problem-frame-visual" aria-label="CampGlint product preview" className="scroll-mt-32 border-b border-black/12 pb-12">
@@ -2182,7 +2230,7 @@ function CaseStudyProblemFrameVisual({ study }: { study: CaseStudy }) {
 
 function CaseStudyPersonasSection({ section }: { section: PersonaSectionContent }) {
   return (
-    <section id="personas" className="grid gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
+    <section id="personas" className="grid scroll-mt-32 gap-7 border-b border-black/12 pb-12 lg:grid-cols-[minmax(13rem,0.34fr)_minmax(0,1fr)]">
       <StorySectionLabel
         eyebrow="Personas"
         title={section.title}
@@ -2209,7 +2257,7 @@ function CaseStudyPersonasSection({ section }: { section: PersonaSectionContent 
 
 function CaseStudyStoryView({ study }: { study: CaseStudy }) {
   const isPhoneCase = phoneCaseIds.has(study.id);
-  const usesOpportunityPullQuote = study.id === "sales-navigator-multiseat" || study.id === "sales-insights" || study.id === "campglint";
+  const usesOpportunityPullQuote = study.id === "sales-navigator-multiseat" || study.id === "sales-insights" || study.id === "campglint" || study.id === "seller-agent";
   const metaRef = useRef<HTMLDivElement>(null);
   const [isMetaStuck, setIsMetaStuck] = useState(false);
   const [metaHeight, setMetaHeight] = useState(0);
@@ -2317,6 +2365,8 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
 
             <CaseStudyRoleAndScope study={study} />
 
+            {study.id === "campglint" ? <CampGlintAiBuildWorkflow /> : null}
+
             <section id="how-it-unfolded" className="grid scroll-mt-32 gap-7 border-b border-black/12 pb-12">
               <StorySectionLabel
                 eyebrow="How it unfolded"
@@ -2325,7 +2375,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
               <ol className={`grid gap-4 sm:grid-cols-2 ${study.journey.length >= 5 ? "xl:grid-cols-5" : "xl:grid-cols-4"}`}>
                 {study.journey.map((item, index) => {
                   const cue = getJourneyCue(index, study.journey.length);
-                  const showCue = study.id !== "sales-navigator-multiseat" && study.id !== "sales-insights" && study.id !== "campglint";
+                  const showCue = study.id !== "sales-navigator-multiseat" && study.id !== "sales-insights" && study.id !== "campglint" && study.id !== "seller-agent";
 
                   return (
                     <li key={item.phase} className="group relative flex min-h-[9.5rem] flex-col overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/72 p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_58px_-50px_rgb(0_0_0/0.55)]">
@@ -2415,7 +2465,7 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
 }
 
 
-function PortfolioHeader({ caseStudy = false }: { caseStudy?: boolean }) {
+function PortfolioHeader({ caseStudy = false, sticky = !caseStudy }: { caseStudy?: boolean; sticky?: boolean }) {
   const pathname = usePathname();
   const isCaseStudiesActive = pathname === "/" || pathname.startsWith("/case-studies");
   const isResumeActive = pathname === "/resume";
@@ -2423,7 +2473,7 @@ function PortfolioHeader({ caseStudy = false }: { caseStudy?: boolean }) {
     "inline-flex min-h-10 items-center rounded-md px-3 py-2 text-[0.82rem] font-medium hover:text-[var(--accent)]";
 
   return (
-    <header className={`${caseStudy ? "relative" : "sticky top-0"} z-40 border-b border-black/15 bg-[#fbfaf7]/94 backdrop-blur`}>
+    <header className={`${sticky ? "sticky top-0" : "relative"} z-40 border-b border-black/15 bg-[#fbfaf7]/94 backdrop-blur`}>
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 gap-y-2 px-5 py-2.5 sm:px-8 md:flex-nowrap lg:px-12">
         <Link href={caseStudy ? "/#top" : "#top"} className="flex min-w-0 items-center gap-2.5">
           <img
@@ -2595,7 +2645,7 @@ const caseStudyBriefs: Record<string, { family: string; question: string }> = {
   },
   "seller-agent": {
     family: "AI-assisted seller workflow",
-    question: "How can Sales Navigator value meet sellers inside the LinkedIn workflow?",
+    question: "How can AI help sellers turn scattered LinkedIn signals into a clear prospecting action without leaving their workflow?",
   },
 };
 
@@ -2653,6 +2703,24 @@ const salesNavigatorPersonas: PersonaItem[] = [
   },
 ];
 
+const sellerAgentPersonas: PersonaItem[] = [
+  {
+    audience: "Account-based sellers",
+    job: "Track changes across priority accounts, understand what mattered, and identify the right people to engage.",
+    needed: "Relevant account signals, lead recommendations, relationship context, and a clear reason to act now.",
+  },
+  {
+    audience: "Lead-focused sellers",
+    job: "Research a specific person, qualify fit, and prepare an informed next step.",
+    needed: "Profile context, talking points, source-backed rationale, and actions tied to the lead in view.",
+  },
+  {
+    audience: "Relationship-led sellers",
+    job: "Find a credible path into an account through shared connections and relevant context.",
+    needed: "Warm paths, introduction context, mutual relationships, and seller control over outreach.",
+  },
+];
+
 const campGlintPersonas: PersonaItem[] = [
   {
     audience: "Campers targeting high-demand sites",
@@ -2672,6 +2740,12 @@ const campGlintPersonas: PersonaItem[] = [
 ];
 
 const caseStudyPersonaSections: Record<string, PersonaSectionContent> = {
+  "seller-agent": {
+    title: "Who Seller Agent had to work for",
+    body: "The concept had to support sellers moving between account monitoring, lead research, relationship discovery, and outreach without asking them to start from a blank prompt.",
+    jobLabel: "Workflow",
+    items: sellerAgentPersonas,
+  },
   campglint: {
     title: "Who CampGlint is designed for",
     body: "The same monitoring loop has to support campers with a fixed destination, people still exploring alternatives, and families carrying a confirmed site into trip preparation.",
@@ -2740,7 +2814,7 @@ const caseStudyWhySections: Record<string, { title: string; body: string; points
   "seller-agent": {
     title: "The opportunity",
     body:
-      "Sellers were already using LinkedIn activity, profile changes, relationship paths, Sales Navigator, and CRM context to decide who to contact and how to engage. Seller Agent could turn that scattered research into in-context guidance without forcing sellers into a separate AI destination. After validating the direction, the work expanded to align with broader LinkedIn agentic experience patterns.",
+      "Sellers were already piecing together LinkedIn activity, profile changes, relationship paths, Sales Navigator, and CRM context to decide who to contact and why. Seller Agent could turn that fragmented research into in-context AI guidance without forcing sellers into a separate destination. After concept validation, the work expanded to align with LinkedIn's broader agent experience.",
     points: [
       {
         title: "Seller research was fragmented",
@@ -3558,8 +3632,8 @@ function HomeClosingSection() {
       <div className="mx-auto max-w-6xl py-9 sm:py-11">
         <div className="grid gap-7 xl:grid-cols-[minmax(0,0.82fr)_auto] xl:items-end">
           <div>
-            <h2 id="work-with-me-heading" className="max-w-4xl text-3xl font-semibold leading-tight text-balance text-black/90 sm:text-4xl lg:text-[2.85rem]">
-              Open to startup and AI product design roles where I can partner closely with product, engineering, and cross-functional teams to solve meaningful user and customer challenges.
+            <h2 id="work-with-me-heading" className="max-w-3xl text-2xl font-medium leading-snug text-balance text-black/82 sm:text-3xl lg:text-[2rem]">
+              Open to startup and AI product design roles with teams that value close collaboration and practical customer outcomes.
             </h2>
           </div>
 
@@ -3698,7 +3772,7 @@ function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
 
   return (
     <main id="top" className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
-      <PortfolioHeader caseStudy />
+      <PortfolioHeader caseStudy sticky />
       <section className="px-5 pb-16 pt-8 sm:px-8 sm:pb-20 sm:pt-10 lg:px-10 lg:pb-24 lg:pt-12">
         <div aria-labelledby="case-study-lock-title" className="mx-auto w-full max-w-6xl">
           <Link href="/#case-studies" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
