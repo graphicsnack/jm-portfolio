@@ -1797,10 +1797,9 @@ export const caseStudies: CaseStudy[] = [
 const phoneCaseIds = new Set(["campglint", "graphicsnack-ios"]);
 const lightPreviewCaseStudyIds = new Set(["sales-insights", "campglint", "seller-agent", "sales-navigator-multiseat", "company-pages", "career-pages"]);
 const publicCaseStudyIds = new Set(["sales-insights", "sales-navigator-multiseat"]);
-const caseStudyPasscode = "!mondragon1";
-const caseStudyPasscodeLength = caseStudyPasscode.length;
+const campGlintPasscode = "!mondragon1";
+const protectedCaseStudyPasscode = "!mondragon937";
 const legacyCaseStudyUnlockStorageKey = "jm-case-studies-unlocked";
-const caseStudyUnlockStorageKey = `jm-case-studies-unlocked:${caseStudyPasscode}`;
 const caseStudyThumbnailImageClass = "case-study-thumbnail-image";
 const caseStudyThumbnailImageStyle: CSSProperties = {
   display: "block",
@@ -3746,6 +3745,10 @@ function FullCaseStudyCovers({ study }: { study: CaseStudy }) {
 }
 
 function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
+  const isCampGlint = study.id === "campglint";
+  const caseStudyPasscode = isCampGlint ? campGlintPasscode : protectedCaseStudyPasscode;
+  const caseStudyPasscodeLength = caseStudyPasscode.length;
+  const caseStudyUnlockStorageKey = `jm-case-studies-unlocked:${isCampGlint ? "campglint" : "protected"}:${caseStudyPasscode}`;
   const [passcode, setPasscode] = useState("");
   const [passcodeError, setPasscodeError] = useState("");
   const [unlocked, setUnlocked] = useState(false);
@@ -3764,7 +3767,7 @@ function LockedCaseStudyPage({ study }: { study: CaseStudy }) {
     } catch {
       setUnlocked(false);
     }
-  }, []);
+  }, [caseStudyUnlockStorageKey]);
 
   if (unlocked) {
     return <CaseStudyUnlockedPage study={study} />;
