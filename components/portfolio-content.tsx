@@ -1895,7 +1895,7 @@ const experienceHighlights = [
 const currentBuilderExperience = {
   title: "Product Designer & Builder",
   company: "Independent",
-  period: "2025-Present",
+  period: "2026-Present",
   body:
     "Designing and building AI-powered web and iOS products from concept to production-ready prototype, combining product strategy, UX, visual design, prompt design, and front-end implementation.",
 };
