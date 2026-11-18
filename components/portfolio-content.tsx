@@ -1820,12 +1820,6 @@ const featuredCaseStudyIds = ["sales-insights", "sales-navigator-multiseat", "ca
 const compactCaseStudyIds: string[] = [];
 const routedCaseStudyIds = ["sales-insights", "sales-navigator-multiseat", "campglint", "seller-agent", "company-pages", "career-pages"];
 
-const resumeSignals = [
-  "11+ years at LinkedIn across Sales, Talent, Company Pages, content platforms, and AI agent workflows.",
-  "Product designer focused on product strategy, end-to-end UX, interaction design, and enterprise workflows.",
-  "Builder of AI-powered web and iOS products from concept to production-ready prototype.",
-];
-
 const heroFocusItems = [
   {
     title: "Founder-led product",
@@ -1846,59 +1840,6 @@ const featuredProofPoints = heroFocusItems.map((item, index) => ({
   label: item.title,
   detail: item.body,
 }));
-
-const experienceHighlights = [
-  {
-    period: "2022-2025",
-    title: "Senior Product Designer, Sales Solutions",
-    body:
-      "Led end-to-end design across LinkedIn Sales Navigator and Sales Insights, creating scalable workflows for sellers and sales operations teams. Co-defined early Seller Agent concepts that informed LinkedIn's AI-agent direction, and designed Sales Insights planning experiences that helped sales leaders assess markets, prioritize accounts, and forecast with greater confidence.",
-  },
-  {
-    period: "2020-2022",
-    title: "Product Design Lead, Productivity Solutions",
-    body:
-      "Managed a 3-person design team building content creation, publishing, and localization workflows across LinkedIn that reduced manual Help Center operations and enabled faster multi-market content launches.",
-  },
-  {
-    period: "2018-2020",
-    title: "Senior Product Designer, Talent Solutions",
-    body:
-      "Led design of Pipeline Builder to enable organizations to build targeted pipelines of interested candidates for high priority, high volume, or hard-to-fill roles. Enabled Talent Brand Managers to attract and measure ROI, and helped Admins customize their presence on LinkedIn with Career Pages.",
-  },
-  {
-    period: "2016-2018",
-    title: "Product Designer, LinkedIn Company Pages",
-    body:
-      "Shaped Company Pages admin and member experiences across free and paid tiers. Launched LinkedIn's first company review experience to help job seekers assess fit.",
-  },
-  {
-    period: "2014-2016",
-    title: "Product Designer, Sales Solutions",
-    body:
-      "Designed Admin and Integration experiences that enabled CRM and Gmail integrations, scalable team management, and enterprise adoption. Launched Social Selling Index and growth initiatives, shaping core product direction through research, prototyping, and cross-functional collaboration.",
-  },
-  {
-    period: "2013",
-    title: "UX Design Intern, Monetization",
-    body:
-      "Designed a product directory for LinkedIn monetization products to improve discoverability and navigation.",
-  },
-  {
-    period: "2012",
-    title: "UX Design Intern, thredUP",
-    body:
-      "Designed Android shopping flows and print collateral to support thredUP's mobile app launch.",
-  },
-];
-
-const currentBuilderExperience = {
-  title: "Product Designer & Builder",
-  company: "Independent",
-  period: "2026-Present",
-  body:
-    "Designing and building AI-powered web and iOS products from concept to production-ready prototype, combining product strategy, UX, visual design, prompt design, and front-end implementation.",
-};
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="text-xs font-semibold uppercase text-black/55">{children}</p>;
@@ -2467,7 +2408,6 @@ function CaseStudyStoryView({ study }: { study: CaseStudy }) {
 function PortfolioHeader({ caseStudy = false, sticky = !caseStudy }: { caseStudy?: boolean; sticky?: boolean }) {
   const pathname = usePathname();
   const isCaseStudiesActive = pathname === "/" || pathname.startsWith("/case-studies");
-  const isResumeActive = pathname === "/resume";
   const navLinkBase =
     "inline-flex min-h-10 items-center rounded-md px-3 py-2 text-[0.82rem] font-medium hover:text-[var(--accent)]";
 
@@ -2492,13 +2432,6 @@ function PortfolioHeader({ caseStudy = false, sticky = !caseStudy }: { caseStudy
             className={`${navLinkBase} ${isCaseStudiesActive ? "text-[var(--accent)]" : "text-black/64"}`}
           >
             Case studies
-          </Link>
-          <Link
-            href="/resume"
-            aria-current={isResumeActive ? "page" : undefined}
-            className={`${navLinkBase} ${isResumeActive ? "text-[var(--accent)]" : "text-black/64"}`}
-          >
-            Resume
           </Link>
         </nav>
         <a
@@ -3254,9 +3187,6 @@ function HomepageStoryHero() {
             Read featured work
             <ArrowDown className="h-4 w-4" />
           </Link>
-          <Link href="/resume" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
-            Resume
-          </Link>
         </div>
       </div>
     </section>
@@ -3410,220 +3340,6 @@ function HomepageStoryFeaturedWork() {
     </section>
   );
 }
-
-function HomepageStoryExperience() {
-  return (
-    <section className="bg-[#f2efe7] px-5 py-12 sm:px-8 lg:px-10">
-      <div className="mx-auto max-w-6xl">
-        <StorySectionLabel
-          eyebrow="Experience"
-          title="The portfolio is grounded in long-running product ownership, not isolated visual exercises."
-          body="A condensed career spine gives context before asking a reviewer to open deeper case studies or the resume page."
-        />
-        <div className="mt-8 border-t border-black/12">
-          {experienceHighlights.slice(0, 4).map((item) => (
-            <article key={item.title} className="grid gap-4 border-b border-black/12 py-5 sm:grid-cols-[8rem_minmax(0,1fr)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/42">{item.period}</p>
-              <div>
-                <h3 className="text-base font-semibold leading-6 text-black/84">{item.title}</h3>
-                <p className="mt-2 max-w-4xl text-sm leading-6 text-black/64">{item.body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Link href="/resume" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
-            View resume
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-          <a href="mailto:juansjsu@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
-            Contact me
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ResumeDocumentHeader() {
-  return (
-    <section className="overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/86" aria-label="Resume contact summary">
-      <div className="grid sm:min-h-[18rem] sm:grid-cols-[14rem_minmax(0,1fr)]">
-        <div className="hidden bg-[#e9e4d8] sm:block sm:border-r sm:border-black/12">
-          <img
-            src="/avatars/juan.png"
-            alt="Juan Mondragon"
-            className="h-full w-full object-cover object-[50%_42%]"
-          />
-        </div>
-        <div className="p-4 sm:p-5">
-          <div className="border-b border-black/12 pb-4">
-            <div className="flex items-start gap-3 sm:block">
-              <img
-                src="/avatars/juan.png"
-                alt="Juan Mondragon"
-                className="h-24 w-24 shrink-0 rounded-md bg-[#e9e4d8] object-cover object-[50%_36%] sm:hidden"
-              />
-              <div className="min-w-0">
-                <h2 className="text-2xl font-semibold leading-7 text-black/88 sm:text-4xl sm:leading-tight">
-                  Juan Mondragon
-                </h2>
-                <p className="mt-1 text-sm font-semibold leading-5 text-black/70">Product Designer & Builder</p>
-                <p className="mt-0.5 text-sm leading-5 text-black/66">San Francisco Bay Area</p>
-              </div>
-            </div>
-          </div>
-          <p className="pt-4 text-sm leading-6 text-black/66">
-            Product Designer with 11+ years at LinkedIn, leading design across sales, talent, and content platforms. I've shaped
-            systems that empower teams to publish faster, plan smarter, and connect through AI-driven tools like Seller Agent. I bring a
-            user-centered, data-informed mindset to solving complex product challenges at scale.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function LinkedInTimelineLogo() {
-  return (
-    <img
-      src="/brand/LinkedIn_logo.png"
-      alt="LinkedIn"
-      className="h-9 w-9 rounded-[0.38rem] object-cover shadow-[0_12px_30px_-18px_rgb(var(--accent-rgb)/0.85)]"
-      loading="lazy"
-    />
-  );
-}
-
-function BuilderExperienceLogo() {
-  return (
-    <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-[0.38rem] shadow-[0_12px_30px_-18px_rgb(var(--accent-rgb)/0.85)]">
-      <img
-        src="/brand/JM_logo_icon_transparent.png"
-        alt="Juan Mondragon"
-        className="h-full w-full translate-y-[1px] scale-[1.16] object-contain"
-        loading="lazy"
-      />
-    </span>
-  );
-}
-
-function ResumeCurrentBuilderExperience() {
-  return (
-    <article className="grid grid-cols-[6.75rem_minmax(0,1fr)] rounded-lg border border-black/12 bg-[#fffefb]/86 sm:grid-cols-[14rem_minmax(0,1fr)]">
-      <div className="flex justify-center px-3 py-5 sm:px-5">
-        <BuilderExperienceLogo />
-      </div>
-      <div className="px-3 py-5 sm:px-5">
-        <div className="mb-2">
-          <p className="text-xs font-semibold uppercase leading-5 text-black/48">{currentBuilderExperience.period}</p>
-          <p className="mt-0.5 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">{currentBuilderExperience.company}</p>
-        </div>
-        <h3 className="text-sm font-semibold leading-6">{currentBuilderExperience.title}</h3>
-        <p className="mt-1 text-sm leading-6 text-black/66">{currentBuilderExperience.body}</p>
-      </div>
-    </article>
-  );
-}
-
-function ResumeExperienceList() {
-  return (
-    <div className="overflow-hidden rounded-lg border border-black/12 bg-[#fffefb]/86" aria-label="LinkedIn experience timeline">
-      {experienceHighlights.map((item, index) => {
-        const isFirst = index === 0;
-        const isLast = index === experienceHighlights.length - 1;
-
-        return (
-          <article key={item.title} className="grid grid-cols-[6.75rem_minmax(0,1fr)] sm:grid-cols-[14rem_minmax(0,1fr)]">
-            <div className="relative flex justify-center px-3 py-5 sm:px-5">
-              <span
-                aria-hidden="true"
-                className={[
-                  "absolute left-1/2 w-px -translate-x-1/2 bg-[#182070]/35",
-                  isFirst ? "top-16" : "top-0",
-                  isLast ? "h-[2.375rem]" : "bottom-0",
-                ].join(" ")}
-              />
-              <span className="relative z-10 flex h-9 w-9 items-center justify-center">
-                {isFirst ? (
-                  <LinkedInTimelineLogo />
-                ) : (
-                  <span className="h-3 w-3 rounded-full bg-[var(--accent)] shadow-[0_0_0_5px_#fffefb]" />
-                )}
-              </span>
-            </div>
-            <div className="px-3 pt-5 sm:px-5">
-              <div className={["pb-5", isLast ? "" : "border-b border-black/12"].join(" ")}>
-                <div className="mb-2">
-                  <p className="text-xs font-semibold uppercase leading-5 text-black/48">{item.period}</p>
-                  {isFirst ? (
-                    <p className="mt-0.5 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">LinkedIn</p>
-                  ) : null}
-                </div>
-                <h3 className="text-sm font-semibold leading-6">{item.title}</h3>
-                <p className="mt-1 text-sm leading-6 text-black/66">{item.body}</p>
-              </div>
-            </div>
-          </article>
-        );
-      })}
-    </div>
-  );
-}
-
-function ResumeSnapshot({ standalone = false }: { standalone?: boolean }) {
-  if (standalone) {
-    return (
-      <section id="resume" className="portfolio-grid-pattern resume-grid-pattern px-5 py-12 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-6xl gap-5">
-          <ResumeDocumentHeader />
-          <ResumeCurrentBuilderExperience />
-          <ResumeExperienceList />
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section id="resume" className="border-t border-black/15 bg-[#f2efe7] px-5 py-12 sm:px-8 lg:px-10">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)]">
-        <div>
-          <Eyebrow>Resume</Eyebrow>
-          <p className="mt-4 max-w-2xl text-3xl font-semibold leading-tight text-balance text-black/88 sm:text-4xl">
-            Across LinkedIn and CampGlint, I turn complex problems into clear strategy, interaction systems, and working products.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href="/resume"
-              className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]"
-            >
-              View resume
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <a
-              href="mailto:juansjsu@gmail.com"
-              className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/70 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
-            >
-              juansjsu@gmail.com
-            </a>
-          </div>
-        </div>
-
-        <div className="grid gap-5">
-          <div className="grid gap-3 md:grid-cols-3">
-            {resumeSignals.map((signal) => (
-              <article key={signal} className="rounded-lg border border-black/12 bg-[#fffefb]/78 p-4">
-                <p className="text-sm leading-6 text-black/68">{signal}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 
 function HomeClosingSection() {
   return (
@@ -3896,17 +3612,6 @@ export function FullCaseStudyPage({ studyId }: { studyId: string }) {
   }
 
   return <LockedCaseStudyPage study={study} />;
-}
-
-export function ResumePage() {
-  return (
-    <main id="top" className="min-h-screen bg-[#fbfaf7] text-[#1f2220]">
-      <PortfolioHeader />
-      <ResumeSnapshot standalone />
-      <HomeClosingSection />
-      <PortfolioFooter />
-    </main>
-  );
 }
 
 function HomeHeroGraphic() {
