@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" fill="none">
+  <rect width="1200" height="675" fill="#EEF3F8"/>
+  <rect x="72" y="70" width="1056" height="535" rx="28" fill="#F8FAFC" stroke="#C8D4E3" stroke-width="2"/>
+  <rect x="72" y="70" width="1056" height="58" rx="28" fill="#0A66C2"/>
+  <circle cx="113" cy="99" r="10" fill="#DCE8F5"/>
+  <circle cx="145" cy="99" r="10" fill="#DCE8F5" opacity=".75"/>
+  <rect x="190" y="91" width="290" height="16" rx="8" fill="#DCE8F5" opacity=".9"/>
+  <rect x="872" y="88" width="126" height="22" rx="11" fill="#DCE8F5" opacity=".9"/>
+  <rect x="1018" y="88" width="70" height="22" rx="11" fill="#DCE8F5" opacity=".65"/>
+
+  <g transform="translate(116 162)">
+    <rect width="500" height="385" rx="22" fill="#FFFFFF" stroke="#CFD8E3"/>
+    <rect width="500" height="122" rx="22" fill="#DCEBFA"/>
+    <rect y="88" width="500" height="34" fill="#C9DFF6"/>
+    <circle cx="80" cy="118" r="48" fill="#0A66C2" stroke="#FFFFFF" stroke-width="8"/>
+    <text x="64" y="130" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">in</text>
+    <text x="136" y="137" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#1F2328">Company Page</text>
+    <rect x="136" y="154" width="220" height="12" rx="6" fill="#7A8794" opacity=".55"/>
+    <rect x="30" y="205" width="206" height="96" rx="16" fill="#F3F6F8" stroke="#DEE6EE"/>
+    <text x="52" y="238" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#1F2328">Claim or create</text>
+    <rect x="52" y="255" width="146" height="10" rx="5" fill="#6B7785" opacity=".45"/>
+    <rect x="52" y="274" width="106" height="10" rx="5" fill="#0A66C2" opacity=".38"/>
+    <rect x="264" y="205" width="206" height="96" rx="16" fill="#F3F6F8" stroke="#DEE6EE"/>
+    <text x="286" y="238" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#1F2328">Customize</text>
+    <rect x="286" y="255" width="122" height="10" rx="5" fill="#6B7785" opacity=".45"/>
+    <rect x="286" y="274" width="88" height="10" rx="5" fill="#0A66C2" opacity=".42"/>
+    <rect x="30" y="322" width="470" height="1" fill="#D7E0EA"/>
+    <rect x="30" y="346" width="166" height="12" rx="6" fill="#1F2328" opacity=".78"/>
+    <rect x="30" y="372" width="420" height="10" rx="5" fill="#6B7785" opacity=".32"/>
+  </g>
+
+  <g transform="translate(664 162)">
+    <rect width="420" height="385" rx="22" fill="#FFFFFF" stroke="#CFD8E3"/>
+    <text x="28" y="48" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#1F2328">Admin tools</text>
+    <rect x="28" y="70" width="364" height="68" rx="16" fill="#F3F6F8" stroke="#DEE6EE"/>
+    <circle cx="58" cy="104" r="15" fill="#0A66C2" opacity=".85"/>
+    <rect x="84" y="92" width="174" height="12" rx="6" fill="#1F2328" opacity=".72"/>
+    <rect x="84" y="113" width="230" height="10" rx="5" fill="#6B7785" opacity=".35"/>
+    <rect x="28" y="160" width="172" height="120" rx="18" fill="#EAF3FC" stroke="#D5E5F5"/>
+    <text x="50" y="196" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#1F2328">Engagement</text>
+    <rect x="50" y="220" width="118" height="10" rx="5" fill="#6B7785" opacity=".38"/>
+    <rect x="50" y="242" width="86" height="10" rx="5" fill="#0A66C2" opacity=".35"/>
+    <rect x="220" y="160" width="172" height="120" rx="18" fill="#F5F2E9" stroke="#E4DCCA"/>
+    <text x="242" y="196" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#1F2328">Employee story</text>
+    <rect x="242" y="220" width="102" height="10" rx="5" fill="#6B7785" opacity=".38"/>
+    <rect x="242" y="242" width="76" height="10" rx="5" fill="#0A66C2" opacity=".35"/>
+    <rect x="28" y="310" width="364" height="42" rx="21" fill="#0A66C2"/>
+    <text x="133" y="337" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Track activity</text>
+  </g>
+
+  <text x="96" y="636" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#637083">Free company product</text>
+  <text x="665" y="636" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#637083">Admin and employee experience</text>
+</svg>
