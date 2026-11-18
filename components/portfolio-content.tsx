@@ -964,7 +964,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "I designed member, admin, and analytics experiences that connected employer stories with candidate research and job action.",
     cardSummary:
-      "Designed tools for companies to tell their story and for candidates to follow jobs and show interest.",
+      "Designed publishing tools for employers, plus job alerts and ways for candidates to signal interest.",
     role: "Primary product designer across member, admin, and analytics experiences",
     status: "Shipped LinkedIn recruiting product",
     contribution: {
@@ -1165,7 +1165,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "I led an exploration into how LinkedIn could give job seekers credible insight into what it is like to work at a company.",
     cardSummary:
-      "Explored how LinkedIn could solve a major job-seeker pain point: understanding what it is like to work at a company.",
+      "Led design for a pilot that used employee ratings and reviews to help job seekers evaluate companies.",
     role: "Led design and collaborated with PM and PMM on strategy",
     status: "Pilot validated, patterns informed Career Pages launches",
     contribution: {
@@ -1599,7 +1599,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "I led opportunity definition and concept validation for an agent that helped sellers turn LinkedIn signals, relationship paths, and lead context into clearer prospecting actions.",
     cardSummary:
-      "Led design from opportunity definition through concept validation, then helped align Seller Agent with LinkedIn's broader agentic work.",
+      "Led design and testing for an AI assistant that helped sellers research leads and prepare outreach on LinkedIn.",
     role: "Led definition, concept testing, and early stakeholder alignment",
     status: "Foundational LinkedIn AI Agent exploration",
     contribution: {
@@ -1822,16 +1822,16 @@ const routedCaseStudyIds = ["sales-insights", "sales-navigator-multiseat", "camp
 
 const heroFocusItems = [
   {
-    title: "Founder-led product",
-    body: "Native iOS product strategy, interaction design, and launch readiness carried end to end.",
+    title: "Independent product work",
+    body: "Built CampGlint in SwiftUI to track campsite openings, find alternatives, and prepare for trips.",
   },
   {
-    title: "Enterprise systems",
-    body: "Admin, data trust, GTM planning, integrations, and adoption loops across LinkedIn products.",
+    title: "Enterprise workflows",
+    body: "Designed account planning, CRM integrations, and admin tools for sales teams at LinkedIn.",
   },
   {
-    title: "AI workflows",
-    body: "Source-backed assistance, seller control, structured outputs, and useful next actions.",
+    title: "AI-assisted selling",
+    body: "Explored how an assistant could help sellers research prospects and draft outreach they could review and edit.",
   },
 ];
 
@@ -2413,7 +2413,7 @@ function PortfolioHeader({ caseStudy = false, sticky = !caseStudy }: { caseStudy
 
   return (
     <header className={`${sticky ? "sticky top-0" : "relative"} z-40 border-b border-black/15 bg-[#fbfaf7]/94 backdrop-blur`}>
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 gap-y-2 px-5 py-2.5 sm:px-8 md:flex-nowrap lg:px-12">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2.5 sm:px-8 lg:px-12">
         <Link href={caseStudy ? "/#top" : "#top"} className="flex min-w-0 items-center gap-2.5">
           <img
             src="/brand/JM_logo_icon_transparent.png"
@@ -2425,7 +2425,7 @@ function PortfolioHeader({ caseStudy = false, sticky = !caseStudy }: { caseStudy
             <span className="block truncate text-[0.7rem] leading-4 text-black/56">Product design portfolio</span>
           </span>
         </Link>
-        <nav className="order-3 -mx-5 flex w-[calc(100%+2.5rem)] flex-wrap items-center gap-1 border-t border-black/10 px-5 pt-2 sm:-mx-8 sm:w-[calc(100%+4rem)] sm:px-8 md:order-none md:mx-0 md:w-auto md:border-0 md:px-0 md:pt-0" aria-label="Portfolio navigation">
+        <nav className="shrink-0" aria-label="Portfolio navigation">
           <Link
             href="/"
             aria-current={isCaseStudiesActive ? "page" : undefined}
@@ -2434,13 +2434,6 @@ function PortfolioHeader({ caseStudy = false, sticky = !caseStudy }: { caseStudy
             Case studies
           </Link>
         </nav>
-        <a
-          href="mailto:juansjsu@gmail.com"
-          className="inline-flex shrink-0 items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-3 py-1.5 text-[0.82rem] font-semibold text-white hover:bg-[var(--accent-strong)]"
-        >
-          Contact me
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </a>
       </div>
     </header>
   );
@@ -2484,7 +2477,7 @@ function PortfolioFooter() {
       icon: BehanceBrandIcon,
     },
     {
-      label: "Contact me",
+      label: "Email",
       href: "mailto:juansjsu@gmail.com",
       icon: Mail,
     },
@@ -3126,14 +3119,13 @@ function FeaturedProofPointRow() {
     <section className="bg-[#fbfaf7] px-5 pt-12 sm:px-8 lg:px-10" aria-labelledby="portfolio-focus-heading">
       <div className="mx-auto max-w-6xl">
         <h2 id="portfolio-focus-heading" className="mb-7 max-w-2xl text-2xl font-semibold leading-tight text-black/88 sm:text-3xl">
-          What I bring to complex product work
+          Design focus
         </h2>
         <div className="grid gap-8 sm:grid-cols-3">
-          {featuredProofPoints.map((point) => (
-            <div key={point.label} className="border-l border-black/15 pl-4">
-              <p className="text-xs font-semibold text-black/38">{point.value}</p>
-              <p className="mt-3 text-sm font-semibold text-black/82">{point.label}</p>
-              <p className="mt-2 max-w-sm text-sm leading-6 text-black/62">{point.detail}</p>
+          {heroFocusItems.map((item) => (
+            <div key={item.title} className="border-l border-black/15 pl-4">
+              <p className="text-sm font-semibold text-black/82">{item.title}</p>
+              <p className="mt-2 max-w-sm text-sm leading-6 text-black/62">{item.body}</p>
             </div>
           ))}
         </div>
@@ -3336,41 +3328,6 @@ function HomepageStoryFeaturedWork() {
           ))}
         </div>
         <HomepageStoryNotableWork />
-      </div>
-    </section>
-  );
-}
-
-function HomeClosingSection() {
-  return (
-    <section className="bg-[#fbfaf7] px-5 pb-12 pt-2 sm:px-8 lg:px-10" aria-labelledby="work-with-me-heading">
-      <div className="mx-auto max-w-6xl py-9 sm:py-11">
-        <div className="grid gap-7 xl:grid-cols-[minmax(0,0.82fr)_auto] xl:items-end">
-          <div>
-            <h2 id="work-with-me-heading" className="max-w-3xl text-2xl font-medium leading-snug text-balance text-black/82 sm:text-3xl lg:text-[2rem]">
-              Open to startup and AI product design roles with teams that value close collaboration and practical customer outcomes.
-            </h2>
-          </div>
-
-          <div className="flex flex-wrap gap-3 xl:justify-end">
-            <a
-              href="https://www.linkedin.com/in/juanmondragon"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]"
-            >
-              LinkedIn
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <a
-              href="mailto:juansjsu@gmail.com"
-              className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]"
-            >
-              Contact me
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -3780,20 +3737,16 @@ export function PortfolioPage() {
         <div className="mx-auto grid max-w-6xl gap-9 lg:grid-cols-[minmax(0,0.95fr)_minmax(20rem,0.72fr)] lg:items-center">
           <div>
             <h1 className="max-w-3xl text-4xl font-semibold leading-[1.06] text-balance sm:text-5xl lg:text-[3.35rem]">
-              I design complex products that help people understand what matters, take the next step, and build confidence.
+              I design products that help people make sense of complex information and decide what to do next.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
-              Senior product designer with 10+ years at LinkedIn, focused on enterprise systems, AI-assisted selling, GTM workflows, and founder-led product building.
+              Over a decade at LinkedIn, I designed tools for sales, recruiting, and content teams. I also designed and built CampGlint, an iOS app for finding campsite openings and planning trips.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="#case-studies" className="inline-flex items-center gap-2 rounded-md border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-strong)]">
-                Read featured work
+                View case studies
                 <ArrowDown className="h-4 w-4" />
               </Link>
-              <a href="mailto:juansjsu@gmail.com" className="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white/72 px-4 py-3 text-sm font-semibold text-black/68 hover:bg-white hover:text-[var(--accent-strong)]">
-                Contact me
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
             </div>
           </div>
           <HomeHeroVisual />
@@ -3801,7 +3754,6 @@ export function PortfolioPage() {
       </section>
 
       <FeaturedCaseStudies />
-      <HomeClosingSection />
 
       <PortfolioFooter />
     </main>

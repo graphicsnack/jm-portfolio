@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Juan Mondragon | Product Design Portfolio",
   description:
-    "Senior product design portfolio covering LinkedIn systems, AI workflows, GTM planning tools, and founder-led product work.",
+    "Product design case studies by Juan Mondragon, from sales and recruiting tools at LinkedIn to CampGlint, an iOS camping app.",
   icons: {
     icon: "/brand/jm-favicon.png",
     shortcut: "/brand/jm-favicon.png",
